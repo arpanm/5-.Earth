@@ -1,3 +1,9 @@
+// Function to toggle mobile menu
+function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+}
+
 // Sample post data - In a real app, this would come from an API
 const posts = [
     {

@@ -71,6 +71,22 @@ body {
     color: var(--primary-color);
 }
 
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--dark-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+}
+
 /* Hero Section */
 .hero-section {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -99,6 +115,45 @@ body {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        padding: 0 0.5rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .impact-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .environmental-impact-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .stat-item {
+        padding: 0.8rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+    }
 }
 
 /* Buttons */
@@ -151,6 +206,15 @@ body {
     border-radius: 12px;
 }
 
+@media screen and (max-width: 768px) {
+    .impact-stats {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
 .environmental-impact-stats {
     margin: 3rem 0;
     padding: 2rem;
@@ -162,9 +226,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     margin: 2rem 0;
-    
 }
-
 .environmental-impact-stats h3 {
     color: #baf0bc;
     text-align: center;
@@ -228,6 +290,38 @@ body {
 .stat-label {
     font-size: 1rem;
     opacity: 0.9;
+}
+
+@media screen and (max-width: 768px) {
+    .environmental-impact-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+    .environmental-impact-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .environmental-impact-stats-grid .eco-stat:last-child {
+        grid-column: 1 / -1;
+        max-width: 250px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .environmental-impact-stats .eco-stat i {
+        font-size: 2rem;
+    }
+    
+    .environmental-impact-stats .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .environmental-impact-stats .stat-label {
+        font-size: 0.875rem;
+    }
 }
 
 /* Community Section */
@@ -804,10 +898,34 @@ footer {
 @media (max-width: 768px) {
     .navbar {
         padding: 1rem;
+        position: relative;
     }
 
     .nav-links {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+
+    .nav-links a {
+        width: 100%;
+        justify-content: flex-start;
     }
 
     .hero-content h1 {

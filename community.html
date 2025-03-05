@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="5%.Earth Community - Connect with eco-warriors, share initiatives, and track your environmental impact.">
+    <title>5%.Earth Community - Environmental Action Network</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <i class="fas fa-leaf"></i>
+                <span>5%.Earth</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#feed"><i class="fas fa-stream"></i> Feed</a></li>
+                <li><a href="#projects"><i class="fas fa-seedling"></i> Green Projects</a></li>
+                <li><a href="#events"><i class="fas fa-calendar"></i> Events</a></li>
+                <li><a href="#profile"><i class="fas fa-user"></i> Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="create-post">
+            <div class="post-container">
+                <textarea placeholder="Share your eco-friendly initiative, sustainability tip, or environmental project..."></textarea>
+                <button id="post-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Share
+                </button>
+            </div>
+        </section>
+
+        <section id="leaderboard" class="leaderboard-section">
+            <h2>Sustainability Leaders</h2>
+            <div class="leaderboard-container">
+                <div class="leaderboard-tabs">
+                    <button class="tab-btn active">Weekly</button>
+                    <button class="tab-btn">Monthly</button>
+                    <button class="tab-btn">All Time</button>
+                </div>
+                <div class="leaderboard-list">
+                    <!-- Leaderboard entries will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="feed">
+            <div class="posts-container">
+                <!-- Posts will be dynamically inserted here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 5%.Earth - Together for a Sustainable Future</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -6,7 +6,7 @@
     <meta name="description" content="5%.Earth Community - Connect with eco-warriors, share initiatives, and track your environmental impact.">
     <title>5%.Earth Community - Environmental Action Network</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/community.css">
 </head>
 <body>
     <header>
@@ -17,7 +17,7 @@
             </a>
             <ul class="nav-links">
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#feed"><i class="fas fa-stream"></i> Feed</a></li>
+                <li><a href="community.html"><i class="fas fa-stream"></i> Feed</a></li>
                 <li><a href="#projects"><i class="fas fa-seedling"></i> Green Projects</a></li>
                 <li><a href="#events"><i class="fas fa-calendar"></i> Events</a></li>
                 <li><a href="#profile"><i class="fas fa-user"></i> Profile</a></li>
@@ -26,33 +26,69 @@
     </header>
 
     <main>
-        <section id="create-post">
+        <section id="create-post" class="create-post-section">
             <div class="post-container">
-                <textarea placeholder="Share your eco-friendly initiative, sustainability tip, or environmental project..."></textarea>
-                <button id="post-btn">
-                    <i class="fas fa-paper-plane"></i>
-                    Share
+                <div class="post-types">
+                    <button class="post-type-btn active" data-type="quick-post">
+                        <i class="fas fa-bolt"></i> Quick Post
+                    </button>
+                    <button class="post-type-btn" data-type="blog">
+                        <i class="fas fa-blog"></i> Blog
+                    </button>
+                    <button class="post-type-btn" data-type="media">
+                        <i class="fas fa-photo-video"></i> Media
+                    </button>
+                    <button class="post-type-btn" data-type="poll">
+                        <i class="fas fa-poll"></i> Poll
+                    </button>
+                    <button class="post-type-btn" data-type="event">
+                        <i class="fas fa-calendar-alt"></i> Event
+                    </button>
+                </div>
+                <div class="post-editor">
+                    <textarea placeholder="Share your eco-friendly initiative, sustainability tip, or environmental project..."></textarea>
+                    <div class="post-actions">
+                        <div class="media-actions">
+                            <button class="media-btn" title="Add Photo">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <button class="media-btn" title="Add Video">
+                                <i class="fas fa-video"></i>
+                            </button>
+                            <button class="media-btn" title="Add Location">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </button>
+                        </div>
+                        <button id="post-btn" class="primary-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Post
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="feed" class="feed-section">
+            <div class="feed-filters">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-globe"></i> All
                 </button>
-            </div>
-        </section>
-
-        <section id="leaderboard" class="leaderboard-section">
-            <h2>Sustainability Leaders</h2>
-            <div class="leaderboard-container">
-                <div class="leaderboard-tabs">
-                    <button class="tab-btn active">Weekly</button>
-                    <button class="tab-btn">Monthly</button>
-                    <button class="tab-btn">All Time</button>
+                <button class="filter-btn" data-filter="following">
+                    <i class="fas fa-user-friends"></i> Following
+                </button>
+                <button class="filter-btn" data-filter="trending">
+                    <i class="fas fa-fire"></i> Trending
+                </button>
+                <div class="feed-sort">
+                    <select id="feed-sort-select">
+                        <option value="recent">Most Recent</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="impact">Highest Impact</option>
+                    </select>
                 </div>
-                <div class="leaderboard-list">
-                    <!-- Leaderboard entries will be dynamically inserted here -->
-                </div>
             </div>
-        </section>
-
-        <section id="feed">
             <div class="posts-container">
-                <!-- Posts will be dynamically inserted here -->
+                <!-- Posts will be dynamically loaded here -->
             </div>
         </section>
     </main>
@@ -67,5 +103,6 @@
     </footer>
 
     <script src="js/app.js"></script>
+    <script src="js/comments.js"></script>
 </body>
 </html>

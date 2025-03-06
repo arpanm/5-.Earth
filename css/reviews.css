@@ -1,0 +1,159 @@
+/* Reviews Section Styles */
+.reviews-section {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Reviews Summary */
+.reviews-summary {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.rating-overview {
+    text-align: center;
+    min-width: 200px;
+}
+
+.rating-overview h3 {
+    font-size: 3rem;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.stars {
+    color: #f1c40f;
+    margin: 0.5rem 0;
+}
+
+.rating-overview p {
+    color: #7f8c8d;
+    margin: 0;
+}
+
+/* Rating Distribution Bars */
+.rating-bars {
+    flex-grow: 1;
+}
+
+.rating-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.rating-label {
+    min-width: 60px;
+    color: #7f8c8d;
+}
+
+.bar-container {
+    flex-grow: 1;
+    height: 8px;
+    background-color: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background-color: #27ae60;
+    border-radius: 4px;
+}
+
+.rating-count {
+    min-width: 50px;
+    text-align: right;
+    color: #7f8c8d;
+}
+
+/* Reviews List */
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.review-card {
+    padding: 1.5rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.reviewer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.reviewer-name {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.review-date {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.review-rating {
+    color: #f1c40f;
+}
+
+.review-content {
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+/* Write Review Button */
+.write-review-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-top: 2rem;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.write-review-btn:hover {
+    background-color: #219a52;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .reviews-summary {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .rating-overview {
+        min-width: auto;
+    }
+}

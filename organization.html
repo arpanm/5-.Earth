@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="5%.Earth Organization Profile - View organization details, activities, and environmental impact.">
+    <title>Organization Profile - 5%.Earth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/organization.css">
+    <link rel="stylesheet" href="css/reviews.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/community.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <i class="fas fa-leaf"></i>
+                <span>5%.Earth</span>
+            </a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="community.html"><i class="fas fa-stream"></i> Feed</a></li>
+                <li><a href="#projects"><i class="fas fa-seedling"></i> Green Projects</a></li>
+                <li><a href="#events"><i class="fas fa-calendar"></i> Events</a></li>
+                <li><a href="#profile"><i class="fas fa-user"></i> Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="organization-profile">
+        <section class="org-header">
+            <div class="org-cover-photo">
+                <img src="images/green-tech.jpeg" alt="Organization Cover Photo">
+            </div>
+            <div class="org-info-container">
+                <div class="org-logo">
+                    <img src="images/GreenTechSolutions.jpeg" alt="Organization Logo">
+                </div>
+                <div class="org-basic-info">
+                    <h1 class="">Green Tech Solutions</h1>
+                    <p class="org-tagline">Innovating for a Sustainable Future</p>
+                    <div class="org-stats">
+                        <span><i class="fas fa-star"></i> 4.8 (256 reviews)</span>
+                        <span><i class="fas fa-users"></i> 1.2K followers</span>
+                        <span><i class="fas fa-leaf"></i> 2,180 Impact Points</span>
+                    </div>
+                    <button class="follow-btn" data="company:122"><i class="fas fa-building"></i> Follow</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="org-details">
+            <div class="org-tabs">
+                <button class="tab-btn active" data-tab="about">About</button>
+                <button class="tab-btn" data-tab="posts">Posts</button>
+                <button class="tab-btn" data-tab="mentions">Mentions</button>
+                <button class="tab-btn" data-tab="reviews">Reviews</button>
+            </div>
+
+            <div class="tab-content" id="about">
+                <div class="about-section">
+                    <h2>About Us</h2>
+                    <p>Green Tech Solutions is a pioneering organization dedicated to developing sustainable technology solutions for environmental challenges. Our team of experts works tirelessly to create innovative products that help communities reduce their carbon footprint while promoting renewable energy adoption.</p>
+                    
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p><i class="fas fa-envelope"></i> contact@greentechsolutions.com</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-globe"></i> www.greentechsolutions.com</p>
+                    </div>
+
+                    <div class="location-info">
+                        <h3>Location</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Eco Street, Green Valley, CA 94123</p>
+                        <div id="map" class="org-map"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="posts">
+                <div class="feed-section">
+                    <div class="feed-filters">
+                        <div class="filter-buttons">
+                            <button class="filter-btn active">All Posts</button>
+                            <button class="filter-btn">Updates</button>
+                            <button class="filter-btn">Projects</button>
+                            <button class="filter-btn">Events</button>
+                        </div>
+                        <div class="feed-sort">
+                            <select>
+                                <option value="recent">Most Recent</option>
+                                <option value="popular">Most Popular</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="posts-container">
+                        <article class="post-card">
+                            <div class="post-header">
+                                <img src="images/profile-man.avif" alt="User Avatar" class="user-avatar">
+                                <div class="post-meta">
+                                    <h3 class="user-name">Green Tech Solutions</h3>
+                                    <span class="post-time">2 hours ago</span>
+                                    <span class="post-type"><i class="fas fa-bullhorn"></i> Company Update</span>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <h2>Launching Our New Solar Initiative</h2>
+                                <p>We're excited to announce our latest solar energy project that aims to provide sustainable power solutions to underserved communities. This initiative will help reduce carbon emissions while making clean energy accessible to all.</p>
+                                <img src="images/green-tech.jpeg" alt="Solar Initiative" class="post-image">
+                            </div>
+                            <div class="post-actions">
+                                <button class="action-btn"><i class="far fa-heart"></i> 245</button>
+                                <button class="action-btn"><i class="far fa-comment"></i> 56</button>
+                                <button class="action-btn"><i class="far fa-share-square"></i> Share</button>
+                            </div>
+                            <div class="comments-section hidden">
+                                <div class="comment-input-area">
+                                    <img src="images/profile-woman.png" alt="User" class="user-avatar-small">
+                                    <div class="comment-input-wrapper">
+                                        <input type="text" class="comment-input" placeholder="Write a comment...">
+                                        <button class="comment-submit-btn"><i class="fas fa-paper-plane"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="mentions">
+                <div class="mentions-container">
+                    <!-- Mentions will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="reviews">
+                <div class="reviews-section">
+                    <div class="reviews-summary">
+                        <div class="rating-overview">
+                            <h3>4.8</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p>Based on 256 reviews</p>
+                        </div>
+                        <div class="rating-bars">
+                            <div class="rating-bar">
+                                <span class="rating-label">5 stars</span>
+                                <div class="bar-container">
+                                    <div class="bar-fill" style="width: 70%"></div>
+                                </div>
+                                <span class="rating-count">180</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-label">4 stars</span>
+                                <div class="bar-container">
+                                    <div class="bar-fill" style="width: 20%"></div>
+                                </div>
+                                <span class="rating-count">51</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-label">3 stars</span>
+                                <div class="bar-container">
+                                    <div class="bar-fill" style="width: 7%"></div>
+                                </div>
+                                <span class="rating-count">18</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-label">2 stars</span>
+                                <div class="bar-container">
+                                    <div class="bar-fill" style="width: 2%"></div>
+                                </div>
+                                <span class="rating-count">5</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-label">1 star</span>
+                                <div class="bar-container">
+                                    <div class="bar-fill" style="width: 1%"></div>
+                                </div>
+                                <span class="rating-count">2</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reviews-list">
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <img src="images/profile-woman.png" alt="Reviewer" class="reviewer-avatar">
+                                    <div>
+                                        <div class="reviewer-name">Sarah Jain</div>
+                                        <div class="review-date">2 days ago</div>
+                                    </div>
+                                </div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p>Green Tech Solutions has been instrumental in helping our community transition to renewable energy. Their innovative solutions and dedicated team made the entire process smooth and efficient.</p>
+                            </div>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <img src="images/profile-man.avif" alt="Reviewer" class="reviewer-avatar">
+                                    <div>
+                                        <div class="reviewer-name">Deepak Pathak</div>
+                                        <div class="review-date">12 days ago</div>
+                                    </div>
+                                </div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p>There are issues, but Green Tech Solutions has dedicated team to work on it and improving neighborhood.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="write-review-btn">Write a Review</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 5%.Earth - Together for a Sustainable Future</p>
+    </footer>
+
+    <div class="review-form-modal" id="reviewFormModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Write a Review</h2>
+            <form id="reviewForm">
+                <div class="rating-input">
+                    <label>Your Rating</label>
+                    <div class="star-rating">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                </div>
+                <div class="review-text">
+                    <label for="reviewContent">Your Review</label>
+                    <textarea id="reviewContent" required minlength="10" maxlength="500" placeholder="Share your experience with this organization (minimum 10 characters)"></textarea>
+                </div>
+                <button type="submit" class="submit-review-btn">Submit Review</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/organization.js"></script>
+    <script src="js/follow-button.js"></script>
+    <script src="js/comments.js"></script>
+    <script src="js/reviews.js"></script>
+</body>
+</html>

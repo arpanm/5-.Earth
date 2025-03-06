@@ -659,6 +659,14 @@ body {
     flex-wrap: wrap;
 }
 
+.content-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
 .filter-btn {
     padding: 0.5rem 1.5rem;
     border: none;

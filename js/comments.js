@@ -52,7 +52,7 @@ function toggleCommentSection(postCard) {
         commentsContainer.innerHTML = post.stats.comments.map(comment => `
             <div class="comment-item">
                 <div class="comment-header">
-                    <span class="comment-author">${comment.author}</span>
+                    <a href="user-profile.html"><span class="comment-author">${comment.author}</span></a>
                     <span class="comment-time">${comment.timestamp}</span>
                 </div>
                 <div class="comment-text">${comment.text}</div>
@@ -92,7 +92,7 @@ function toggleCommentSection(postCard) {
             commentElement.className = 'comment-item';
             commentElement.innerHTML = `
                 <div class="comment-header">
-                    <span class="comment-author">${newComment.author}</span>
+                    <a href="user-profile.html"><span class="comment-author">${newComment.author}</span></a>
                     <span class="comment-time">${newComment.timestamp}</span>
                 </div>
                 <div class="comment-text">${newComment.text}</div>

@@ -265,15 +265,32 @@ body {
     flex-grow: 1;
 }
 
-.user-name {
-    margin: 0;
+.user-name,
+.user-name a,
+.post-meta a {
+    text-decoration: none;
+    color: var(--dark-color);
     font-weight: 600;
-    color: #2c3e50;
+    transition: var(--transition);
 }
 
-.post-time {
-    font-size: 0.875rem;
-    color: #666;
+.user-name:hover,
+.user-name a:hover,
+.post-meta a:hover {
+    color: var(--primary-color);
+}
+
+.comment-author,
+.comment-author a {
+    text-decoration: none;
+    color: var(--dark-color);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.comment-author:hover,
+.comment-author a:hover {
+    color: var(--primary-color);
 }
 
 .post-type {
@@ -351,6 +368,200 @@ body {
 
 .action-btn:hover {
     color: #1976d2;
+}
+
+/* User Profile Styles */
+.profile-section {
+    max-width: 1200px;
+    margin: 6rem auto 2rem;
+    padding: 0 1rem;
+}
+
+.profile-header {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.profile-cover {
+    height: 200px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.profile-info {
+    padding: 1.5rem;
+    position: relative;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.profile-avatar {
+    margin-top: -80px;
+}
+
+.user-avatar-large {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+
+.profile-details {
+    flex-grow: 1;
+}
+
+.profile-name {
+    font-size: 2rem;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.profile-tagline {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.profile-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+.profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.bio-section,
+.contact-section,
+.interests-section,
+.achievements-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    color: #666;
+}
+
+.interest-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.interest-tag {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.achievement-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    text-align: center;
+}
+
+.achievement-item i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.achievement-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--dark-color);
+}
+
+.achievement-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.content-filters {
+    background: white;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 20px;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.sort-dropdown select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+}
+
+@media (max-width: 768px) {
+    .profile-section {
+        margin-top: 5rem;
+        padding: 0 0.5rem;
+    }
+
+    .profile-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-stats {
+        justify-content: center;
+    }
+
+    .profile-content {
+        grid-template-columns: 1fr;
+    }
+
+    .achievement-items {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* Footer Styles */

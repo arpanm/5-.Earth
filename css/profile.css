@@ -1,0 +1,490 @@
+.profile-section {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    background-color: #f9f9f9;
+}
+
+.profile-header {
+    position: relative;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-cover {
+    height: 200px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    position: relative;
+}
+
+.profile-info {
+    display: grid;
+    gap: 2rem;
+    padding: 20px;
+    margin-top: -100px;
+    flex-wrap: wrap;
+}
+
+.profile-avatar {
+    flex-shrink: 0;
+    margin-bottom: 1rem;
+}
+
+.user-avatar-large {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.profile-details {
+    flex: 1;
+    min-width: 300px;
+    margin-top: -60px;
+}
+
+.achievement-section {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+}
+
+.achievement-items {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    margin-top: 50px;
+}
+
+.achievement-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+}
+
+.achievement-item i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.achievement-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    color: white;
+}
+
+.achievement-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    color: white;
+}
+
+.badges-section {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    z-index: 1;
+}
+
+.badges-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    background: white;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.badge-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+    min-width: 120px;
+}
+
+.badge-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.achievement-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.badge-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.badge-date,
+.badge-milestone {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
+}
+
+.profile-stat-item {
+    text-align: center;
+}
+
+.profile-stat-item i {
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.profile-stat-number {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.profile-stat-label {
+    font-size: 0.7rem;
+    opacity: 0.9;
+}
+
+/* User Activity Feed Styles */
+.activity-feed-section {
+    margin-top: 2rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.activity-tabs {
+    display: flex;
+    border-bottom: 1px solid #e9ecef;
+    padding: 0 1rem;
+}
+
+.activity-tab {
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.activity-tab.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.activity-content {
+    padding: 1.5rem;
+}
+
+.post-item {
+    border-bottom: 1px solid #e9ecef;
+    padding: 1.5rem 0;
+}
+
+.post-item:last-child {
+    border-bottom: none;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.post-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.post-meta {
+    flex-grow: 1;
+}
+
+.post-author {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin: 0;
+}
+
+.post-time {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.post-content {
+    margin-bottom: 1rem;
+}
+
+.post-image {
+    width: 100%;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.post-actions {
+    display: flex;
+    gap: 1.5rem;
+    color: #666;
+}
+
+.post-action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.post-action:hover {
+    color: var(--primary-color);
+}
+
+.mention-item {
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.mention-content {
+    color: #444;
+    margin: 0.5rem 0;
+}
+
+.mention-link {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.saved-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #e9ecef;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.saved-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.saved-thumbnail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+.saved-info {
+    flex-grow: 1;
+}
+
+.saved-title {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin: 0 0 0.5rem 0;
+}
+
+.saved-excerpt {
+    color: #666;
+    font-size: 0.875rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .profile-section {
+        margin: 0.2rem;
+        padding: 0.2rem;
+        gap: 0.2rem;
+        top: 0.2rem;
+    }
+
+    .profile-cover {
+        height: 150px;
+        position: relative;
+    }
+
+    .achievement-section {
+        margin: 0.2rem;
+        padding: 0.2rem;
+        gap: 0.2rem;
+        top: 0.2rem;
+        max-width: 120px;
+        position: relative;
+        top: auto;
+        right: auto;
+    }
+
+    .achievement-items {
+        margin: 0.2rem;
+        padding: 0.2rem;
+        gap: 0.2rem;
+        top: 0.2rem;
+    }
+
+    .achievement-item {
+        margin: 0.2rem;
+        padding: 0.2rem;
+        gap: 0.2rem;
+        top: 0.2rem;
+        float: right;
+        flex-direction: row;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .achievement-item i {
+        margin: 0.2rem;
+        padding: 0.2rem;
+        gap: 0.2rem;
+        top: 0.2rem;
+        font-size: 0.7rem;
+        margin-bottom: 0;
+    }
+
+    .achievement-number {
+        margin: 0;
+        padding: 0;
+        gap: 0;
+        top: 0.2rem;
+        font-size: 0.7rem;
+        margin-bottom: 0;
+    }
+
+    .achievement-label {
+        margin: 0;
+        padding: 0;
+        gap: 0;
+        top: 0.2rem;
+        font-size: 0.7rem;
+    }
+
+    .profile-info {
+        margin: 0.2rem;
+        padding: 0.2rem;
+        gap: 0.2rem;
+        top: 0.2rem;
+        margin-top: -80px;
+    }
+
+    .user-avatar-large {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-details {
+        margin-top: -40px;
+        min-width: 100%;
+    }
+
+    .badges-section {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-top: 1rem;
+    }
+
+    .badges-container {
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+
+    .badge-item {
+        min-width: calc(50% - 1rem);
+        padding: 0.75rem;
+    }
+
+    .badge-label {
+        font-size: 0.8rem;
+    }
+
+    .badge-date,
+    .badge-milestone {
+        font-size: 0.7rem;
+    }
+
+    .profile-content {
+        flex-direction: column;
+    }
+
+    .profile-sidebar {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .profile-main-content {
+        width: 100%;
+    }
+
+    .content-filters {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .activity-tabs {
+        overflow-x: auto;
+        padding: 0;
+    }
+
+    .activity-tab {
+        padding: 1rem;
+        white-space: nowrap;
+    }
+
+    .post-item {
+        padding: 1rem 0;
+    }
+
+    .post-actions {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .saved-item {
+        flex-direction: column;
+    }
+
+    .saved-thumbnail {
+        width: 100%;
+        height: 200px;
+    }
+}

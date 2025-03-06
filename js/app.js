@@ -4,6 +4,47 @@ function toggleMobileMenu() {
     navLinks.classList.toggle('active');
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const postContent = document.querySelector('.activity-content');
+
+    if (filterBtns && postContent) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                // Hide all content first
+                const allPosts = postContent.querySelectorAll('.post-item');
+                const allMentions = postContent.querySelectorAll('.mention-item');
+                const allSaved = postContent.querySelectorAll('.saved-item');
+
+                allPosts.forEach(post => post.style.display = 'none');
+                allMentions.forEach(mention => mention.style.display = 'none');
+                allSaved.forEach(saved => saved.style.display = 'none');
+
+                // Show relevant content based on selected tab
+                if (this.textContent === 'My Posts') {
+                    allPosts.forEach(post => post.style.display = 'block');
+                } else if (this.textContent === 'Mentions') {
+                    allMentions.forEach(mention => mention.style.display = 'block');
+                } else if (this.textContent === 'Saved') {
+                    allSaved.forEach(saved => saved.style.display = 'block');
+                }
+            });
+        });
+
+        // Show My Posts by default
+        const defaultTab = document.querySelector('.filter-btn.active');
+        if (defaultTab) {
+            defaultTab.click();
+        }
+    }
+});
+
 // Sample post data - In a real app, this would come from an API
 const posts = [
     {
@@ -124,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (postBtn) {
         postBtn.addEventListener('click', handlePostCreation);
     }
-    
 
     // Global handlers for post interactions
     window.handleLike = (postId) => {
@@ -283,9 +323,9 @@ function createPostCard(post) {
 
     article.innerHTML = `
         <div class="post-header">
-            <img src="${post.author.avatar}" alt="${post.author.name}" class="user-avatar">
+            <a href="user-profile.html"><img src="${post.author.avatar}" alt="${post.author.name}" class="user-avatar"></a>
             <div class="post-meta">
-                <h3 class="user-name">${post.author.name}</h3>
+                <a href="user-profile.html"><h3 class="user-name">${post.author.name}</h3></a>
                 <span class="post-time">${post.author.timeAgo}</span>
             </div>
             <span class="post-type"><i class="fas ${getPostTypeIcon(post.type)}"></i> ${formatPostType(post.type)}</span>

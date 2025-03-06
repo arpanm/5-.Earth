@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - 5% Earth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/community.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <i class="fas fa-leaf"></i>
+                <span>5%.Earth</span>
+            </a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="community.html"><i class="fas fa-stream"></i> Feed</a></li>
+                <li><a href="green-projects.html"><i class="fas fa-seedling"></i> Green Projects</a></li>
+                <li><a href="#events"><i class="fas fa-calendar"></i> Events</a></li>
+                <li><a href="user-profile.html"><i class="fas fa-user"></i> Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- User Profile Section -->
+    <main class="profile-section">
+        <div class="profile-header">
+            <div class="profile-cover">
+                <section class="achivement-section">
+                    <div class="achievement-items">
+                        <div class="achievement-item">
+                            <i class="fas fa-tree"></i>
+                            <span class="achievement-number">50</span>
+                            <span class="achievement-label">Trees Planted</span>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-solar-panel"></i>
+                            <span class="achievement-number">2.5</span>
+                            <span class="achievement-label">kW Solar Installed</span>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-recycle"></i>
+                            <span class="achievement-number">500</span>
+                            <span class="achievement-label">kg Waste Recycled</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-info">
+                <div class="profile-avatar">
+                    <img src="images/profile-woman.png" alt="User Avatar" class="user-avatar-large">
+                </div>
+                <div class="profile-details">
+                    <h1 class="profile-name">Sarah Johnson</h1>
+                    <p class="profile-tagline">Environmental Activist | Green Tech Enthusiast</p>
+                    <div class="profile-stats">
+                        <div class="profile-stat-item">
+                            <span class="profile-stat-number">120</span>
+                            <span class="profile-stat-label">Posts</span>
+                        </div>
+                        <div class="profile-stat-item">
+                            <span class="profile-stat-number">1.5K</span>
+                            <span class="profile-stat-label">Followers</span>
+                        </div>
+                        <div class="profile-stat-item">
+                            <span class="profile-stat-number">890</span>
+                            <span class="profile-stat-label">Following</span>
+                        </div>
+                    </div>
+                </div>
+                <section class="badges-section header-badges">
+                    <div class="badges-container">
+                        <div class="badge-item" title="Top Impact Maker - March 2024">
+                            <i class="fas fa-award achievement-icon"></i>
+                            <span class="badge-label">Impact Leader</span>
+                            <span class="badge-date">March 2024</span>
+                        </div>
+                        <div class="badge-item" title="Sustainability Champion - 100 Green Actions">
+                            <i class="fas fa-medal achievement-icon"></i>
+                            <span class="badge-label">Green Champion</span>
+                            <span class="badge-milestone">100 Actions</span>
+                        </div>
+                        <div class="badge-item" title="Community Leader - Most Engaged">
+                            <i class="fas fa-star achievement-icon"></i>
+                            <span class="badge-label">Community Star</span>
+                            <span class="badge-milestone">Top Contributor</span>
+                        </div>
+                        <div class="badge-item" title="Innovation Pioneer - New Solutions">
+                            <i class="fas fa-lightbulb achievement-icon"></i>
+                            <span class="badge-label">Eco Innovator</span>
+                            <span class="badge-milestone">Pioneer</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-sidebar">
+                <section class="bio-section">
+                    <h2>About Me</h2>
+                    <p>Passionate about environmental conservation and sustainable living. Working towards a greener future through technology and community engagement.</p>
+                </section>
+
+                <section class="contact-section">
+                    <h2>Contact Information</h2>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-envelope"></i> john.doe@email.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
+                        <li><i class="fas fa-globe"></i> www.johndoe.com</li>
+                    </ul>
+                </section>
+
+                <section class="interests-section">
+                    <h2>Sustainability Interests</h2>
+                    <div class="interest-tags">
+                        <span class="interest-tag">Renewable Energy</span>
+                        <span class="interest-tag">Zero Waste</span>
+                        <span class="interest-tag">Green Technology</span>
+                        <span class="interest-tag">Urban Farming</span>
+                        <span class="interest-tag">Electric Vehicles</span>
+                        <span class="interest-tag">Ocean Conservation</span>
+                    </div>
+                </section>
+
+
+            </div>
+            <div class="profile-main-content">
+                <div class="content-filters">
+                    <button class="filter-btn active">My Posts</button>
+                    <button class="filter-btn">Mentions</button>
+                    <button class="filter-btn">Saved</button>
+                    <div class="sort-dropdown">
+                        <select name="sort" id="sort">
+                            <option value="recent">Most Recent</option>
+                            <option value="popular">Most Popular</option>
+                            <option value="impact">Highest Impact</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="activity-content">
+                    <!-- Posts Tab Content -->
+                    <div class="post-item post-card" data-post-id="1">
+                        <div class="post-header">
+                            <img src="images/profile-woman.png" alt="Sarah Johnson" class="post-avatar">
+                            <div class="post-meta">
+                                <h3 class="post-author">Sarah Johnson</h3>
+                                <span class="post-time">2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>Just finished installing solar panels on my roof! Excited to start generating clean energy. 🌞 #SustainableLiving #CleanEnergy</p>
+                            <img src="images/solar-solutions.jpg" alt="Solar Panel Installation" class="post-image">
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn"><i class="far fa-heart"></i> 245</button>
+                            <button class="action-btn"><i class="far fa-comment"></i> 18</button>
+                            <button class="action-btn"><i class="far fa-share-square"></i> Share</button>
+                        </div>
+                    </div>
+
+                    <div class="post-item post-card" data-post-id="2">
+                        <div class="post-header">
+                            <img src="images/profile-woman.png" alt="Sarah Johnson" class="post-avatar">
+                            <div class="post-meta">
+                                <h3 class="post-author">Sarah Johnson</h3>
+                                <span class="post-time">1 day ago</span>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>Which eco-friendly transportation method do you prefer? Cast your vote! 🚲</p>
+                            <div class="poll-options">
+                                <div class="poll-option">
+                                    <div class="poll-bar" style="width: 45%">Cycling (45%)</div>
+                                </div>
+                                <div class="poll-option">
+                                    <div class="poll-bar" style="width: 30%">Electric Vehicles (30%)</div>
+                                </div>
+                                <div class="poll-option">
+                                    <div class="poll-bar" style="width: 15%">Public Transport (15%)</div>
+                                </div>
+                                <div class="poll-option">
+                                    <div class="poll-bar" style="width: 10%">Walking (10%)</div>
+                                </div>
+                            </div>
+                            <div class="poll-stats">Total votes: 342</div>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn"><i class="far fa-heart"></i> 156</button>
+                            <button class="action-btn"><i class="far fa-comment"></i> 24</button>
+                            <button class="action-btn"><i class="far fa-share-square"></i> Share</button>
+                        </div>
+                    </div>
+
+                    <!-- Mentions Tab Content -->
+                    <div class="mention-item" style="display: none;">
+                        <div class="post-header">
+                            <img src="images/profile-man.avif" alt="John Doe" class="post-avatar">
+                            <div class="post-meta">
+                                <h3 class="post-author">John Doe</h3>
+                                <span class="post-time">3 days ago</span>
+                            </div>
+                        </div>
+                        <div class="mention-content">
+                            <p>Great working with <a href="#" class="mention-link">@Sarah Johnson</a> on the community garden project! Your expertise in sustainable agriculture is invaluable. 🌱</p>
+                        </div>
+                    </div>
+
+                    <div class="mention-item" style="display: none;">
+                        <div class="post-header">
+                            <img src="images/profile-woman-2.avif" alt="Emma Wilson" class="post-avatar">
+                            <div class="post-meta">
+                                <h3 class="post-author">Emma Wilson</h3>
+                                <span class="post-time">1 week ago</span>
+                            </div>
+                        </div>
+                        <div class="mention-content">
+                            <p>Thanks <a href="#" class="mention-link">@Sarah Johnson</a> for the amazing presentation on renewable energy at yesterday's conference! 🎯</p>
+                        </div>
+                    </div>
+
+                    <!-- Saved Tab Content -->
+                    <div class="saved-item" style="display: none;">
+                        <img src="images/green-tech.jpeg" alt="Green Technology" class="saved-thumbnail">
+                        <div class="saved-info">
+                            <h3 class="saved-title">10 Breakthrough Green Technologies of 2023</h3>
+                            <p class="saved-excerpt">Exploring the latest innovations in sustainable technology, from advanced solar cells to breakthrough battery storage solutions.</p>
+                        </div>
+                    </div>
+
+                    <div class="saved-item" style="display: none;">
+                        <img src="images/water-conservation.jpeg" alt="Water Conservation" class="saved-thumbnail">
+                        <div class="saved-info">
+                            <h3 class="saved-title">Home Water Conservation Guide</h3>
+                            <p class="saved-excerpt">Comprehensive guide to reducing water consumption and implementing water-saving techniques in your home.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>&copy; 2024 5% Earth. All rights reserved.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/comments.js"></script>
+</body>
+</html>

@@ -588,7 +588,7 @@ body {
 .leaderboard-entry {
     flex: 0 0 auto;
     width: 300px;
-    background: white;
+    background: var(--light-color);
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -604,6 +604,26 @@ body {
     display: flex;
     justify-content: center;
     gap: 10px;
+}
+
+.leader-badge {
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.leader-badge i {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.leader-badge span {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .achievements {
@@ -690,7 +710,7 @@ body {
 }
 
 .org-card {
-    background-color: white;
+    background-color: var(--light-color);
     border-radius: var(--border-radius);
     overflow: hidden;
     transition: var(--transition);
@@ -741,6 +761,10 @@ body {
 }
 
 .org-stat {
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -1123,10 +1147,44 @@ body {
     font-size: 0.9rem;
 }
 
-.content-author {
+/* User Profile Links */
+.content-author a,
+.user-info a,
+.highlight-card a {
+    text-decoration: none;
+    color: var(--dark-color);
+    transition: var(--transition);
+}
+
+.content-author a:hover,
+.user-info a:hover,
+.highlight-card a:hover {
+    color: var(--primary-color);
+}
+
+.content-author a {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.user-info a h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.highlight-card a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.highlight-card a h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .leaderboard-entry .user-avatar {

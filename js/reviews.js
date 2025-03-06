@@ -96,9 +96,9 @@ document.addEventListener('DOMContentLoaded', function() {
         reviewCard.innerHTML = `
             <div class="review-header">
                 <div class="reviewer-info">
-                    <img src="images/profile-man.avif" alt="Reviewer" class="reviewer-avatar">
+                    <a href="user-profile.html"><img src="images/profile-man.avif" alt="Reviewer" class="reviewer-avatar"></a>
                     <div>
-                        <div class="reviewer-name">${review.reviewer}</div>
+                        <a href="user-profile.html"><div class="reviewer-name">${review.reviewer}</div></a>
                         <div class="review-date">${review.date}</div>
                     </div>
                 </div>

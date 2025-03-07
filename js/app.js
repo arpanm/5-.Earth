@@ -315,8 +315,30 @@ document.addEventListener('DOMContentLoaded', () => {
 function handlePostCreation() {
     const postContent = textarea.value;
     if (postContent.trim() !== '') {
-        createPost(postContent);
+        // Collect media previews
+        const mediaPreviews = [];
+        document.querySelectorAll('.media-preview').forEach(preview => {
+            const mediaElement = preview.querySelector('img, video');
+            if (mediaElement) {
+                mediaPreviews.push({
+                    type: mediaElement.tagName.toLowerCase(),
+                    src: mediaElement.src
+                });
+            }
+        });
+
+        // Collect location tag if present
+        const locationTag = document.querySelector('.location-tag');
+        const location = locationTag ? `${locationTag.querySelector('span').textContent}` : null;
+
+        // Create post with media and location
+        createPost(postContent, mediaPreviews, location);
+
+        // Clear input and preview areas
         textarea.value = '';
+        document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
+        if (locationTag) locationTag.remove();
+
         // Add animation effect
         textarea.style.borderColor = 'var(--success-color)';
         setTimeout(() => {
@@ -325,7 +347,7 @@ function handlePostCreation() {
     }
 }
 
-function createPost(content) {
+function createPost(content, mediaPreviews = [], location = null) {
     const post = {
         id: Date.now(),
         content: content,
@@ -334,9 +356,11 @@ function createPost(content) {
             comments: []
         },
         timestamp: new Date().toLocaleString(),
-        author: currentUser, // In a real app, this would come from user authentication
+        author: currentUser,
         sustainabilityScore: calculateSustainabilityScore(content),
-        tags: extractEnvironmentalTags(content)
+        tags: extractEnvironmentalTags(content),
+        media: mediaPreviews,
+        location: location
     };
 
     // Add new post to the beginning of the posts array
@@ -440,6 +464,15 @@ function createPostCard(post) {
             <span class="post-type"><i class="fas ${getPostTypeIcon(post.type)}"></i> ${formatPostType(post.type)}</span>
         </div>
         ${getPostContent(post)}
+        ${post.media && post.media.length > 0 ? `
+        <div class="post-media">
+            ${post.media.map(media => 
+                media.type === 'img' ? 
+                `<img src="${media.src}" alt="Post media" class="post-media-item">` :
+                `<video src="${media.src}" controls class="post-media-item"></video>`
+            ).join('')}
+        </div>` : ''}
+        ${post.location ? `<div class="post-location"><i class="fas fa-map-marker-alt"></i> ${post.location}</div>` : ''}
         <div class="post-actions">
             <button class="action-btn"><i class="far fa-heart"></i> ${post.stats?.likes || 0}</button>
             <button class="action-btn"><i class="far fa-comment"></i> ${count}</button>
@@ -560,3 +593,166 @@ function initializePostInteractions() {
         }
     });
 }
+
+// Media button handlers
+function initializeMediaButtons() {
+    const mediaButtons = document.querySelectorAll('.media-btn');
+    mediaButtons.forEach(btn => {
+        btn.addEventListener('click', handleMediaButtonClick);
+    });
+}
+
+function handleMediaButtonClick(event) {
+    const button = event.currentTarget;
+    const icon = button.querySelector('i');
+    
+    if (icon.classList.contains('fa-camera')) {
+        handleImageUpload();
+    } else if (icon.classList.contains('fa-video')) {
+        handleVideoUpload();
+    } else if (icon.classList.contains('fa-map-marker-alt')) {
+        handleLocationTag();
+    }
+}
+
+function handleImageUpload() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.capture = 'environment';
+    input.multiple = true;
+    input.id = 'imageUpload';
+    input.name = 'imageUpload';
+
+    input.onchange = function(e) {
+        const files = Array.from(e.target.files);
+        files.forEach(file => {
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    addMediaPreview('image', e.target.result, file.name);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    };
+
+    input.click();
+}
+
+function handleVideoUpload() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'video/*';
+    input.capture = 'environment';
+    input.multiple = true;
+    input.id = 'videoUpload';
+    input.name = 'videoUpload';
+
+    input.onchange = function(e) {
+        const files = Array.from(e.target.files);
+        files.forEach(file => {
+            if (file.type.startsWith('video/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    addMediaPreview('video', e.target.result, file.name);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    };
+
+    input.click();
+}
+
+function handleLocationTag() {
+    if ('geolocation' in navigator) {
+        const input = document.createElement('input');
+        input.type = 'geolocation';
+        input.id = 'locationTag';
+        input.name = 'locationTag';
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                const { latitude, longitude } = position.coords;
+                reverseGeocode(latitude, longitude);
+                input.value = position;
+            },
+            error => {
+                console.error('Error getting location:', error);
+                alert('Unable to get your location. Please try again.');
+            }
+        );
+    } else {
+        alert('Geolocation is not supported by your browser');
+    }
+}
+
+function reverseGeocode(lat, lon) {
+    // Using OpenStreetMap Nominatim API for reverse geocoding
+    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+        .then(response => response.json())
+        .then(data => {
+            const locationName = data.display_name;
+            addLocationTag(locationName, lat, lon);
+        })
+        .catch(error => {
+            console.error('Error reverse geocoding:', error);
+            alert('Unable to get location details. Please try again.');
+        });
+}
+
+function addMediaPreview(type, src, filename) {
+    const previewContainer = document.createElement('div');
+    previewContainer.className = 'media-preview';
+
+    if (type === 'image') {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = filename;
+        previewContainer.appendChild(img);
+    } else if (type === 'video') {
+        const video = document.createElement('video');
+        video.src = src;
+        video.controls = true;
+        previewContainer.appendChild(video);
+    }
+
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'remove-media-btn';
+    removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+    removeBtn.onclick = () => previewContainer.remove();
+
+    previewContainer.appendChild(removeBtn);
+    document.querySelector('.post-editor').insertBefore(
+        previewContainer,
+        document.querySelector('.post-actions')
+    );
+}
+
+function addLocationTag(locationName, lat, lon) {
+    const locationTag = document.createElement('div');
+    locationTag.className = 'location-tag';
+    locationTag.innerHTML = `
+        <i class="fas fa-map-marker-alt"></i>
+        <span>${locationName}</span>
+        <button class="remove-location-btn">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+
+    locationTag.querySelector('.remove-location-btn').onclick = () => locationTag.remove();
+
+    // Store coordinates as data attributes
+    locationTag.dataset.lat = lat;
+    locationTag.dataset.lon = lon;
+
+    document.querySelector('.post-editor').insertBefore(
+        locationTag,
+        document.querySelector('.post-actions')
+    );
+}
+
+// Initialize media buttons when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeMediaButtons();
+});

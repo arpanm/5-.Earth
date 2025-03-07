@@ -80,6 +80,10 @@ function renderContent(content) {
                             <span>${item.author.name}</span>
                         </a>
                     </div>
+                    <div class="content-interactions">
+                        <button class="like-btn">❤️ 98 Likes</button>
+                        <button class="comment-btn">💬 35 Comments</button>
+                    </div>
                 </div>
             </div>
         </article>

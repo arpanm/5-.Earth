@@ -4,7 +4,116 @@ function toggleMobileMenu() {
     navLinks.classList.toggle('active');
 }
 
+// Function to show modal
+function showModal() {
+    const modal = document.getElementById('registerModal');
+    new bootstrap.Modal(modal).show();
+}
+
+// Function to close modal
+function closeModal() {
+    const modal = document.getElementById('registerModal');
+    bootstrap.Modal.getInstance(modal).hide();
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(event) {
+    const modal = document.getElementById('registerModal');
+    if (event.target.classList.contains('modal-overlay')) {
+        closeModal();
+    }
+});
+
+// Close modal on escape key press
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
+
+// Function to handle registration form submission
+function handleRegistration(event) {
+    event.preventDefault();
+    
+    // Get form elements
+    const form = event.target;
+    const fullName = form.fullName.value.trim();
+    const email = form.email.value.trim();
+    const password = form.password.value;
+    const interests = Array.from(form.querySelectorAll('input[name="interests[]"]:checked')).map(checkbox => checkbox.value);
+    const terms = form.terms.checked;
+    
+    // Reset error messages
+    document.querySelectorAll('.error-message').forEach(error => {
+        error.classList.remove('active');
+        error.style.display = 'none';
+    });
+    
+    // Validate form
+    let isValid = true;
+    
+    if (fullName.length < 2) {
+        const nameError = document.getElementById('nameError');
+        nameError.textContent = 'Please enter a valid name';
+        nameError.classList.add('active');
+        nameError.style.display = 'block';
+        isValid = false;
+    }
+    
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        const emailError = document.getElementById('emailError');
+        emailError.textContent = 'Please enter a valid email address';
+        emailError.classList.add('active');
+        emailError.style.display = 'block';
+        isValid = false;
+    }
+    
+    if (password.length < 8) {
+        const passwordError = document.getElementById('passwordError');
+        passwordError.textContent = 'Password must be at least 8 characters long';
+        passwordError.classList.add('active');
+        passwordError.style.display = 'block';
+        isValid = false;
+    }
+    
+    if (!terms) {
+        const termsError = document.getElementById('termsError');
+        if (termsError) {
+            termsError.textContent = 'Please accept the terms and conditions';
+            termsError.classList.add('active');
+            termsError.style.display = 'block';
+        }
+        return;
+    }
+    
+    if (isValid) {
+        // Here you would typically send the data to your backend
+        console.log('Registration data:', { fullName, email, interests });
+        
+        // Show success message
+        const successMessage = document.createElement('div');
+        successMessage.className = 'success-message';
+        successMessage.textContent = 'Registration successful! Welcome to 5%.Earth';
+        form.appendChild(successMessage);
+        
+        // Close modal and reset form after a short delay
+        setTimeout(() => {
+            closeModal();
+            form.reset();
+            successMessage.remove();
+        }, 2000);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Add click event listener to Join Now buttons
+    const joinButtons = document.querySelectorAll('.primary-btn');
+    joinButtons.forEach(button => {
+        if (button.textContent.trim() === 'Join Now') {
+            button.addEventListener('click', showModal);
+        }
+    });
+    
     // Tab switching functionality
     const filterBtns = document.querySelectorAll('.filter-btn');
     const postContent = document.querySelector('.activity-content');

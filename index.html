@@ -39,14 +39,17 @@
     </script>
     
     <title>5%.Earth - Environmental Sustainability Platform</title>
-    <link rel="canonical" href="https://5percent.earth">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="canonical" href="https://5percent.earth">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/register-modal.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <i class="fas fa-leaf"></i>
                 <span>5%.Earth</span>
             </a>
@@ -366,6 +369,65 @@
         <p>&copy; 2025 5%.Earth - Together for a Sustainable Future</p>
     </footer>
 
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Join 5%.Earth</h5>
+                    <button type="button" class="btn-close" onclick="closeModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="success-message">Start your journey towards a sustainable future</p>
+                    <form class="modal-form" id="registerForm" onsubmit="handleRegistration(event)">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                            <span class="error-message" id="nameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required>
+                            <span class="error-message" id="passwordError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="interests">Areas of Interest</label>
+                            <div class="interests-group">
+                                <div class="interest-checkbox">
+                                    <input type="checkbox" id="renewable-energy" name="interests[]" value="renewable-energy">
+                                    <label for="renewable-energy">Renewable Energy</label>
+                                </div>
+                                <div class="interest-checkbox">
+                                    <input type="checkbox" id="waste-management" name="interests[]" value="waste-management">
+                                    <label for="waste-management">Waste Management</label>
+                                </div>
+                                <div class="interest-checkbox">
+                                    <input type="checkbox" id="conservation" name="interests[]" value="conservation">
+                                    <label for="conservation">Conservation</label>
+                                </div>
+                                <div class="interest-checkbox">
+                                    <input type="checkbox" id="sustainable-living" name="interests[]" value="sustainable-living">
+                                    <label for="sustainable-living">Sustainable Living</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="terms-checkbox success-message">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to the <a href="#">Terms of Service</a> & <a href="#">Privacy Policy</a></label>
+                        </div>
+                        <button type="submit" class="submit-btn">Create Account</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/follow-button.js"></script>
 </body>

@@ -1,0 +1,270 @@
+#registerModal .modal-content {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+
+#registerModal .modal-header {
+    border-bottom: 1px solid #eee;
+    padding: 1.5rem 2rem;
+}
+
+#registerModal .modal-header .modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+#registerModal .modal-header p {
+    color: #666;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    opacity: 0.85;
+}
+
+#registerModal .btn-close {
+    opacity: 0.5;
+}
+
+#registerModal .btn-close:hover {
+    opacity: 1;
+}
+
+#registerModal .modal-body {
+    padding: 2rem;
+}
+
+#registerModal .modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#registerModal .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#registerModal label {
+    font-weight: 500;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+#registerModal input,
+#registerModal select {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+#registerModal input:focus,
+#registerModal select:focus {
+    outline: none;
+    border-color: #27ae60;
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+}
+
+#registerModal .error-message {
+    display: none;
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+#registerModal .error-message.active {
+    display: block;
+}
+
+#registerModal .terms-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+#registerModal .terms-checkbox label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+#registerModal .terms-checkbox a {
+    color: #27ae60;
+    text-decoration: none;
+}
+
+#registerModal .terms-checkbox a:hover {
+    text-decoration: underline;
+}
+
+#registerModal .submit-btn {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+#registerModal .submit-btn:hover {
+    background-color: #219a52;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
+}
+
+#registerModal .submit-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+#registerModal .success-message {
+    color: #27ae60;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: rgba(39, 174, 96, 0.1);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+#registerModal .interests-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+#registerModal .interest-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+#registerModal .interest-checkbox input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+#registerModal .interest-checkbox input[type="checkbox"]:checked {
+    background-color: #27ae60;
+    border-color: #27ae60;
+}
+
+#registerModal .interest-checkbox input[type="checkbox"]:checked::before {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+}
+
+#registerModal .interest-checkbox input[type="checkbox"]:hover {
+    border-color: #27ae60;
+}
+
+#registerModal .interest-checkbox label {
+    font-size: 0.9rem;
+    color: #666;
+    cursor: pointer;
+}
+
+#registerModal .interest-checkbox:hover label {
+    color: #27ae60;
+}
+
+@media (max-width: 768px) {
+    #registerModal.modal .modal-content {
+        margin: 5% auto;
+        padding: 0.75rem;
+        width: 95%;
+    }
+
+    #registerModal.modal .modal-header {
+        padding: 0.75rem;
+    }
+
+    #registerModal.modal .modal-header .modal-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    #registerModal.modal .modal-header p {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+    }
+
+    #registerModal.modal .modal-body {
+        padding: 0.75rem;
+    }
+
+    #registerModal.modal .modal-form {
+        gap: 1rem;
+    }
+
+    #registerModal.modal .form-group {
+        gap: 0.25rem;
+    }
+
+    #registerModal.modal input,
+    #registerModal.modal select {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    #registerModal.modal .interests-group {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+        margin-top: 0.25rem;
+    }
+
+    #registerModal.modal .interest-checkbox {
+        gap: 0.5rem;
+    }
+
+    #registerModal.modal .submit-btn {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+
+    #registerModal.modal .terms-checkbox {
+        gap: 0.5rem;
+        margin-top: 0.25rem;
+    }
+
+    #registerModal.modal .terms-checkbox label,
+    #registerModal.modal .interest-checkbox label {
+        font-size: 0.85rem;
+    }
+
+    #registerModal.modal .success-message {
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        font-size: 0.75rem;
+    }
+}

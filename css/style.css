@@ -199,7 +199,7 @@ body {
 .impact-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 2rem;
+    gap: 1rem;
     margin: 3rem 0;
     padding: 2rem;
     background: rgba(255, 255, 255, 0.1);
@@ -562,38 +562,23 @@ body {
 }
 
 .leaderboard-list {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    gap: 20px;
-    padding: 10px 20px;
-    margin: 0 -20px;
-    justify-content: center;
-}
-
-.leaderboard-list::-webkit-scrollbar {
-    height: 8px;
-}
-
-.leaderboard-list::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-}
-
-.leaderboard-list::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .leaderboard-entry {
-    flex: 0 0 auto;
-    width: 300px;
     background: var(--light-color);
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 1.5rem;
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .leaderboard-entry:hover {
@@ -607,6 +592,55 @@ body {
     gap: 10px;
 }
 
+
+.leaderboard-entry .rank {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.leaderboard-entry .user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+.leaderboard-entry .user-info {
+    text-align: center;
+}
+
+.leaderboard-entry .user-info h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    color: var(--dark-color);
+}
+
+.leaderboard-entry .impact-score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.leaderboard-entry .recent-contribution {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+.leaderboard-entry .achievements {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
 .leader-badge {
     background-color: white;
     padding: 0.5rem 1rem;
@@ -615,6 +649,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .leader-badge i {
@@ -705,9 +740,15 @@ body {
 .org-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 1rem;
     max-width: 1200px;
     margin: 0 auto;
+    justify-items: center;
+}
+
+.org-grid article {
+    width: 100%;
+    max-width: 500px;
 }
 
 .org-card {
@@ -1094,6 +1135,7 @@ body {
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    justify-items: center;
 }
 
 .content-card {
@@ -1101,6 +1143,7 @@ body {
     border-radius: var(--border-radius);
     overflow: hidden;
     transition: var(--transition);
+    max-width: 500px;
 }
 
 .content-card:hover {
@@ -1296,7 +1339,7 @@ footer {
     }
 
     .impact-stats {
-        gap: 2rem;
+        gap: 1rem;
     }
 
     .stat-item i {

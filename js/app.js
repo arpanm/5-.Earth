@@ -255,11 +255,49 @@ const currentUser = {
     timeAgo: 'Online'
 };
 
-const postBtn = document.getElementById('post-btn');
+const quickPostBtn = document.getElementById('quick-post-btn');
 const postsContainer = document.querySelector('.posts-container');
 const textarea = document.querySelector('textarea');
 
+const blogPostBtn = document.getElementById('blog-post-btn');
+
+const mediaPostBtn = document.getElementById('media-post-btn');
+
+const pollPostBtn = document.getElementById('poll-post-btn');
+
+const eventPostBtn = document.getElementById('event-post-btn');
+
+// Get all post type buttons and post editors
+const postTypeBtns = document.querySelectorAll('.post-type-btn');
+const postEditors = document.querySelectorAll('.post-editor');
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Handle post type button clicks
+    postTypeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active class from all buttons and add to clicked button
+            postTypeBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            // Hide all post editors
+            postEditors.forEach(editor => editor.classList.remove('active'));
+
+            // Show the corresponding editor
+            const type = this.getAttribute('data-type');
+            if (type === 'quick-post') {
+                document.querySelector('.quick-post-form').classList.add('active');
+            } else if (type === 'blog') {
+                document.querySelector('.blog-post-form').classList.add('active');
+            } else if (type === 'media') {
+                document.querySelector('.media-post-form').classList.add('active');
+            } else if (type === 'poll') {
+                document.querySelector('.poll-post-form').classList.add('active');
+            } else if (type === 'event') {
+                document.querySelector('.event-post-form').classList.add('active');
+            }
+        });
+    });
+
     // Only add event listeners if elements exist
     if (textarea) {
         textarea.addEventListener('keydown', (e) => {
@@ -271,8 +309,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Post creation functionality - only add if button exists
-    if (postBtn) {
-        postBtn.addEventListener('click', handlePostCreation);
+    if (quickPostBtn) {
+        quickPostBtn.addEventListener('click', handlePostCreation);
+    }
+
+    // Handle blog post submission
+    if (blogPostBtn) {
+        blogPostBtn.addEventListener('click', handleBlogPost);
+    }
+
+    // Handle media post submission
+    if (mediaPostBtn) {
+        mediaPostBtn.addEventListener('click', handleMediaPost);
+    }
+
+    // Handle poll post submission
+    if (pollPostBtn) {
+        pollPostBtn.addEventListener('click', handlePollPost);
+    }
+
+    // Handle event post submission
+    if (eventPostBtn) {
+        eventPostBtn.addEventListener('click', handleEventPost);
     }
 
     // Global handlers for post interactions
@@ -332,7 +390,7 @@ function handlePostCreation() {
         const location = locationTag ? `${locationTag.querySelector('span').textContent}` : null;
 
         // Create post with media and location
-        createPost(postContent, mediaPreviews, location);
+        createPost(postContent, mediaPreviews, location, 'quick-post');
 
         // Clear input and preview areas
         textarea.value = '';
@@ -347,7 +405,189 @@ function handlePostCreation() {
     }
 }
 
-function createPost(content, mediaPreviews = [], location = null) {
+function handleBlogPost() {
+    const titleInput = document.querySelector('.blog-title');
+    const categorySelect = document.querySelector('.blog-category');
+    const contentTextarea = document.querySelector('.blog-content');
+
+    const title = titleInput.value.trim();
+    const category = categorySelect.value;
+    const content = contentTextarea.value.trim();
+
+    if (!title || !category || !content) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    // Create blog post object
+    const blogPost = {
+        id: 101,
+        author: currentUser,
+        type: 'blog',
+        title: title,
+        content: content,
+        category: category,
+        stats: {
+            likes: 0,
+            comments: []
+        }
+    };
+
+    const postContent = getPostContent(blogPost);
+    if (postContent.trim() !== '') {
+        // Collect media previews
+        const mediaPreviews = [];
+        document.querySelectorAll('.media-preview').forEach(preview => {
+            const mediaElement = preview.querySelector('img, video');
+            if (mediaElement) {
+                mediaPreviews.push({
+                    type: mediaElement.tagName.toLowerCase(),
+                    src: mediaElement.src
+                });
+            }
+        });
+
+        // Create post with media and location
+        createPost(postContent, mediaPreviews, null, 'blog');
+
+        // Clear input and preview areas
+        titleInput.value = '';
+        categorySelect.value = '';
+        contentTextarea.value = '';
+        document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
+
+        // Add animation effect
+        textarea.style.borderColor = 'var(--success-color)';
+        setTimeout(() => {
+            textarea.style.borderColor = '#ddd';
+        }, 1000);
+
+        // Switch back to quick post form
+        document.querySelector('.post-type-btn[data-type="quick-post"]').click();
+    }
+}
+
+function handleMediaPost() {
+    // take media post form data here - start
+
+    // take media post form data here - end
+    const mediaPostFormData = {
+        // ...
+    };
+    const postContent = getPostContent(mediaPostFormData);
+
+    if (postContent.trim() !== '') {
+        // Collect media previews
+        const mediaPreviews = [];
+        document.querySelectorAll('.media-preview').forEach(preview => {
+            const mediaElement = preview.querySelector('img, video');
+            if (mediaElement) {
+                mediaPreviews.push({
+                    type: mediaElement.tagName.toLowerCase(),
+                    src: mediaElement.src
+                });
+            }
+        });
+
+        // Collect location tag if present
+        const locationTag = document.querySelector('.location-tag');
+        const location = locationTag ? `${locationTag.querySelector('span').textContent}` : null;
+
+        // Create post with media and location
+        createPost(postContent, mediaPreviews, location, 'media');
+
+        // clear media post form data here - start
+
+        // clear media post form data here - end
+        document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
+        if (locationTag) locationTag.remove();
+
+        // Add animation effect
+        textarea.style.borderColor = 'var(--success-color)';
+        setTimeout(() => {
+            textarea.style.borderColor = '#ddd';
+        }, 1000);
+
+        // Switch back to quick post form
+        document.querySelector('.post-type-btn[data-type="quick-post"]').click();
+    }
+}
+
+function handlePollPost() {
+    // take poll post form data here - start
+
+    // take poll post form data here - end
+    const pollPostFormData = {
+        // ...
+    };
+    const postContent = getPostContent(pollPostFormData);
+
+    if (postContent.trim() !== '') {
+        // Create post with media and location
+        createPost(postContent, [], null, 'poll');
+
+        // clear poll post form data here - start
+
+        // clear poll post form data here - end
+
+        // Add animation effect
+        textarea.style.borderColor = 'var(--success-color)';
+        setTimeout(() => {
+            textarea.style.borderColor = '#ddd';
+        }, 1000);
+
+        // Switch back to quick post form
+        document.querySelector('.post-type-btn[data-type="quick-post"]').click();
+    }
+}
+
+function handleEventPost() {
+    // take event post form data here - start
+
+    // take event post form data here - end
+    const eventPostFormData = {
+        // ...
+    };
+    const postContent = getPostContent(eventPostFormData);
+
+    if (postContent.trim() !== '') {
+        // Collect media previews
+        const mediaPreviews = [];
+        document.querySelectorAll('.media-preview').forEach(preview => {
+            const mediaElement = preview.querySelector('img, video');
+            if (mediaElement) {
+                mediaPreviews.push({
+                    type: mediaElement.tagName.toLowerCase(),
+                    src: mediaElement.src
+                });
+            }
+        });
+
+        // Collect location tag if present
+        const locationTag = document.querySelector('.location-tag');
+        const location = locationTag ? `${locationTag.querySelector('span').textContent}` : null;
+
+        // Create post with media and location
+        createPost(postContent, mediaPreviews, location, 'event');
+
+        // clear event post form data here - start
+
+        // clear event post form data here - end
+        document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
+        if (locationTag) locationTag.remove();
+
+        // Add animation effect
+        textarea.style.borderColor = 'var(--success-color)';
+        setTimeout(() => {
+            textarea.style.borderColor = '#ddd';
+        }, 1000);
+
+        // Switch back to quick post form
+        document.querySelector('.post-type-btn[data-type="quick-post"]').click();
+    }
+}
+
+function createPost(content, mediaPreviews = [], location = null, type='quick-post') {
     const post = {
         id: Date.now(),
         content: content,
@@ -360,7 +600,8 @@ function createPost(content, mediaPreviews = [], location = null) {
         sustainabilityScore: calculateSustainabilityScore(content),
         tags: extractEnvironmentalTags(content),
         media: mediaPreviews,
-        location: location
+        location: location,
+        type: type
     };
 
     // Add new post to the beginning of the posts array
@@ -463,7 +704,7 @@ function createPostCard(post) {
             </div>
             <span class="post-type"><i class="fas ${getPostTypeIcon(post.type)}"></i> ${formatPostType(post.type)}</span>
         </div>
-        ${getPostContent(post)}
+        ${post.content}
         ${post.media && post.media.length > 0 ? `
         <div class="post-media">
             ${post.media.map(media => 

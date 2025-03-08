@@ -514,26 +514,47 @@ function handleMediaPost() {
 }
 
 function handlePollPost() {
-    // take poll post form data here - start
+    const pollQuestion = document.querySelector('.poll-question').value;
+    const pollOptions = Array.from(document.querySelectorAll('.poll-option')).map(option => option.value);
+    const duration = document.querySelector('.duration-select').value;
+    const allowMultipleChoices = document.querySelector('.multiple-choice-checkbox').checked;
 
-    // take poll post form data here - end
     const pollPostFormData = {
-        // ...
+        id: 111,
+        author: currentUser,
+        type: 'poll',
+        title: pollQuestion,
+        pollOptions: pollOptions,
+        pollStats: '0 votes •' + duration + ' days left',
+        stats: {
+            likes: 0,
+            comments: []
+        },
+        duration: duration,
+        allowMultipleChoices: allowMultipleChoices,
+        createdAt: new Date().toISOString(),
+        expiresAt: new Date(Date.now() + duration * 24 * 60 * 60 * 1000).toISOString()
     };
+    if (pollQuestion.trim() == '' || pollOptions.every(option => option.trim() == '')) {
+        return;
+    }
     const postContent = getPostContent(pollPostFormData);
 
     if (postContent.trim() !== '') {
         // Create post with media and location
         createPost(postContent, [], null, 'poll');
 
-        // clear poll post form data here - start
+        // Clear form
+        document.querySelector('.poll-question').value = '';
+        document.querySelectorAll('.poll-option').forEach(option => option.value = '');
+        document.querySelector('.duration-select').value = '1';
+        document.querySelector('.multiple-choice-checkbox').checked = false;
 
-        // clear poll post form data here - end
-
-        // Add animation effect
-        textarea.style.borderColor = 'var(--success-color)';
+        // Add success animation
+        const pollForm = document.querySelector('.poll-question');
+        pollForm.style.borderColor = 'var(--success-color)';
         setTimeout(() => {
-            textarea.style.borderColor = '#ddd';
+            pollForm.style.borderColor = '#ddd';
         }, 1000);
 
         // Switch back to quick post form
@@ -763,7 +784,7 @@ function getPostContent(post) {
                     <div class="poll-options">
                         ${post.pollOptions.map(option => `
                             <div class="poll-option">
-                                <div class="poll-bar" style="width: ${option.percentage}%;">${option.text} (${option.percentage}%)</div>
+                                <div class="poll-bar" style="width: ${option.percentage || 0 }%;">${option} (${option.percentage || 0}%)</div>
                             </div>
                         `).join('')}
                     </div>

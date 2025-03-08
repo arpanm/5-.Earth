@@ -122,7 +122,37 @@
                     </div>
                 </div>
                 <div class="post-editor poll-post-form">
-                    <!-- Poll post form elements will be added here -->
+                    <input type="text" class="poll-question" placeholder="Ask a question...">
+                    <div class="poll-options-container">
+                        <div class="poll-option-input">
+                            <input type="text" placeholder="Option 1" class="poll-option">
+                            <button class="remove-option-btn" title="Remove Option"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="poll-option-input">
+                            <input type="text" placeholder="Option 2" class="poll-option">
+                            <button class="remove-option-btn" title="Remove Option"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <button class="add-option-btn">
+                        <i class="fas fa-plus"></i> Add Option
+                    </button>
+                    <div class="poll-settings">
+                        <div class="poll-duration">
+                            <label>Poll Duration:</label>
+                            <select class="duration-select">
+                                <option value="1">1 Day</option>
+                                <option value="3">3 Days</option>
+                                <option value="7">1 Week</option>
+                                <option value="30">1 Month</option>
+                            </select>
+                        </div>
+                        <div class="poll-type">
+                            <label>
+                                <input type="checkbox" class="multiple-choice-checkbox">
+                                Allow multiple choices
+                            </label>
+                        </div>
+                    </div>
                     <div class="post-actions">
                         <div class="media-actions">
                             
@@ -194,5 +224,6 @@
     <script src="js/comments.js"></script>
     <script src="js/search.js"></script>
     <script src="js/search-toggle.js" defer></script>
+    <script src="js/poll-options.js"></script>
 </body>
 </html>

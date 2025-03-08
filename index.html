@@ -376,12 +376,11 @@
             </div>
 
             <div class="content-filters">
-                <button class="filter-btn active">All</button>
-                <button class="filter-btn">Blog Post</button>
-                <button class="filter-btn">Quick Posts</button>
-                <button class="filter-btn">Polls</button>
-                <button class="filter-btn">Media</button>
-                <button class="filter-btn">Events</button>
+                <button class="filter-btn active" id="all-content-filter" data-filter="all-recent">All</button>
+                <button class="filter-btn" data-filter="blog-recent">Blog Post</button>
+                <button class="filter-btn" data-filter="quick-post-recent">Quick Posts</button>
+                <button class="filter-btn" data-filter="poll-recent">Polls</button>
+                <button class="filter-btn" data-filter="media-recent">Media</button>
             </div>
             
             <div class="content-grid">
@@ -399,9 +398,9 @@
                                     <span>Sarah Jain</span>
                                 </a>
                             </div>
-                            <div class="content-actions">
-                                <button class="action-btn"><i class="far fa-heart"></i> 245</button>
-                                <button class="action-btn"><i class="far fa-comment"></i> 18</button>
+                            <div class="content-interactions">
+                                <button class="like-btn">❤️ 245 Likes</button>
+                                <button class="comment-btn">💬 18 Comments</button>
                             </div>
                         </div>
                     </div>

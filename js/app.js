@@ -229,6 +229,7 @@ const posts = [
             timeAgo: '2 hours ago'
         },
         type: 'quick-post',
+        title: 'Cleanup at Brighton Beach!',
         content: 'Just witnessed an amazing community cleanup at Brighton Beach! 🌊 Over 50 volunteers came together to collect plastic waste. Small actions, big impact! #OceanCleanup #Sustainability',
         image: 'images/ocean-clan.webp',
         stats: {
@@ -311,10 +312,205 @@ const posts = [
                 }
             ]
         }
+    },
+    {
+        id: 201,
+        type: 'blog',
+        title: 'Revolutionizing Waste Management',
+        content: 'Discover how our new recycling initiative is transforming the way we handle waste...',
+        image: 'images/waste-management.webp',
+        author: {
+            id: 1,
+            name: 'Sarah Jain',
+            avatar: 'images/profile-woman.png',
+            profile: 'user-profile.html'
+        },
+        stats: {
+            likes: 98,
+            comments: [
+                {
+                    id: 301,
+                    text: 'All of these are important, but composting is often overlooked!',
+                    author: 'Green Thumb',
+                    timestamp: '2023-12-08 09:45:00'
+                }
+            ]
+        },
+        trending: true,
+        timestamp: '2024-01-15T10:30:00Z'
+    },
+    {
+        id: 202,
+        type: 'quick-post',
+        title: 'Solar Panel Installation Tips',
+        content: 'Quick guide on maximizing solar panel efficiency through proper installation...',
+        image: 'images/solar-solutions.jpg',
+        author: {
+            id: 2,
+            name: 'Mike Chen',
+            avatar: 'images/profile-man.avif',
+            profile: 'user-profile.html'
+        },
+        stats: {
+            likes: 76,
+            comments: [
+                {
+                    id: 301,
+                    text: 'All of these are important, but composting is often overlooked!',
+                    author: 'Green Thumb',
+                    timestamp: '2023-12-08 09:45:00'
+                }
+            ]
+        },
+        trending: false,
+        timestamp: '2024-01-14T15:45:00Z'
+    },
+    {
+        id: 203,
+        type: 'media',
+        title: 'Ocean Cleanup Documentary',
+        content: 'Watch our latest documentary on innovative ocean cleanup technologies...',
+        image: 'images/ocean-conservation.avif',
+        author: {
+            id: 3,
+            name: 'Emma Wilson',
+            avatar: 'images/profile-woman-2.avif',
+            profile: 'user-profile.html'
+        },
+        stats: {
+            likes: 22,
+            comments: [
+                {
+                    id: 301,
+                    text: 'All of these are important, but composting is often overlooked!',
+                    author: 'Green Thumb',
+                    timestamp: '2023-12-08 09:45:00'
+                }
+            ]
+        },
+        trending: true,
+        timestamp: '2024-01-13T09:20:00Z'
+    },
+    {
+        id: 204,
+        type: 'event',
+        title: 'Earth Day Celebration 2024',
+        date: new Date('2024-01-15'),
+        time: '10:00 AM - 05:00 PM',
+        location: 'City Park, New York',
+        description: 'Join us for a day of environmental awareness and community action...',
+        image: 'images/green-earth.jpg',
+        author: {
+            id: 1,
+            name: 'Sarah Jain',
+            avatar: 'images/profile-woman.png',
+            profile: 'user-profile.html'
+        },
+        stats: {
+            likes: 89,
+            comments: [
+                {
+                    id: 301,
+                    text: 'All of these are important, but composting is often overlooked!',
+                    author: 'Green Thumb',
+                    timestamp: '2023-12-08 09:45:00'
+                }
+            ]
+        },
+        trending: false,
+        timestamp: '2024-01-12T14:15:00Z'
+    },
+    {
+        id: 205,
+        type: 'poll',
+        title: 'Community Green Initiative',
+        preview: 'Vote on the next environmental project for our community...',
+        pollOptions: [
+            { text: 'Green Building', percentage: 60 },
+            { text: 'Recycling Drive', percentage: 40 }
+        ],
+        options: [
+            'Green Building',
+            'Recycling Drive'
+        ],
+        pollStats: '320 votes • 1 week left',
+        image: 'images/green-project-placeholder.jpg',
+        author: {
+            id: 4,
+            name: 'Lisa Thompson',
+            avatar: 'images/profile-woman.png',
+            profile: 'user-profile.html'
+        },
+        stats: {
+            likes: 112,
+            comments: [
+                {
+                    id: 301,
+                    text: 'All of these are important, but composting is often overlooked!',
+                    author: 'Green Thumb',
+                    timestamp: '2023-12-08 09:45:00'
+                }
+            ]
+        },
+        trending: true,
+        timestamp: '2024-01-11T11:30:00Z'
+    },
+    {
+        id: 206,
+        type: 'blog',
+        title: 'Urban Farming Revolution',
+        content: 'How cities are transforming unused spaces into productive gardens...',
+        image: 'images/green-tech.jpeg',
+        author: {
+            id: 2,
+            name: 'Mike Chen',
+            avatar: 'images/profile-man.avif',
+            profile: 'user-profile.html'
+        },
+        stats: {
+            likes: 87,
+            comments: [
+                {
+                    id: 301,
+                    text: 'All of these are important, but composting is often overlooked!',
+                    author: 'Green Thumb',
+                    timestamp: '2023-12-08 09:45:00'
+                }
+            ]
+        },
+        trending: false,
+        timestamp: '2024-01-10T16:45:00Z'
+    },
+    {
+        id: 207,
+        type: 'quick-post',
+        title: 'Electric Vehicle Adoption',
+        content: 'Latest statistics on EV adoption and its environmental impact...',
+        image: 'images/electric-mobility.jpeg',
+        author: {
+            id: 3,
+            name: 'Emma Wilson',
+            avatar: 'images/profile-woman-2.avif',
+            profile: 'user-profile.html'
+        },
+        stats: {
+            likes: 134,
+            comments: [
+                {
+                    id: 301,
+                    text: 'All of these are important, but composting is often overlooked!',
+                    author: 'Green Thumb',
+                    timestamp: '2023-12-08 09:45:00'
+                }
+            ]
+        },
+        trending: true,
+        timestamp: '2024-01-09T13:20:00Z'
     }
 ];
 
 const currentUser = {
+    id: 1,
     name: 'Rik Pant',
     avatar: 'images/profile-man.avif',
     timeAgo: 'Online'
@@ -446,37 +642,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function handlePostCreation() {
     const postContent = textarea.value;
-    if (postContent.trim() !== '') {
-        // Collect media previews
-        const mediaPreviews = [];
-        document.querySelectorAll('.media-preview').forEach(preview => {
-            const mediaElement = preview.querySelector('img, video');
-            if (mediaElement) {
-                mediaPreviews.push({
-                    type: mediaElement.tagName.toLowerCase(),
-                    src: mediaElement.src
-                });
-            }
-        });
-
-        // Collect location tag if present
-        const locationTag = document.querySelector('.location-tag');
-        const location = locationTag ? `${locationTag.querySelector('span').textContent}` : null;
-
-        // Create post with media and location
-        createPost(postContent, mediaPreviews, location, 'quick-post');
-
-        // Clear input and preview areas
-        textarea.value = '';
-        document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
-        if (locationTag) locationTag.remove();
-
-        // Add animation effect
-        textarea.style.borderColor = 'var(--success-color)';
-        setTimeout(() => {
-            textarea.style.borderColor = '#ddd';
-        }, 1000);
+    if (postContent.trim() == '') {
+        alert('Please fill in all fields');
+        return;
     }
+
+    // Collect media previews
+    const mediaPreviews = [];
+    document.querySelectorAll('.media-preview').forEach(preview => {
+        const mediaElement = preview.querySelector('img, video');
+        if (mediaElement) {
+            mediaPreviews.push({
+                type: mediaElement.tagName.toLowerCase(),
+                src: mediaElement.src
+            });
+        }
+    });
+
+    // Collect location tag if present
+    const locationTag = document.querySelector('.location-tag');
+    const location = locationTag ? `${locationTag.querySelector('span').textContent}` : null;
+
+    const post = {
+        id: Date.now(),
+        content: postContent,
+        title: postContent,
+        description: postContent,
+        stats: {
+            likes: 0,
+            comments: []
+        },
+        timestamp: new Date().toLocaleString(),
+        author: currentUser,
+        sustainabilityScore: calculateSustainabilityScore(postContent),
+        tags: extractEnvironmentalTags(postContent),
+        media: mediaPreviews,
+        location: location,
+        type: 'quick-post'
+    };
+    // Create post with media and location
+    createPost(post);
+
+    // Clear input and preview areas
+    textarea.value = '';
+    document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
+    if (locationTag) locationTag.remove();
+
+    // Add animation effect
+    textarea.style.borderColor = 'var(--success-color)';
+    setTimeout(() => {
+        textarea.style.borderColor = '#ddd';
+    }, 1000);
 }
 
 function handleBlogPost() {
@@ -493,106 +709,108 @@ function handleBlogPost() {
         return;
     }
 
-    // Create blog post object
-    const blogPost = {
-        id: 101,
-        author: currentUser,
-        type: 'blog',
-        title: title,
-        content: content,
-        category: category,
-        stats: {
-            likes: 0,
-            comments: []
+    // Collect media previews
+    const mediaPreviews = [];
+    document.querySelectorAll('.media-preview').forEach(preview => {
+        const mediaElement = preview.querySelector('img, video');
+        if (mediaElement) {
+            mediaPreviews.push({
+                type: mediaElement.tagName.toLowerCase(),
+                src: mediaElement.src
+            });
         }
-    };
+    });
 
-    const postContent = getPostContent(blogPost);
-    if (postContent.trim() !== '') {
-        // Collect media previews
-        const mediaPreviews = [];
-        document.querySelectorAll('.media-preview').forEach(preview => {
-            const mediaElement = preview.querySelector('img, video');
-            if (mediaElement) {
-                mediaPreviews.push({
-                    type: mediaElement.tagName.toLowerCase(),
-                    src: mediaElement.src
-                });
-            }
-        });
-
-        // Create post with media and location
-        createPost(postContent, mediaPreviews, null, 'blog');
-
-        // Clear input and preview areas
-        titleInput.value = '';
-        categorySelect.value = '';
-        contentTextarea.value = '';
-        document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
-
-        // Add animation effect
-        const blogForm = document.querySelector('.blog-title');
-        blogForm.style.borderColor = 'var(--success-color)';
-        setTimeout(() => {
-            blogForm.style.borderColor = '#ddd';
-        }, 1000);
-
-        // Switch back to quick post form
-        document.querySelector('.post-type-btn[data-type="quick-post"]').click();
-    }
-}
-
-function handleMediaPost() {
-    const caption = document.querySelector('.media-caption').value;
-    const mediaPostFormData = {
+    const post = {
         id: Date.now(),
-        author: currentUser,
-        type: 'media',
-        content: caption,
-        createdAt: new Date().toISOString(),
+        title: title,
+        category: category,
+        content: content,
+        description: content,
         stats: {
             likes: 0,
             comments: []
         },
-        caption: caption,
+        timestamp: new Date().toLocaleString(),
+        author: currentUser,
+        sustainabilityScore: calculateSustainabilityScore(content || title),
+        tags: extractEnvironmentalTags(content || title),
+        media: mediaPreviews,
+        type: 'blog'
     };
-    const postContent = getPostContent(mediaPostFormData);
+    // Create post with media and location
+    createPost(post);
 
-    if (postContent.trim() !== '') {
-        // Collect media previews
-        const mediaPreviews = [];
-        document.querySelectorAll('.media-preview').forEach(preview => {
-            const mediaElement = preview.querySelector('img, video');
-            if (mediaElement) {
-                mediaPreviews.push({
-                    type: mediaElement.tagName.toLowerCase(),
-                    src: mediaElement.src
-                });
-            }
-        });
+    // Clear input and preview areas
+    titleInput.value = '';
+    categorySelect.value = '';
+    contentTextarea.value = '';
+    document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
 
-        // Collect location tag if present
-        const locationTag = document.querySelector('.location-tag');
-        const location = locationTag ? `${locationTag.querySelector('span').textContent}` : null;
+    // Add animation effect
+    const blogForm = document.querySelector('.blog-title');
+    blogForm.style.borderColor = 'var(--success-color)';
+    setTimeout(() => {
+        blogForm.style.borderColor = '#ddd';
+    }, 1000);
 
-        // Create post with media and location
-        createPost(postContent, mediaPreviews, location, 'media');
+    // Switch back to quick post form
+    document.querySelector('.post-type-btn[data-type="quick-post"]').click();
+}
 
-        // Clear form
-        document.querySelector('.media-caption').value = '';
-        document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
-        if (locationTag) locationTag.remove();
+function handleMediaPost() {
+    const caption = document.querySelector('.media-caption').value;
+    
+    // Collect media previews
+    const mediaPreviews = [];
+    document.querySelectorAll('.media-preview').forEach(preview => {
+        const mediaElement = preview.querySelector('img, video');
+        if (mediaElement) {
+            mediaPreviews.push({
+                type: mediaElement.tagName.toLowerCase(),
+                src: mediaElement.src
+            });
+        }
+    });
 
-        // Add animation effect
-        const captionInput = document.querySelector('.media-caption');
-        captionInput.style.borderColor = 'var(--success-color)';
-        setTimeout(() => {
-            captionInput.style.borderColor = '#ddd';
-        }, 1000);
+    // Collect location tag if present
+    const locationTag = document.querySelector('.location-tag');
+    const location = locationTag ? `${locationTag.querySelector('span').textContent}` : null;
 
-        // Switch back to quick post form
-        document.querySelector('.post-type-btn[data-type="quick-post"]').click();
-    }
+    const post = {
+        id: Date.now(),
+        content: caption,
+        title: caption,
+        description: caption,
+        stats: {
+            likes: 0,
+            comments: []
+        },
+        timestamp: new Date().toLocaleString(),
+        author: currentUser,
+        sustainabilityScore: calculateSustainabilityScore(caption),
+        tags: extractEnvironmentalTags(caption),
+        media: mediaPreviews,
+        location: location,
+        type: 'media'
+    };
+    // Create post with media and location
+    createPost(post);
+
+    // Clear form
+    document.querySelector('.media-caption').value = '';
+    document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
+    if (locationTag) locationTag.remove();
+
+    // Add animation effect
+    const captionInput = document.querySelector('.media-caption');
+    captionInput.style.borderColor = 'var(--success-color)';
+    setTimeout(() => {
+        captionInput.style.borderColor = '#ddd';
+    }, 1000);
+
+    // Switch back to quick post form
+    document.querySelector('.post-type-btn[data-type="quick-post"]').click();
 }
 
 function handlePollPost() {
@@ -601,47 +819,46 @@ function handlePollPost() {
     const duration = document.querySelector('.duration-select').value;
     const allowMultipleChoices = document.querySelector('.multiple-choice-checkbox').checked;
 
-    const pollPostFormData = {
-        id: 111,
-        author: currentUser,
-        type: 'poll',
+    if (pollQuestion.trim() == '' || pollOptions.every(option => option.trim() == '')) {
+        return;
+    }
+    
+    const post = {
+        id: Date.now(),
+        content: pollQuestion,
         title: pollQuestion,
+        description: pollQuestion,
         pollOptions: pollOptions,
-        pollStats: '0 votes •' + duration + ' days left',
+        duration: duration,
+        allowMultipleChoices: allowMultipleChoices,
         stats: {
             likes: 0,
             comments: []
         },
-        duration: duration,
-        allowMultipleChoices: allowMultipleChoices,
-        createdAt: new Date().toISOString(),
-        expiresAt: new Date(Date.now() + duration * 24 * 60 * 60 * 1000).toISOString()
+        timestamp: new Date().toLocaleString(),
+        author: currentUser,
+        sustainabilityScore: calculateSustainabilityScore(pollQuestion),
+        tags: extractEnvironmentalTags(pollQuestion),
+        type: 'poll'
     };
-    if (pollQuestion.trim() == '' || pollOptions.every(option => option.trim() == '')) {
-        return;
-    }
-    const postContent = getPostContent(pollPostFormData);
+    // Create post with media and location
+    createPost(post);
 
-    if (postContent.trim() !== '') {
-        // Create post with media and location
-        createPost(postContent, [], null, 'poll');
+    // Clear form
+    document.querySelector('.poll-question').value = '';
+    document.querySelectorAll('.poll-option').forEach(option => option.value = '');
+    document.querySelector('.duration-select').value = '1';
+    document.querySelector('.multiple-choice-checkbox').checked = false;
 
-        // Clear form
-        document.querySelector('.poll-question').value = '';
-        document.querySelectorAll('.poll-option').forEach(option => option.value = '');
-        document.querySelector('.duration-select').value = '1';
-        document.querySelector('.multiple-choice-checkbox').checked = false;
+    // Add success animation
+    const pollForm = document.querySelector('.poll-question');
+    pollForm.style.borderColor = 'var(--success-color)';
+    setTimeout(() => {
+        pollForm.style.borderColor = '#ddd';
+    }, 1000);
 
-        // Add success animation
-        const pollForm = document.querySelector('.poll-question');
-        pollForm.style.borderColor = 'var(--success-color)';
-        setTimeout(() => {
-            pollForm.style.borderColor = '#ddd';
-        }, 1000);
-
-        // Switch back to quick post form
-        document.querySelector('.post-type-btn[data-type="quick-post"]').click();
-    }
+    // Switch back to quick post form
+    document.querySelector('.post-type-btn[data-type="quick-post"]').click();
 }
 
 function handleEventPost() {
@@ -651,62 +868,64 @@ function handleEventPost() {
     const eventLocation = document.getElementById('eventLocation').value;
     const eventDescription = document.getElementById('eventDescription').value;
 
-    const eventPostFormData = {
+    // Collect media previews
+    const mediaPreviews = [];
+    document.querySelectorAll('.media-preview').forEach(preview => {
+        const mediaElement = preview.querySelector('img, video');
+        if (mediaElement) {
+            mediaPreviews.push({
+                type: mediaElement.tagName.toLowerCase(),
+                src: mediaElement.src
+            });
+        }
+    });
+
+    // Collect location tag if present
+    const locationTag = document.querySelector('.location-tag');
+    const location = locationTag ? `${locationTag.querySelector('span').textContent}` : null;
+
+    const post = {
         id: Date.now(),
-        author: currentUser,
-        type: 'event',
+        content: eventDescription,
         title: eventTitle,
+        description: eventDescription,
         date: eventDate,
         time: eventTime,
         location: eventLocation,
         description: eventDescription,
-        createdAt: new Date().toISOString(),
         stats: {
             likes: 0,
             comments: []
-        }
+        },
+        timestamp: new Date().toLocaleString(),
+        author: currentUser,
+        sustainabilityScore: calculateSustainabilityScore(eventDescription || eventTitle),
+        tags: extractEnvironmentalTags(eventDescription || eventTitle),
+        media: mediaPreviews,
+        location: location,
+        type: 'event'
     };
-    const postContent = getPostContent(eventPostFormData);
+    // Create post with media and location
+    createPost(post);
 
-    if (postContent.trim() !== '') {
-        // Collect media previews
-        const mediaPreviews = [];
-        document.querySelectorAll('.media-preview').forEach(preview => {
-            const mediaElement = preview.querySelector('img, video');
-            if (mediaElement) {
-                mediaPreviews.push({
-                    type: mediaElement.tagName.toLowerCase(),
-                    src: mediaElement.src
-                });
-            }
-        });
+    // Clear form
+    document.getElementById('eventTitle').value = '';
+    document.getElementById('eventDate').value = '';
+    document.getElementById('eventTime').value = '';
+    document.getElementById('eventLocation').value = '';
+    document.getElementById('eventDescription').value = '';
+    document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
+    if (locationTag) locationTag.remove();
 
-        // Collect location tag if present
-        const locationTag = document.querySelector('.location-tag');
-        const location = locationTag ? `${locationTag.querySelector('span').textContent}` : null;
+    // Add animation effect
+    const eventForm = document.getElementById('eventTitle');
+    eventForm.style.borderColor = 'var(--success-color)';
+    setTimeout(() => {
+        eventForm.style.borderColor = '#ddd';
+    }, 1000);
 
-        // Create post with media and location
-        createPost(postContent, mediaPreviews, location, 'event');
-
-        // Clear form
-        document.getElementById('eventTitle').value = '';
-        document.getElementById('eventDate').value = '';
-        document.getElementById('eventTime').value = '';
-        document.getElementById('eventLocation').value = '';
-        document.getElementById('eventDescription').value = '';
-        document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
-        if (locationTag) locationTag.remove();
-
-        // Add animation effect
-        const eventForm = document.getElementById('eventTitle');
-        eventForm.style.borderColor = 'var(--success-color)';
-        setTimeout(() => {
-            eventForm.style.borderColor = '#ddd';
-        }, 1000);
-
-        // Switch back to quick post form
-        document.querySelector('.post-type-btn[data-type="quick-post"]').click();
-    }
+    // Switch back to quick post form
+    document.querySelector('.post-type-btn[data-type="quick-post"]').click();
 }
 
 function handleGreenProjectPost() {
@@ -729,72 +948,60 @@ function handleGreenProjectPost() {
         return;
     }
 
-    const greenProjectPost = {
+    
+    const mediaPreviews = [];
+    document.querySelectorAll('.media-preview').forEach(preview => {
+        const mediaElement = preview.querySelector('img, video');
+        if (mediaElement) {
+            mediaPreviews.push({
+                type: mediaElement.tagName.toLowerCase(),
+                src: mediaElement.src
+            });
+        }
+    });
+
+    const post = {
         id: Date.now(),
-        type: 'green-project',
+        content: projectDescription,
         title: projectTitle,
         description: projectDescription,
         goals: projectGoals,
-        startDate: projectStartDate,
-        endDate: projectEndDate,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
         resources: projectResources,
-        author: currentUser,
-        stats: {
-            likes: 0,
-            comments: []
-        }
-    };
-
-    const postContent = getPostContent(greenProjectPost);
-    if (postContent.trim() !== '') {
-        const mediaPreviews = [];
-        document.querySelectorAll('.media-preview').forEach(preview => {
-            const mediaElement = preview.querySelector('img, video');
-            if (mediaElement) {
-                mediaPreviews.push({
-                    type: mediaElement.tagName.toLowerCase(),
-                    src: mediaElement.src
-                });
-            }
-        });
-
-        createPost(postContent, mediaPreviews, null, 'green-project');
-
-        document.getElementById('projectTitle').value = '';
-        document.getElementById('projectDescription').value = '';
-        document.getElementById('projectGoals').value = '';
-        document.getElementById('projectStartDate').value = '';
-        document.getElementById('projectEndDate').value = '';
-        document.getElementById('projectResources').value = '';
-        document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
-
-        const greenProjectForm = document.getElementById('projectTitle');
-        greenProjectForm.style.borderColor = 'var(--success-color)';
-        setTimeout(() => {
-            greenProjectForm.style.borderColor = '#ddd';
-        }, 1000);
-
-        document.querySelector('.post-type-btn[data-type="quick-post"]').click();
-    }
-}
-
-function createPost(content, mediaPreviews = [], location = null, type='quick-post') {
-    const post = {
-        id: Date.now(),
-        content: content,
         stats: {
             likes: 0,
             comments: []
         },
         timestamp: new Date().toLocaleString(),
         author: currentUser,
-        sustainabilityScore: calculateSustainabilityScore(content),
-        tags: extractEnvironmentalTags(content),
+        sustainabilityScore: calculateSustainabilityScore(projectDescription || projectTitle),
+        tags: extractEnvironmentalTags(projectDescription || projectTitle),
         media: mediaPreviews,
         location: location,
-        type: type
+        type: 'green-project'
     };
+    // Create post with media and location
+    createPost(post);
 
+    document.getElementById('projectTitle').value = '';
+    document.getElementById('projectDescription').value = '';
+    document.getElementById('projectGoals').value = '';
+    document.getElementById('projectStartDate').value = '';
+    document.getElementById('projectEndDate').value = '';
+    document.getElementById('projectResources').value = '';
+    document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
+
+    const greenProjectForm = document.getElementById('projectTitle');
+    greenProjectForm.style.borderColor = 'var(--success-color)';
+    setTimeout(() => {
+        greenProjectForm.style.borderColor = '#ddd';
+    }, 1000);
+
+    document.querySelector('.post-type-btn[data-type="quick-post"]').click();
+}
+
+function createPost(post) {
     // Add new post to the beginning of the posts array
     posts.unshift(post);
     
@@ -895,7 +1102,7 @@ function createPostCard(post) {
             </div>
             <span class="post-type"><i class="fas ${getPostTypeIcon(post.type)}"></i> ${formatPostType(post.type)}</span>
         </div>
-        ${post.content}
+        ${getPostContent(post)}
         ${post.media && post.media.length > 0 ? `
         <div class="post-media">
             ${post.media.map(media => 
@@ -953,9 +1160,9 @@ function getPostContent(post) {
                     <h3>${post.title}</h3>
                     <div class="poll-options">
                         ${post.pollOptions.map(option => `
-                            <div class="poll-option">
-                                <div class="poll-bar" style="width: ${option.percentage || 0 }%;">${option} (${option.percentage || 0}%)</div>
-                            </div>
+                            ${option ? `<div class="poll-option">
+                                <div class="poll-bar" style="width: ${option.percentage ? option.percentage : 0 }%;">${option.text ? option.text : option} (${option.percentage ? option.percentage : 0}%)</div>
+                            </div>` : ''}
                         `).join('')}
                     </div>
                     <p class="poll-stats">${post.pollStats}</p>
@@ -1015,7 +1222,6 @@ function initializePosts() {
     // Add posts
     const allPosts = [...posts];
     allPosts.forEach(post => {
-        post.content = getPostContent(post);
         postsContainer.appendChild(createPostCard(post));
     });
 
@@ -1023,7 +1229,7 @@ function initializePosts() {
     initializePostInteractions();
 }
 
-function renderPosts() {
+function renderPosts(filteredPosts=posts) {
     const postsContainer = document.querySelector('.posts-container');
     if (!postsContainer) return;
 
@@ -1031,8 +1237,7 @@ function renderPosts() {
     postsContainer.innerHTML = '';
 
     // Add posts
-    posts.forEach(post => {
-        post.content = getPostContent(post);
+    filteredPosts.forEach(post => {
         postsContainer.appendChild(createPostCard(post));
     });
 

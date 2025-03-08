@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/community.css">
     <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/search.css">
 </head>
 <body>
     <header>
@@ -16,6 +17,11 @@
                 <i class="fas fa-leaf"></i>
                 <span>5%.Earth</span>
             </a>
+
+            <div class="search-container">
+                <input type="text" id="global-search" class="search-input" placeholder="Search...">
+                <div id="search-results" class="search-results-container"></div>
+            </div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
             </button>
@@ -24,6 +30,7 @@
                 <li><a href="community.html"><i class="fas fa-stream"></i> Feed</a></li>
                 <li><a href="green-projects.html"><i class="fas fa-seedling"></i> Green Projects</a></li>
                 <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
+                <li class="search-toggle"><a href="#"><i class="fas fa-search"></i> Search</a></li>
                 <li><a href="user-profile.html"><i class="fas fa-user"></i> Profile</a></li>
             </ul>
         </nav>
@@ -262,5 +269,7 @@
 
     <script src="js/app.js"></script>
     <script src="js/comments.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/search-toggle.js" defer></script>
 </body>
 </html>

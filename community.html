@@ -102,15 +102,16 @@
                     </div>
                 </div>
                 <div class="post-editor media-post-form">
-                    <!-- Media post form elements will be added here -->
+                    <div class="media-upload-area" id="mediaUploadArea">
+                        <div class="upload-instructions">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag and drop your media files here<br>or click to select files</p>
+                        </div>
+                        <div class="media-previews" id="mediaPreviews"></div>
+                    </div>
+                    <textarea class="media-caption" placeholder="Write a caption for your media..."></textarea>
                     <div class="post-actions">
                         <div class="media-actions">
-                            <button class="media-btn" title="Add Photo">
-                                <i class="fas fa-camera"></i>
-                            </button>
-                            <button class="media-btn" title="Add Video">
-                                <i class="fas fa-video"></i>
-                            </button>
                             <button class="media-btn" title="Add Location">
                                 <i class="fas fa-map-marker-alt"></i>
                             </button>

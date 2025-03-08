@@ -105,7 +105,72 @@ function handleRegistration(event) {
     }
 }
 
+// Handle media upload functionality
+function handleMediaUpload(files) {
+    Array.from(files).forEach(file => {
+        if (file.type.startsWith('image/') || file.type.startsWith('video/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.createElement('div');
+                preview.className = 'media-preview';
+                
+                const mediaElement = file.type.startsWith('image/') 
+                    ? document.createElement('img')
+                    : document.createElement('video');
+                
+                mediaElement.src = e.target.result;
+                if (mediaElement.tagName === 'VIDEO') {
+                    mediaElement.controls = true;
+                }
+                
+                const removeButton = document.createElement('button');
+                removeButton.className = 'remove-media';
+                removeButton.innerHTML = '<i class="fas fa-times"></i>';
+                removeButton.onclick = () => preview.remove();
+                
+                preview.appendChild(mediaElement);
+                preview.appendChild(removeButton);
+                document.getElementById('mediaPreviews').appendChild(preview);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Set up media upload area event listeners
+    const mediaUploadArea = document.getElementById('mediaUploadArea');
+    if (mediaUploadArea) {
+        mediaUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            mediaUploadArea.classList.add('dragover');
+        });
+
+        mediaUploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            mediaUploadArea.classList.remove('dragover');
+        });
+
+        mediaUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            mediaUploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            handleMediaUpload(files);
+        });
+
+        mediaUploadArea.addEventListener('click', () => {
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.multiple = true;
+            fileInput.accept = 'image/*,video/*';
+            fileInput.onchange = (e) => handleMediaUpload(e.target.files);
+            fileInput.click();
+        });
+    }
+
     // Add click event listener to Join Now buttons
     const joinButtons = document.querySelectorAll('.primary-btn');
     joinButtons.forEach(button => {
@@ -468,11 +533,18 @@ function handleBlogPost() {
 }
 
 function handleMediaPost() {
-    // take media post form data here - start
-
-    // take media post form data here - end
+    const caption = document.querySelector('.media-caption').value;
     const mediaPostFormData = {
-        // ...
+        id: Date.now(),
+        author: currentUser,
+        type: 'media',
+        content: caption,
+        createdAt: new Date().toISOString(),
+        stats: {
+            likes: 0,
+            comments: []
+        },
+        caption: caption,
     };
     const postContent = getPostContent(mediaPostFormData);
 
@@ -496,16 +568,16 @@ function handleMediaPost() {
         // Create post with media and location
         createPost(postContent, mediaPreviews, location, 'media');
 
-        // clear media post form data here - start
-
-        // clear media post form data here - end
+        // Clear form
+        document.querySelector('.media-caption').value = '';
         document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
         if (locationTag) locationTag.remove();
 
         // Add animation effect
-        textarea.style.borderColor = 'var(--success-color)';
+        const captionInput = document.querySelector('.media-caption');
+        captionInput.style.borderColor = 'var(--success-color)';
         setTimeout(() => {
-            textarea.style.borderColor = '#ddd';
+            captionInput.style.borderColor = '#ddd';
         }, 1000);
 
         // Switch back to quick post form
@@ -1015,6 +1087,38 @@ function addLocationTag(locationName, lat, lon) {
 }
 
 // Initialize media buttons when DOM is loaded
+// Handle media upload functionality
+function handleMediaUpload(files) {
+    Array.from(files).forEach(file => {
+        if (file.type.startsWith('image/') || file.type.startsWith('video/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.createElement('div');
+                preview.className = 'media-preview';
+                
+                const mediaElement = file.type.startsWith('image/') 
+                    ? document.createElement('img')
+                    : document.createElement('video');
+                
+                mediaElement.src = e.target.result;
+                if (mediaElement.tagName === 'VIDEO') {
+                    mediaElement.controls = true;
+                }
+                
+                const removeButton = document.createElement('button');
+                removeButton.className = 'remove-media';
+                removeButton.innerHTML = '<i class="fas fa-times"></i>';
+                removeButton.onclick = () => preview.remove();
+                
+                preview.appendChild(mediaElement);
+                preview.appendChild(removeButton);
+                document.getElementById('mediaPreviews').appendChild(preview);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     initializeMediaButtons();
 });

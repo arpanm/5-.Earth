@@ -55,6 +55,9 @@
                     <button class="post-type-btn" data-type="event">
                         <i class="fas fa-calendar-alt"></i> Event
                     </button>
+                    <button class="post-type-btn" data-type="green-project">
+                        <i class="fas fa-seedling"></i> Green Project
+                    </button>
                 </div>
                 <div class="post-editor quick-post-form active">
                     <textarea placeholder="Share your eco-friendly initiative, sustainability tip, or environmental project..."></textarea>
@@ -193,6 +196,40 @@
                             </button>
                         </div>
                         <button id="event-post-btn" class="primary-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Post
+                        </button>
+                    </div>
+                </div>
+                <div class="post-editor green-project-post-form">
+                    <div class="form-group">
+                        <input type="text" id="projectTitle" class="project-input" placeholder="Project Title" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="projectDescription" class="project-input" placeholder="Project Description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="projectGoals" class="project-input" placeholder="Project Goals (List your key objectives)" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="timeline-inputs">
+                            <input type="date" id="projectStartDate" class="project-input" required>
+                            <input type="date" id="projectEndDate" class="project-input" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="projectResources" class="project-input" placeholder="Required Resources (Budget, materials, volunteers, etc.)" required></textarea>
+                    </div>
+                    <div class="post-actions">
+                        <div class="media-actions">
+                            <button class="media-btn" title="Add Photo">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <button class="media-btn" title="Add Video">
+                                <i class="fas fa-video"></i>
+                            </button>
+                        </div>
+                        <button id="green-project-post-btn" class="primary-btn">
                             <i class="fas fa-paper-plane"></i>
                             Post
                         </button>

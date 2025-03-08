@@ -332,6 +332,8 @@ const pollPostBtn = document.getElementById('poll-post-btn');
 
 const eventPostBtn = document.getElementById('event-post-btn');
 
+const greenProjectPostBtn = document.getElementById('green-project-post-btn');
+
 // Get all post type buttons and post editors
 const postTypeBtns = document.querySelectorAll('.post-type-btn');
 const postEditors = document.querySelectorAll('.post-editor');
@@ -359,6 +361,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.poll-post-form').classList.add('active');
             } else if (type === 'event') {
                 document.querySelector('.event-post-form').classList.add('active');
+            } else if (type === 'green-project') {
+                document.querySelector('.green-project-post-form').classList.add('active');
             }
         });
     });
@@ -396,6 +400,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle event post submission
     if (eventPostBtn) {
         eventPostBtn.addEventListener('click', handleEventPost);
+    }
+
+    // Handle event post submission
+    if (greenProjectPostBtn) {
+        greenProjectPostBtn.addEventListener('click', handleGreenProjectPost);
     }
 
     // Global handlers for post interactions
@@ -700,6 +709,75 @@ function handleEventPost() {
     }
 }
 
+function handleGreenProjectPost() {
+    const projectTitle = document.getElementById('projectTitle').value;
+    const projectDescription = document.getElementById('projectDescription').value;
+    const projectGoals = document.getElementById('projectGoals').value;
+    const projectStartDate = document.getElementById('projectStartDate').value;
+    const projectEndDate = document.getElementById('projectEndDate').value;
+    const projectResources = document.getElementById('projectResources').value;
+
+    if (!projectTitle || !projectDescription || !projectGoals || !projectStartDate || !projectEndDate || !projectResources) {
+        alert('Please fill in all required fields');
+        return;
+    }
+
+    const startDate = new Date(projectStartDate);
+    const endDate = new Date(projectEndDate);
+    if (endDate < startDate) {
+        alert('End date cannot be earlier than start date');
+        return;
+    }
+
+    const greenProjectPost = {
+        id: Date.now(),
+        type: 'green-project',
+        title: projectTitle,
+        description: projectDescription,
+        goals: projectGoals,
+        startDate: projectStartDate,
+        endDate: projectEndDate,
+        resources: projectResources,
+        author: currentUser,
+        stats: {
+            likes: 0,
+            comments: []
+        }
+    };
+
+    const postContent = getPostContent(greenProjectPost);
+    if (postContent.trim() !== '') {
+        const mediaPreviews = [];
+        document.querySelectorAll('.media-preview').forEach(preview => {
+            const mediaElement = preview.querySelector('img, video');
+            if (mediaElement) {
+                mediaPreviews.push({
+                    type: mediaElement.tagName.toLowerCase(),
+                    src: mediaElement.src
+                });
+            }
+        });
+
+        createPost(postContent, mediaPreviews, null, 'green-project');
+
+        document.getElementById('projectTitle').value = '';
+        document.getElementById('projectDescription').value = '';
+        document.getElementById('projectGoals').value = '';
+        document.getElementById('projectStartDate').value = '';
+        document.getElementById('projectEndDate').value = '';
+        document.getElementById('projectResources').value = '';
+        document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
+
+        const greenProjectForm = document.getElementById('projectTitle');
+        greenProjectForm.style.borderColor = 'var(--success-color)';
+        setTimeout(() => {
+            greenProjectForm.style.borderColor = '#ddd';
+        }, 1000);
+
+        document.querySelector('.post-type-btn[data-type="quick-post"]').click();
+    }
+}
+
 function createPost(content, mediaPreviews = [], location = null, type='quick-post') {
     const post = {
         id: Date.now(),
@@ -894,6 +972,28 @@ function getPostContent(post) {
                     <p class="event-description">${post.description}</p>
                 </div>
             `;
+        case 'green-project':
+            return `
+                <div class="post-content green-project-post">
+                    <h3>${post.title}</h3>
+                    <p class="project-description">${post.description}</p>
+                    <div class="project-details">
+                        <div class="project-section">
+                            <h4><i class="fas fa-bullseye"></i> Project Goals</h4>
+                            <p>${post.goals}</p>
+                        </div>
+                        <div class="project-section">
+                            <h4><i class="fas fa-calendar-alt"></i> Timeline</h4>
+                            <p>Start: ${new Date(post.startDate).toLocaleDateString()}</p>
+                            <p>End: ${new Date(post.endDate).toLocaleDateString()}</p>
+                        </div>
+                        <div class="project-section">
+                            <h4><i class="fas fa-tools"></i> Required Resources</h4>
+                            <p>${post.resources}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
         default:
             return `
                 <div class="post-content">
@@ -915,6 +1015,7 @@ function initializePosts() {
     // Add posts
     const allPosts = [...posts];
     allPosts.forEach(post => {
+        post.content = getPostContent(post);
         postsContainer.appendChild(createPostCard(post));
     });
 
@@ -931,6 +1032,7 @@ function renderPosts() {
 
     // Add posts
     posts.forEach(post => {
+        post.content = getPostContent(post);
         postsContainer.appendChild(createPostCard(post));
     });
 

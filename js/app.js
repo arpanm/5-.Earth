@@ -522,9 +522,10 @@ function handleBlogPost() {
         document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
 
         // Add animation effect
-        textarea.style.borderColor = 'var(--success-color)';
+        const blogForm = document.querySelector('.blog-title');
+        blogForm.style.borderColor = 'var(--success-color)';
         setTimeout(() => {
-            textarea.style.borderColor = '#ddd';
+            blogForm.style.borderColor = '#ddd';
         }, 1000);
 
         // Switch back to quick post form
@@ -635,11 +636,26 @@ function handlePollPost() {
 }
 
 function handleEventPost() {
-    // take event post form data here - start
+    const eventTitle = document.getElementById('eventTitle').value;
+    const eventDate = document.getElementById('eventDate').value;
+    const eventTime = document.getElementById('eventTime').value;
+    const eventLocation = document.getElementById('eventLocation').value;
+    const eventDescription = document.getElementById('eventDescription').value;
 
-    // take event post form data here - end
     const eventPostFormData = {
-        // ...
+        id: Date.now(),
+        author: currentUser,
+        type: 'event',
+        title: eventTitle,
+        date: eventDate,
+        time: eventTime,
+        location: eventLocation,
+        description: eventDescription,
+        createdAt: new Date().toISOString(),
+        stats: {
+            likes: 0,
+            comments: []
+        }
     };
     const postContent = getPostContent(eventPostFormData);
 
@@ -663,16 +679,20 @@ function handleEventPost() {
         // Create post with media and location
         createPost(postContent, mediaPreviews, location, 'event');
 
-        // clear event post form data here - start
-
-        // clear event post form data here - end
+        // Clear form
+        document.getElementById('eventTitle').value = '';
+        document.getElementById('eventDate').value = '';
+        document.getElementById('eventTime').value = '';
+        document.getElementById('eventLocation').value = '';
+        document.getElementById('eventDescription').value = '';
         document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
         if (locationTag) locationTag.remove();
 
         // Add animation effect
-        textarea.style.borderColor = 'var(--success-color)';
+        const eventForm = document.getElementById('eventTitle');
+        eventForm.style.borderColor = 'var(--success-color)';
         setTimeout(() => {
-            textarea.style.borderColor = '#ddd';
+            eventForm.style.borderColor = '#ddd';
         }, 1000);
 
         // Switch back to quick post form
@@ -861,6 +881,17 @@ function getPostContent(post) {
                         `).join('')}
                     </div>
                     <p class="poll-stats">${post.pollStats}</p>
+                </div>
+            `;
+        case 'event':
+            return `
+                <div class="post-content event-post">
+                    <h3>${post.title}</h3>
+                    <div class="event-details">
+                        <p><i class="far fa-calendar"></i> ${post.date} at ${post.time}</p>
+                        <p><i class="fas fa-map-marker-alt"></i> ${post.location}</p>
+                    </div>
+                    <p class="event-description">${post.description}</p>
                 </div>
             `;
         default:

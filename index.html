@@ -47,6 +47,7 @@
     <link rel="stylesheet" href="css/featured-events.css">
     <link rel="stylesheet" href="css/register-modal.css">
     <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/org-registration.css">
 </head>
 <body>
     <header>
@@ -81,7 +82,7 @@
                 <p class="hero-subtitle">Join thousands of eco-warriors making a difference, one sustainable action at a time.</p>
                 <div class="cta-buttons">
                     <button class="primary-btn">Join Now</button>
-                    <button class="secondary-btn">Learn More</button>
+                    <a class="registerLink" onclick="openOrgRegistration()">Register Your Organization</a>
                 </div>
                 <div class="impact-stats">
                     <div class="stat-item">
@@ -496,6 +497,112 @@
             </div>
         </div>
     </div>
+
+    <div id="orgRegistrationModal" class="org-registration-modal">
+        <div class="org-registration-form">
+            <button class="close-btn" onclick="closeOrgRegistration()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Register Your Organization</h2>
+            <form id="orgRegistrationForm" onsubmit="handleOrgRegistration(event)">
+                <div class="form-group">
+                    <label for="orgName">Organization Name*</label>
+                    <input type="text" id="orgName" name="orgName" required>
+                    <div id="orgNameError" class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="orgTitle">Organization Title*</label>
+                    <input type="text" id="orgTitle" name="orgTitle" required>
+                    <div id="orgTitleError" class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="orgDescription">Description*</label>
+                    <textarea id="orgDescription" name="orgDescription" required></textarea>
+                    <div id="orgDescriptionError" class="error-message"></div>
+                </div>
+    
+                <div class="form-group">
+                    <label for="orgCategory">Category*</label>
+                    <select id="orgCategory" name="orgCategory" required>
+                        <option value="">Select a category</option>
+                        <option value="environmental">Corporate</option>
+                        <option value="sustainability">Non-Profit</option>
+                        <option value="renewable-energy">Educational</option>
+                        <option value="conservation">Government</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <div id="orgCategoryError" class="error-message"></div>
+                </div>
+    
+                <div class="form-group">
+                    <label>Organization Logo*</label>
+                    <div class="file-upload">
+                        <input type="file" id="orgLogo" name="orgLogo" accept="image/*" required>
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload or drag and drop</p>
+                    </div>
+                    <div id="orgLogoError" class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="orgEmail">Email</label>
+                    <input type="email" id="orgEmail" name="orgEmail" placeholder="name@org.com">
+                    <div id="orgEmailError" class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="orgPhone">Phone Number</label>
+                    <input type="phone" id="orgPhone" name="orgPhone" placeholder="+91-9123456789">
+                    <div id="orgPhoneError" class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="orgWebsite">Website URL</label>
+                    <input type="url" id="orgWebsite" name="orgWebsite" placeholder="https://">
+                    <div id="orgWebsiteError" class="error-message"></div>
+                </div>
+    
+                <div class="form-group">
+                    <label for="orgAddress">Address*</label>
+                    <textarea id="orgAddress" name="orgAddress" required></textarea>
+                    <div id="orgAddressError" class="error-message"></div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label for="orgLatitude">Latitude*</label>
+                        <input type="number" id="orgLatitude" name="orgLatitude" step="any" required>
+                        <div id="orgLatitudeError" class="error-message"></div>
+                    </div>
+                    <div class="form-group half-width">
+                        <label for="orgLongitude">Longitude*</label>
+                        <input type="number" id="orgLongitude" name="orgLongitude" step="any" required>
+                        <div id="orgLongitudeError" class="error-message"></div>
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <label>Admin Users</label>
+                    <div id="adminUsersContainer">
+                        <div class="admin-user-row">
+                            <input type="email" name="adminEmails[]" placeholder="Admin Email" class="admin-email">
+                            <button type="button" class="remove-admin" onclick="removeAdminRow(this)">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-admin-btn" onclick="addAdminRow()">
+                        <i class="fas fa-plus"></i> Add Another Admin
+                    </button>
+                    <div id="adminUsersError" class="error-message"></div>
+                </div>
+    
+                <button type="submit" class="submit-btn">Register Organization</button>
+            </form>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -506,5 +613,6 @@
     <script src="js/search.js"></script>
     <script src="js/index-events.js" defer></script>
     <script src="js/search-toggle.js" defer></script>
+    <script src="js/org-registration.js" defer></script>
 </body>
 </html>

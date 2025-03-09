@@ -160,7 +160,7 @@ let organizations = [
 
 // State data for filter
 const states = [
-    'Asam',
+    'Assam',
     'Gujarat',
     'Karnataka',
     'Kerala',
@@ -217,13 +217,13 @@ function initializeFilters() {
 function setupEventListeners() {
     // Search input
     const searchInput = document.getElementById('org-search');
-    searchInput.addEventListener('input', debounce(handleSearch, 300));
+    searchInput.addEventListener('input', debounce(handleSearchOrg, 300));
 
     // Filters
-    document.getElementById('org-type-filter').addEventListener('change', applyFilters);
+    document.getElementById('org-type-filter').addEventListener('change', applyOrgFilters);
     document.getElementById('state-filter').addEventListener('change', handleStateChange);
-    document.getElementById('city-filter').addEventListener('change', applyFilters);
-    document.getElementById('area-filter').addEventListener('input', debounce(applyFilters, 300));
+    document.getElementById('city-filter').addEventListener('change', applyOrgFilters);
+    document.getElementById('area-filter').addEventListener('input', debounce(applyOrgFilters, 300));
 
     // Load more button
     document.getElementById('load-more-btn').addEventListener('click', loadMore);
@@ -239,7 +239,14 @@ function handleStateChange(e) {
     
     if (selectedState) {
         // Get cities for selected state (replace with actual data)
-        const cities = getCitiesForState(selectedState);
+        const citiesForState = getCitiesForState(selectedState);
+        citiesForState.forEach(city => {
+            const option = document.createElement('option');
+            option.value = city;
+            option.textContent = city;
+            cityFilter.appendChild(option);
+        });
+    } else {
         cities.forEach(city => {
             const option = document.createElement('option');
             option.value = city;
@@ -248,27 +255,32 @@ function handleStateChange(e) {
         });
     }
     
-    applyFilters();
+    applyOrgFilters();
 }
 
 // Get cities for state (replace with actual data)
 function getCitiesForState(state) {
     // Sample data - replace with actual city data
     const citiesByState = {
-        'California': ['San Francisco', 'Los Angeles', 'San Diego'],
-        'New York': ['New York City', 'Buffalo', 'Albany'],
-        'Texas': ['Austin', 'Houston', 'Dallas']
-    };
-    return citiesByState[state] || [];
+        'Assam': ['Guwahati', 'Silchar', 'Nagaon'],
+        'Gujarat': ['Ahmedabad', 'Surat', 'Gandhinagar'],
+        'Karnataka': ['Bangalore', 'Mysore', 'Hubli'],
+        'Kerala': ['Thiruvananthapuram', 'Kochi', 'Kollam'],
+        'Maharastra': ['Mumbai', 'Pune', 'Nagpur'],
+        'Madhya Pradesh': ['Bhopal', 'Indore', 'Jabalpur'],
+        'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai'],
+        'Uttarankhand': ['Dehradun', 'Haridwar', 'Rohtak'],
+        'West Bengal': ['Kolkata', 'Howrah', 'Siliguri', 'Haldia']};
+    return citiesByState[state] || cities;
 }
 
 // Handle search
-function handleSearch() {
-    applyFilters();
+function handleSearchOrg(event) {
+    applyOrgFilters();
 }
 
 // Apply all filters
-function applyFilters() {
+function applyOrgFilters() {
     const searchTerm = document.getElementById('org-search').value.toLowerCase();
     const typeFilter = document.getElementById('org-type-filter').value;
     const stateFilter = document.getElementById('state-filter').value;

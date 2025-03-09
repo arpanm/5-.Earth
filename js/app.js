@@ -201,7 +201,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 allSaved.forEach(saved => saved.style.display = 'none');
 
                 // Show relevant content based on selected tab
-                if (this.textContent === 'My Posts') {
+                if (this.textContent === 'Posts') {
+                    allPosts.forEach(post => post.style.display = 'block');
+                } else if (this.textContent === 'My Posts') {
                     allPosts.forEach(post => post.style.display = 'block');
                 } else if (this.textContent === 'Mentions') {
                     allMentions.forEach(mention => mention.style.display = 'block');

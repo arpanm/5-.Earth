@@ -280,3 +280,45 @@
         gap: 20px;
     }
 }
+
+.editable-field {
+    position: relative;
+    padding-right: 40px;
+}
+
+.edit-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.edit-btn:hover {
+    opacity: 1;
+}
+
+.edit-btn i {
+    font-size: 14px;
+}
+
+.org-cover-photo .edit-btn,
+.org-logo .edit-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.org-logo {
+    position: relative;
+}

@@ -69,12 +69,19 @@
                 </div>
             </div>
             <div class="profile-info">
-                <div class="profile-avatar">
+                <div class="profile-avatar" onclick="editImage('profile')">
                     <img src="images/profile-woman.png" alt="User Avatar" class="user-avatar-large">
+                    <button class="edit-btn" onclick="editImage('profile')"><i class="fas fa-edit"></i></button>
                 </div>
                 <div class="profile-details">
-                    <h1 class="profile-name">Sarah Johnson</h1>
-                    <p class="profile-tagline">Environmental Activist | Green Tech Enthusiast</p>
+                    <div class="editable-field">
+                        <h1 class="profile-name" onclick="makeEditable(this)">Sarah Johnson</h1>
+                        <button class="edit-btn" onclick="makeEditable(this.previousElementSibling)"><i class="fas fa-edit"></i></button>
+                    </div>
+                    <div class="editable-field">
+                        <p class="profile-tagline" onclick="makeEditable(this)">Environmental Activist | Green Tech Enthusiast</p>
+                        <button class="edit-btn" onclick="makeEditable(this.previousElementSibling)"><i class="fas fa-edit"></i></button>
+                    </div>
                     <div class="profile-stats">
                         <div class="profile-stat-item">
                             <span class="profile-stat-number">120</span>
@@ -121,22 +128,29 @@
             <div class="profile-sidebar">
                 <section class="bio-section">
                     <h2>About Me</h2>
-                    <p>Passionate about environmental conservation and sustainable living. Working towards a greener future through technology and community engagement.</p>
+                    <div class="editable-field">
+                        <p onclick="makeEditable(this)">Passionate about environmental conservation and sustainable living. Working towards a greener future through technology and community engagement.</p>
+                        <button class="edit-btn" onclick="makeEditable(this.previousElementSibling)"><i class="fas fa-edit"></i></button>
+                    </div>
                 </section>
 
                 <section class="contact-section">
                     <h2>Contact Information</h2>
                     <ul class="contact-list">
-                        <li><i class="fas fa-envelope"></i> john.doe@email.com</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
-                        <li><i class="fas fa-globe"></i> www.johndoe.com</li>
+                        <div class="editable-field">
+                            <li onclick="makeEditable(this)"><i class="fas fa-envelope"></i> john.doe@email.com</li>
+                            <button class="edit-btn" onclick="makeEditable(this.previousElementSibling)"><i class="fas fa-edit"></i></button>
+                        </div>
+                        <li class="editable-field" onclick="makeEditable(this)"><i class="fas fa-phone"></i> +1 (555) 123-4567 <button class="edit-btn" onclick="makeEditable(this.parent)"><i class="fas fa-edit"></i></button></li>
+                        <li class="editable-field" onclick="makeEditable(this)"><i class="fas fa-map-marker-alt"></i> San Francisco, CA<button class="edit-btn" onclick="makeEditable(this.parent)"><i class="fas fa-edit"></i></button></li>
+                        <li class="editable-field" onclick="makeEditable(this)"><i class="fas fa-globe"></i> www.johndoe.com<button class="edit-btn" onclick="makeEditable(this.parent)"><i class="fas fa-edit"></i></button></li>
                     </ul>
                 </section>
 
-                <section class="interests-section">
+                <section class="interests-section" id="tagsSection">
+                    <button class="edit-tags-btn" onclick="makeEditableTags()"><i class="fas fa-edit"></i></button>
                     <h2>Sustainability Interests</h2>
-                    <div class="interest-tags">
+                    <div class="interest-tags" onclick="makeEditableTags()">
                         <span class="interest-tag">Renewable Energy</span>
                         <span class="interest-tag">Zero Waste</span>
                         <span class="interest-tag">Green Technology</span>
@@ -144,14 +158,16 @@
                         <span class="interest-tag">Electric Vehicles</span>
                         <span class="interest-tag">Ocean Conservation</span>
                     </div>
+                    <input type="text" class="tag-input" id="tagInput" placeholder="Add a new tag">
                 </section>
 
 
             </div>
             <div class="profile-main-content">
                 <div class="content-filters">
-                    <button class="filter-btn active">Posts</button>
+                    <button class="filter-btn active">My Posts</button>
                     <button class="filter-btn">Mentions</button>
+                    <button class="filter-btn">Saved</button>
                     <div class="sort-dropdown">
                         <select name="sort" id="sort">
                             <option value="recent">Most Recent</option>
@@ -241,6 +257,23 @@
                             <p>Thanks <a href="#" class="mention-link">@Sarah Johnson</a> for the amazing presentation on renewable energy at yesterday's conference! 🎯</p>
                         </div>
                     </div>
+
+                    <!-- Saved Tab Content -->
+                    <div class="saved-item" style="display: none;">
+                        <img src="images/green-tech.jpeg" alt="Green Technology" class="saved-thumbnail">
+                        <div class="saved-info">
+                            <h3 class="saved-title">10 Breakthrough Green Technologies of 2023</h3>
+                            <p class="saved-excerpt">Exploring the latest innovations in sustainable technology, from advanced solar cells to breakthrough battery storage solutions.</p>
+                        </div>
+                    </div>
+
+                    <div class="saved-item" style="display: none;">
+                        <img src="images/water-conservation.jpeg" alt="Water Conservation" class="saved-thumbnail">
+                        <div class="saved-info">
+                            <h3 class="saved-title">Home Water Conservation Guide</h3>
+                            <p class="saved-excerpt">Comprehensive guide to reducing water consumption and implementing water-saving techniques in your home.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -261,5 +294,6 @@
     <script src="js/comments.js"></script>
     <script src="js/search.js"></script>
     <script src="js/search-toggle.js" defer></script>
+    <script src="js/organization-edit.js"></script>
 </body>
 </html>

@@ -1,0 +1,140 @@
+.validation-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.closeBtn {
+    padding: 0.5rem 1rem;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    background: white;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.closeBtn:hover {
+    background: lightgray;
+    color: white;
+}
+
+.validate-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    background: white;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.validate-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.validate-btn.reject {
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+.validate-btn.reject:hover {
+    background: #e74c3c;
+    color: white;
+}
+
+.validate-btn.ai {
+    border-color: #3498db;
+    color: #3498db;
+}
+
+.validate-btn.ai:hover {
+    background: #3498db;
+    color: white;
+}
+
+.validate-btn.expert {
+    border-color: #f39c12;
+    color: #f39c12;
+}
+
+.validate-btn.expert:hover {
+    background: #f39c12;
+    color: white;
+}
+
+.crowd-validation {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.validation-count {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.expert-validation {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.expert-select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.validation-success {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.points-earned {
+    background: rgba(var(--primary-rgb), 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.validation-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-left: auto;
+}
+
+.validation-badge.self {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.validation-badge.crowd {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.validation-badge.ai {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.validation-badge.expert {
+    background: #fff3e0;
+    color: #f57c00;
+}

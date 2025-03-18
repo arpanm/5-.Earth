@@ -1,0 +1,120 @@
+.validation-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 500px;
+    width: 90%;
+    z-index: 1000;
+}
+
+.validation-form h3 {
+    margin: 0 0 1.5rem;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.validation-form textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    resize: vertical;
+}
+
+.validation-form select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    background: white;
+}
+
+.validation-form .rating-container {
+    margin-bottom: 1rem;
+}
+
+.validation-form .star-rating {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.validation-form .star {
+    font-size: 1.5rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.validation-form .star:hover,
+.validation-form .star.selected {
+    color: #ffd700;
+}
+
+.validation-form .file-upload {
+    margin-bottom: 1rem;
+}
+
+.validation-form .file-upload input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.validation-form .ai-feedback {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    min-height: 60px;
+}
+
+.validation-form .validation-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.validation-form .submit-validation {
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.validation-form .submit-validation:hover {
+    background: var(--primary-dark);
+}
+
+.validation-form .cancel-validation {
+    padding: 0.75rem 1.5rem;
+    background: #f8f9fa;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.validation-form .cancel-validation:hover {
+    background: #e9ecef;
+    color: #333;
+}

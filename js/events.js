@@ -9,16 +9,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Modal functionality
     createEventBtn.addEventListener('click', () => {
-        createEventModal.style.display = 'block';
+        createEventModal.classList.add('active');
     });
 
     closeBtn.addEventListener('click', () => {
-        createEventModal.style.display = 'none';
+        createEventModal.classList.remove('active');
     });
 
     window.addEventListener('click', (e) => {
         if (e.target === createEventModal) {
-            createEventModal.style.display = 'none';
+            createEventModal.classList.remove('active');
         }
     });
 

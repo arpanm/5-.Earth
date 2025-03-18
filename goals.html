@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goals - 5%.Earth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/dropdown.css">
+    <link rel="stylesheet" href="css/goals.css">
+    <link rel="stylesheet" href="css/activity-modal.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <i class="fas fa-leaf"></i>
+                <span>5%.Earth</span>
+            </a>
+
+            <div class="search-container">
+                <input type="text" id="global-search" class="search-input" placeholder="Search...">
+                <div id="search-results" class="search-results-container"></div>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li class="search-toggle"><a href="#"><i class="fas fa-search"></i> Search</a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="community.html"><i class="fas fa-stream"></i> Feed</a></li>
+                <li><a href="goals.html"><i class="fas fa-calendar"></i> Goals</a></li>
+                <li><a href="green-projects.html"><i class="fas fa-seedling"></i> Green Projects</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
+                <li><a href="organizations.html"><i class="fas fa-building"></i> Organizations</a></li>
+                <li class="profile-dropdown">
+                    <a href="#"><i class="fas fa-user"></i> Profile<i class="fas fa-chevron-down"></i></a>
+                    <div class="profile-dropdown-content">
+                        <a href="myprofile.html"><i class="fas fa-user-circle"></i> My Profile</a>
+                        <a href="myorganization.html"><i class="fas fa-building"></i> My Organization</a>
+                        <a onclick="logout()" href="login.html"><i class="fas fa-sign-out"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="goals-container">
+        <div class="goals-header">
+            <div class="goals-tabs">
+                <button class="tab-btn active" data-tab="all-goals">All Goals</button>
+                <button class="tab-btn" data-tab="my-goals">My Goals</button>
+            </div>
+            <button id="createGoalBtn" class="create-btn">Create New Goal</button>
+        </div>
+
+        <div class="goals-filters">
+            <div class="search-bar">
+                <input type="text" placeholder="Search goals...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="filter-options">
+                <select id="goalType">
+                    <option value="">Goal Type</option>
+                    <option value="water">Water Conservation</option>
+                    <option value="energy">Energy Efficiency</option>
+                    <option value="waste">Waste Management</option>
+                </select>
+                <select id="focusArea">
+                    <option value="">Focus Area</option>
+                    <option value="individual">Individual</option>
+                    <option value="organization">Organization</option>
+                    <option value="community">Community</option>
+                </select>
+                <select id="timeline">
+                    <option value="">Timeline</option>
+                    <option value="short">Short-term</option>
+                    <option value="medium">Medium-term</option>
+                    <option value="long">Long-term</option>
+                </select>
+                <select id="validation">
+                    <option value="">Validation Type</option>
+                    <option value="self">Self</option>
+                    <option value="crowd">Crowdsourced</option>
+                    <option value="ai">AI-based</option>
+                    <option value="expert">Expert Audit</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="tab-content active" id="all-goals">
+            <div class="goals-grid">
+                <!-- Goals will be dynamically added here -->
+            </div>
+        </div>
+
+        <div class="tab-content" id="my-goals">
+            <div class="goals-grid">
+                <!-- User's goals will be dynamically added here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Create Goal Modal -->
+    <div class="modal" id="createGoalModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Create New Goal</h2>
+            <form id="createGoalForm">
+                <div class="form-group">
+                    <label for="goalCategory">Goal Category</label>
+                    <select id="goalCategory" required>
+                        <option value="">Select a category</option>
+                        <option value="water">Water Conservation</option>
+                        <option value="energy">Energy Efficiency</option>
+                        <option value="waste">Waste Management</option>
+                    </select>
+                </div>
+                <div id="dynamicFormFields">
+                    <!-- Dynamic form fields will be added here based on category -->
+                </div>
+                <button type="submit" class="submit-btn">Create Goal</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/search-toggle.js" defer></script>
+    <script src="js/header.js"></script>
+    <script src="js/goals.js"></script>
+</body>
+</body>
+</html>

@@ -1,15 +1,22 @@
 .goal-detail-container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 4rem 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    background-color: var(--bg-light);
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 
 .goal-header {
     background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    margin-bottom: 3rem;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 .goal-header h1 {
@@ -19,8 +26,12 @@
 
 .goal-meta {
     display: flex;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 1.5rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .goal-meta span {
@@ -43,13 +54,16 @@
 
 .filters-bar {
     background-color: #fff;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    margin-bottom: 3rem;
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 .filter-group {
@@ -73,10 +87,15 @@
 
 .participants-section {
     background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    margin-bottom: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2.5rem;
 }
 
 .participants-grid {
@@ -88,12 +107,12 @@
 
 .participant-card {
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     overflow: hidden;
-    transition: transform 0.2s;
     cursor: pointer;
     transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
 }
 
 .participant-card:hover {
@@ -152,9 +171,9 @@
 
 .actions-feed {
     background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .actions-feed h2 {
@@ -185,19 +204,59 @@
     object-fit: cover;
 }
 
+.action-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+}
+
 .action-meta h3 {
     margin: 0;
-    font-size: 1rem;
-    color: #2c3e50;
+    font-size: 1.15rem;
+    color: var(--text-primary, #2c3e50);
+    font-weight: 600;
+    line-height: 1.4;
+    transition: color 0.2s ease;
 }
 
 .action-meta span {
-    font-size: 0.85rem;
-    color: #666;
+    font-size: 0.9rem;
+    color: var(--text-secondary, #666);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: color 0.2s ease;
 }
 
 .action-body {
     margin-bottom: 1rem;
+}
+
+.action-content {
+    margin: 0.75rem 0;
+    padding-left: 3.5rem;
+}
+
+.action-content p {
+    margin: 0;
+    color: #4a4a4a;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.action-timestamp {
+    font-size: 0.85rem;
+    color: #888;
+    padding-left: 3.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.action-timestamp i {
+    font-size: 0.9rem;
+    color: #999;
 }
 
 .action-media {
@@ -207,8 +266,13 @@
 .action-media img {
     width: 100%;
     height: 300px;
-    border-radius: 8px;
+    border-radius: 12px;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.action-media img:hover {
+    transform: scale(1.02);
 }
 
 .action-stats {
@@ -219,19 +283,22 @@
 .like-btn,
 .validate-btn {
     background: none;
-    border: 1px solid #ddd;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    transition: all 0.2s;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .like-btn:hover,
 .validate-btn:hover {
     background-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .like-btn.active {
@@ -259,12 +326,20 @@
 
 .comment-form textarea {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
     resize: vertical;
-    min-height: 80px;
-    margin-bottom: 0.5rem;
+    min-height: 100px;
+    margin-bottom: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+.comment-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
 }
 
 .comment-form button {

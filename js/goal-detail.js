@@ -70,6 +70,7 @@ const mockActions = [
         userName: 'John Doe',
         userAvatar: 'images/profile-man.avif',
         timestamp: '2024-01-15T10:30:00',
+        type: 'quick_post',
         description: 'Installed water-efficient fixtures in all bathrooms',
         media: 'images/water-conservation.jpeg',
         likes: 12,
@@ -84,7 +85,10 @@ const mockActions = [
         userName: 'Sarah Chen',
         userAvatar: 'images/profile-woman.png',
         timestamp: '2024-01-16T14:20:00',
-        description: 'Conducted a water usage audit and identified 3 major areas for improvement',
+        type: 'blog',
+        title: 'Water Audit Results and Recommendations',
+        description: 'Conducted a water usage audit and identified 3 major areas for improvement. Read my detailed analysis and recommendations for implementing water-saving measures in your home.',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         media: 'images/water-wise.jpg',
         likes: 8,
         validated: true,
@@ -96,8 +100,17 @@ const mockActions = [
         userName: 'Michael Brown',
         userAvatar: 'images/profile-man-2.jpg',
         timestamp: '2024-01-17T09:15:00',
-        description: 'Shared educational content about water conservation techniques',
-        media: null,
+        type: 'poll',
+        title: 'Which water-saving method works best for you?',
+        description: 'Share your experience with different water conservation techniques',
+        options: [
+            { id: 1, text: 'Low-flow fixtures', votes: 45 },
+            { id: 2, text: 'Rainwater harvesting', votes: 32 },
+            { id: 3, text: 'Greywater recycling', votes: 28 },
+            { id: 4, text: 'Smart irrigation', votes: 39 }
+        ],
+        totalVotes: 144,
+        endDate: '2024-02-17T09:15:00',
         likes: 15,
         validated: true,
         comments: []
@@ -108,7 +121,13 @@ const mockActions = [
         userName: 'David Kim',
         userAvatar: 'images/profile-man.avif',
         timestamp: '2024-01-18T16:45:00',
-        description: 'Organized a community workshop on water-saving practices',
+        type: 'event',
+        title: 'Community Water Conservation Workshop',
+        description: 'Join us for an interactive workshop on water-saving practices. Learn from experts and share your experiences.',
+        eventDate: '2024-02-01T14:00:00',
+        location: 'Community Center',
+        capacity: 50,
+        registered: 35,
         media: 'images/water-conservation.jpeg',
         likes: 20,
         validated: false,
@@ -120,8 +139,12 @@ const mockActions = [
         userName: 'Sarah Chen',
         userAvatar: 'images/profile-woman.png',
         timestamp: '2024-01-19T11:30:00',
+        type: 'milestone',
+        title: 'Monthly Water Savings Achievement',
         description: 'Monthly water consumption reduced by 25% through implemented changes',
-        media: null,
+        progress: 25,
+        target: 20,
+        media: 'images/water-wise.jpg',
         likes: 30,
         validated: true,
         comments: []
@@ -132,8 +155,12 @@ const mockActions = [
         userName: 'Lisa Garcia',
         userAvatar: 'images/profile-woman.png',
         timestamp: '2024-01-20T13:10:00',
-        description: 'Started monitoring daily water usage with smart meter',
-        media: 'images/water-wise.jpg',
+        type: 'project_update',
+        title: 'Smart Water Monitoring System',
+        description: 'Started monitoring daily water usage with smart meter. This project aims to provide real-time water consumption data to help identify waste and optimize usage.',
+        projectStatus: 'In Progress',
+        completion: 45,
+        media: 'images/water-conservation.jpeg',
         likes: 5,
         validated: false,
         comments: []
@@ -144,8 +171,12 @@ const mockActions = [
         userName: 'John Doe',
         userAvatar: 'images/profile-man.avif',
         timestamp: '2024-01-21T15:20:00',
-        description: 'Fixed all leaking faucets - estimated savings of 100 gallons per week',
-        media: null,
+        type: 'educational_content',
+        title: 'Understanding Your Water Footprint',
+        description: 'Learn how to calculate and reduce your daily water footprint with this comprehensive guide.',
+        contentType: 'guide',
+        readTime: '5 mins',
+        media: 'images/water-wise.jpg',
         likes: 18,
         validated: true,
         comments: []
@@ -156,7 +187,11 @@ const mockActions = [
         userName: 'David Kim',
         userAvatar: 'images/profile-man.avif',
         timestamp: '2024-01-22T10:45:00',
+        type: 'innovation',
+        title: 'Rainwater Harvesting System',
         description: 'Implemented rainwater harvesting system for garden irrigation',
+        innovationType: 'Infrastructure',
+        impact: 'High',
         media: 'images/water-conservation.jpeg',
         likes: 25,
         validated: true,
@@ -279,8 +314,111 @@ function loadParticipants() {
 
 // Render action item
 function createActionItem(action) {
+    let actionContent = '';
+    
+    // Add activity type tag
+    actionContent += `<div class="action-type-tag">${action.type.replace('_', ' ')}</div>`;
+    
+    // Add title for activity types that have it
+    if (action.title) {
+        actionContent += `<h4 class="action-title">${action.title}</h4>`;
+    }
+
+    // Add description for all types
+    actionContent += `<p class="action-description">${action.description}</p>`;
+
+    // Add type-specific content
+    switch(action.type) {
+        case 'blog':
+            actionContent += `
+                <div class="blog-content">
+                    <p>${action.content}</p>
+                </div>
+            `;
+            break;
+        case 'poll':
+            const totalVotes = action.totalVotes;
+            actionContent += `
+                <div class="poll-container">
+                    ${action.options.map(option => {
+                        const percentage = Math.round((option.votes / totalVotes) * 100);
+                        return `
+                            <div class="poll-option">
+                                <div class="poll-option-text">${option.text}</div>
+                                <div class="poll-progress-bar">
+                                    <div class="poll-progress-fill" style="width: ${percentage}%"></div>
+                                </div>
+                                <div class="poll-stats">${option.votes} votes (${percentage}%)</div>
+                            </div>
+                        `;
+                    }).join('')}
+                    <div class="poll-total">Total votes: ${totalVotes}</div>
+                    <div class="poll-deadline">Poll ends: ${new Date(action.endDate).toLocaleDateString()}</div>
+                </div>
+            `;
+            break;
+        case 'event':
+            actionContent += `
+                <div class="event-details">
+                    <div class="event-info">
+                        <i class="far fa-calendar"></i> ${new Date(action.eventDate).toLocaleDateString()}
+                        <i class="far fa-map-marker-alt"></i> ${action.location}
+                    </div>
+                    <div class="event-capacity">
+                        <div class="capacity-bar">
+                            <div class="capacity-fill" style="width: ${(action.registered/action.capacity)*100}%"></div>
+                        </div>
+                        <span>${action.registered}/${action.capacity} registered</span>
+                    </div>
+                </div>
+            `;
+            break;
+        case 'milestone':
+            actionContent += `
+                <div class="milestone-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${(action.progress/action.target)*100}%"></div>
+                    </div>
+                    <span>${action.progress}% achieved (Target: ${action.target}%)</span>
+                </div>
+            `;
+            break;
+        case 'project_update':
+            actionContent += `
+                <div class="project-status">
+                    <span class="status-badge">${action.projectStatus}</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${action.completion}%"></div>
+                    </div>
+                    <span>${action.completion}% complete</span>
+                </div>
+            `;
+            break;
+        case 'educational_content':
+            actionContent += `
+                <div class="educational-meta">
+                    <span class="content-type">${action.contentType}</span>
+                    <span class="read-time"><i class="far fa-clock"></i> ${action.readTime}</span>
+                </div>
+            `;
+            break;
+        case 'innovation':
+            actionContent += `
+                <div class="innovation-meta">
+                    <span class="innovation-type">${action.innovationType}</span>
+                    <span class="impact-level">Impact: ${action.impact}</span>
+                </div>
+            `;
+            break;
+    }
+
+    // Add media if present
+    if (action.media) {
+        actionContent += `<div class="action-media"><img src="${action.media}" alt="Action media"></div>`;
+    }
+
     return `
-        <div class="action-item" data-action-id="${action.id}">
+        <div class="action-item ${action.type}" data-action-id="${action.id}">
             <div class="action-header">
                 <img src="${action.userAvatar}" alt="${action.userName}" class="user-avatar">
                 <div class="action-meta">
@@ -289,8 +427,7 @@ function createActionItem(action) {
                 </div>
             </div>
             <div class="action-body">
-                <p>${action.description}</p>
-                ${action.media ? `<div class="action-media"><img src="${action.media}" alt="Action media"></div>` : ''}
+                ${actionContent}
             </div>
             <div class="action-stats">
                 <button class="like-btn ${action.liked ? 'active' : ''}" onclick="toggleLike(${action.id})">

@@ -219,6 +219,45 @@ document.addEventListener('DOMContentLoaded', function() {
             defaultTab.click();
         }
     }
+
+    // Dynamic form fields based on goal category
+    goalCategory.addEventListener('change', function() {
+        const category = this.value;
+        const goalMetric = document.getElementById('goalMetric');
+        
+        // Clear existing options
+        goalMetric.innerHTML = `<option value="">Select Metric</option>
+                                <option value="kg-co2">kg CO2</option>
+                                <option value="kwh">kWh</option>
+                                <option value="liters">Liters</option>
+                                <option value="kg-waste">kg Waste</option>
+                                <option value="trees">Trees</option>
+                                <option value="custom">Custom</option>`;
+        
+        // Set metric options based on category
+        switch(category) {
+            case 'carbon-reduction':
+                goalMetric.value = 'kg-co2';
+                break;
+            case 'waste-reduction':
+                goalMetric.value = 'kg-waste';
+                break;
+            case 'energy-efficiency':
+                goalMetric.value = 'kwh';
+                break;
+            case 'water-conservation':
+                goalMetric.value = 'liters';
+                break;
+            case 'biodiversity':
+                goalMetric.value = 'trees';
+                break;
+            case 'sustainable-living':
+                goalMetric.value = 'custom';
+                break;
+            default:
+                goalMetric.value = '';
+        }
+    });
 });
 
 // Sample post data - In a real app, this would come from an API
@@ -532,6 +571,8 @@ const eventPostBtn = document.getElementById('event-post-btn');
 
 const greenProjectPostBtn = document.getElementById('green-project-post-btn');
 
+const goalPostBtn = document.getElementById('goal-post-btn');
+
 // Get all post type buttons and post editors
 const postTypeBtns = document.querySelectorAll('.post-type-btn');
 const postEditors = document.querySelectorAll('.post-editor');
@@ -561,6 +602,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.event-post-form').classList.add('active');
             } else if (type === 'green-project') {
                 document.querySelector('.green-project-post-form').classList.add('active');
+            } else if (type === 'goal') {
+                document.querySelector('.goal-post-form').classList.add('active');
             }
         });
     });
@@ -603,6 +646,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle event post submission
     if (greenProjectPostBtn) {
         greenProjectPostBtn.addEventListener('click', handleGreenProjectPost);
+    }
+
+    // Handle goal post submission
+    if (goalPostBtn) {
+        goalPostBtn.addEventListener('click', handleGoalPost);
     }
 
     // Global handlers for post interactions
@@ -1003,6 +1051,86 @@ function handleGreenProjectPost() {
     document.querySelector('.post-type-btn[data-type="quick-post"]').click();
 }
 
+function handleGoalPost() {
+    const title = document.getElementById('goalTitle').value;
+    const category = document.getElementById('goalCategory').value;
+    const description = document.getElementById('goalDescription').value;
+    const target = document.getElementById('goalTarget').value;
+    const metric = document.getElementById('goalMetric').value;
+    const goalStartDate = document.getElementById('goalStartDate').value;
+    const goalEndDate = document.getElementById('goalEndDate').value;
+    const milestones = document.getElementById('goalMilestones').value;
+
+    if (!title || !category || !description || !target || !metric || !goalStartDate || !goalEndDate || !milestones) {
+        alert('Please fill in all required fields');
+        return;
+    }
+
+    const startDate = new Date(goalStartDate);
+    const endDate = new Date(goalEndDate);
+    if (endDate < startDate) {
+        alert('End date cannot be earlier than start date');
+        return;
+    }
+
+    
+    const mediaPreviews = [];
+    document.querySelectorAll('.media-preview').forEach(preview => {
+        const mediaElement = preview.querySelector('img, video');
+        if (mediaElement) {
+            mediaPreviews.push({
+                type: mediaElement.tagName.toLowerCase(),
+                src: mediaElement.src
+            });
+        }
+    });
+
+    const post = {
+        id: Date.now(),
+        category: category,
+        content: description,
+        milestones: milestones,
+        title: title,
+        description: description,
+        goals: category,
+        target: target,
+        metric: metric,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        resources: projectResources,
+        stats: {
+            likes: 0,
+            comments: []
+        },
+        timestamp: new Date().toLocaleString(),
+        author: currentUser,
+        sustainabilityScore: calculateSustainabilityScore(milestones || description),
+        tags: extractEnvironmentalTags(milestones || description),
+        media: mediaPreviews,
+        type: 'goal'
+    };
+    // Create post with media and location
+    createPost(post);
+
+    document.getElementById('goalTitle').value = '';
+    document.getElementById('goalCategory').value = '';
+    document.getElementById('goalDescription').value = '';
+    document.getElementById('goalTarget').value = '';
+    document.getElementById('goalMetric').value = '';
+    document.getElementById('goalStartDate').value = '';
+    document.getElementById('goalEndDate').value = '';
+    document.getElementById('goalMilestones').value = '';
+    document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
+
+    const goalForm = document.getElementById('goalTitle');
+    goalForm.style.borderColor = 'var(--success-color)';
+    setTimeout(() => {
+        goalForm.style.borderColor = '#ddd';
+    }, 1000);
+
+    document.querySelector('.post-type-btn[data-type="quick-post"]').click();
+}
+
 function createPost(post) {
     // Add new post to the beginning of the posts array
     posts.unshift(post);
@@ -1133,7 +1261,8 @@ function getPostTypeIcon(type) {
         'blog': 'fa-blog',
         'media': 'fa-photo-video',
         'poll': 'fa-poll',
-        'event': 'fa-calendar-alt'
+        'event': 'fa-calendar-alt',
+        'goal': 'fa-bullseye'
     };
     return icons[type] || 'fa-bolt';
 }
@@ -1147,6 +1276,27 @@ function formatPostType(type) {
 // Helper function to generate post content based on type
 function getPostContent(post) {
     switch(post.type) {
+        case 'goal':
+            return `
+                <div class="post-content goal-post">
+                    <h3 class="goal-title">${post.title}</h3>
+                    <div class="goal-meta">
+                        <span class="goal-category"><i class="fas fa-tag"></i> ${post.category}</span>
+                        <span class="goal-target"><i class="fas fa-bullseye"></i> Target: ${post.target} ${post.metric}</span>
+                        <span class="goal-timeline"><i class="fas fa-calendar"></i> ${new Date(post.startDate).toLocaleDateString()} - ${new Date(post.endDate).toLocaleDateString()}</span>
+                    </div>
+                    <p class="goal-description">${post.description}</p>
+                    <div class="goal-milestones">
+                        <h4><i class="fas fa-flag"></i> Key Milestones</h4>
+                        <p>${post.milestones}</p>
+                    </div>
+                    ${post.image ? `<img src="${post.image}" alt="${post.title}" class="post-image">` : ''}
+                    ${post.document ? `<div class="goal-document">
+                        <i class="fas fa-file-alt"></i>
+                        <a href="${post.document}" target="_blank">View Document</a>
+                    </div>` : ''}
+                </div>
+            `;
         case 'blog':
             return `
                 <div class="post-content">
@@ -1377,19 +1527,7 @@ function reverseGeocode(lat, lon) {
 
 function addMediaPreview(type, src, filename) {
     const previewContainer = document.createElement('div');
-    previewContainer.className = 'media-preview';
-
-    if (type === 'image') {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = filename;
-        previewContainer.appendChild(img);
-    } else if (type === 'video') {
-        const video = document.createElement('video');
-        video.src = src;
-        video.controls = true;
-        previewContainer.appendChild(video);
-    }
+    previewContainer.className = 'media-preview thumbnail';
 
     const removeBtn = document.createElement('button');
     removeBtn.className = 'remove-media-btn';
@@ -1397,6 +1535,26 @@ function addMediaPreview(type, src, filename) {
     removeBtn.onclick = () => previewContainer.remove();
 
     previewContainer.appendChild(removeBtn);
+    if (type === 'image') {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = filename;
+        img.className = 'thumbnail-preview';
+        img.style.width = '150px';
+        img.style.height = '150px';
+        img.style.objectFit = 'cover';
+        previewContainer.appendChild(img);
+    } else if (type === 'video') {
+        const video = document.createElement('video');
+        video.src = src;
+        video.controls = true;
+        video.className = 'thumbnail-preview';
+        video.style.width = '150px';
+        video.style.height = '150px';
+        video.style.objectFit = 'cover';
+        previewContainer.appendChild(video);
+    }
+
     document.querySelector('.post-editor').insertBefore(
         previewContainer,
         document.querySelector('.post-actions')

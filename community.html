@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/search.css">
     <link rel="stylesheet" href="css/dropdown.css">
+    <link rel="stylesheet" href="css/goal-post.css">
+    <link rel="stylesheet" href="css/goal-feed.css">
 </head>
 <body>
     <header>
@@ -67,6 +69,9 @@
                     </button>
                     <button class="post-type-btn" data-type="green-project">
                         <i class="fas fa-seedling"></i> Green Project
+                    </button>
+                    <button class="post-type-btn" data-type="goal">
+                        <i class="fas fa-bullseye"></i> Goal
                     </button>
                 </div>
                 <div class="post-editor quick-post-form active">
@@ -240,6 +245,60 @@
                             </button>
                         </div>
                         <button id="green-project-post-btn" class="primary-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Post
+                        </button>
+                    </div>
+                </div>
+                <div class="post-editor goal-post-form">
+                    <div class="form-group">
+                        <input type="text" id="goalTitle" class="goal-input" placeholder="Goal Title" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="goalCategory" class="goal-input" required>
+                            <option value="">Select Goal Category</option>
+                            <option value="carbon-reduction">Carbon Reduction</option>
+                            <option value="waste-reduction">Waste Reduction</option>
+                            <option value="energy-efficiency">Energy Efficiency</option>
+                            <option value="water-conservation">Water Conservation</option>
+                            <option value="biodiversity">Biodiversity</option>
+                            <option value="sustainable-living">Sustainable Living</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="goalDescription" class="goal-input" placeholder="Describe your sustainability goal..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="goalTarget" class="goal-input" placeholder="Target Value" required>
+                        <select id="goalMetric" class="goal-input" required>
+                            <option value="">Select Metric</option>
+                            <option value="kg-co2">kg CO2</option>
+                            <option value="kwh">kWh</option>
+                            <option value="liters">Liters</option>
+                            <option value="kg-waste">kg Waste</option>
+                            <option value="trees">Trees</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="timeline-inputs">
+                            <input type="date" id="goalStartDate" class="goal-input" required>
+                            <input type="date" id="goalEndDate" class="goal-input" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="goalMilestones" class="goal-input" placeholder="Key milestones to achieve this goal..." required></textarea>
+                    </div>
+                    <div class="post-actions">
+                        <div class="media-actions">
+                            <button class="media-btn" title="Add Photo">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <button class="media-btn" title="Add Document">
+                                <i class="fas fa-file-alt"></i>
+                            </button>
+                        </div>
+                        <button id="goal-post-btn" class="primary-btn">
                             <i class="fas fa-paper-plane"></i>
                             Post
                         </button>

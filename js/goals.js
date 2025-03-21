@@ -125,7 +125,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = document.querySelector('.close-btn');
     const createGoalForm = document.getElementById('createGoalForm');
     const goalCategory = document.getElementById('goalCategory');
-    const dynamicFormFields = document.getElementById('dynamicFormFields');
     const filterSelects = document.querySelectorAll('.filter-options select');
     const searchInput = document.querySelector('.search-bar input');
     const searchBtn = document.querySelector('.search-bar button');
@@ -210,12 +209,95 @@ document.addEventListener('DOMContentLoaded', function() {
     searchInput.addEventListener('input', filterGoals);
     searchBtn.addEventListener('click', filterGoals);
 
+    // Form submission handler
+    createGoalForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Create new goal object from form data
+        const newGoal = {
+            id: mockGoals.length + 1,
+            title: document.getElementById('goalTitle').value,
+            type: goalCategory.value,
+            focusArea: document.getElementById('focusArea').value.toLowerCase(),
+            timeline: document.getElementById('timeline').value.split('-')[0].toLowerCase(),
+            validation: document.getElementById('validationType').value.toLowerCase(),
+            description: document.getElementById('goalDescription').value,
+            progress: 0,
+            participants: 1,
+            startDate: new Date().toISOString().split('T')[0],
+            endDate: new Date(new Date().setMonth(new Date().getMonth() + 3)).toISOString().split('T')[0]
+        };
+
+        // Add new goal to mockGoals array
+        mockGoals.push(newGoal);
+
+        // Refresh the goals grid
+        populateGoals();
+
+        // Reset form and close modal
+        createGoalForm.reset();
+        createGoalModal.classList.remove('active');
+    });
+
     // Dynamic form fields based on goal category
     goalCategory.addEventListener('change', function() {
         const category = this.value;
-        dynamicFormFields.innerHTML = '';
-        // Add category-specific fields here
+        const goalMetric = document.getElementById('goalMetric');
+        
+        // Clear existing options
+        goalMetric.innerHTML = `<option value="">Select Metric</option>
+                                <option value="kg-co2">kg CO2</option>
+                                <option value="kwh">kWh</option>
+                                <option value="liters">Liters</option>
+                                <option value="kg-waste">kg Waste</option>
+                                <option value="trees">Trees</option>
+                                <option value="custom">Custom</option>`;
+        
+        // Set metric options based on category
+        switch(category) {
+            case 'carbon-reduction':
+                goalMetric.value = 'kg-co2';
+                break;
+            case 'waste-reduction':
+                goalMetric.value = 'kg-waste';
+                break;
+            case 'energy-efficiency':
+                goalMetric.value = 'kwh';
+                break;
+            case 'water-conservation':
+                goalMetric.value = 'liters';
+                break;
+            case 'biodiversity':
+                goalMetric.value = 'trees';
+                break;
+            case 'sustainable-living':
+                goalMetric.value = 'custom';
+                break;
+            default:
+                goalMetric.value = '';
+        }
     });
+
+    function createFormField(field) {
+        if (field.type === 'select') {
+            return `
+                <div class="form-group">
+                    <label for="${field.id}">${field.label}</label>
+                    <select id="${field.id}" required>
+                        <option value="">Select ${field.label.toLowerCase()}</option>
+                        ${field.options.map(option => `<option value="${option}">${option}</option>`).join('')}
+                    </select>
+                </div>
+            `;
+        } else {
+            return `
+                <div class="form-group">
+                    <label for="${field.id}">${field.label}</label>
+                    <input type="${field.type}" id="${field.id}" placeholder="${field.placeholder || ''}" required>
+                </div>
+            `;
+        }
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -414,31 +496,3 @@ function createFormField(field) {
     fieldContainer.appendChild(input);
     return fieldContainer;
 }
-
-// Function to update form fields based on goal category
-function updateFormFields(category) {
-    const dynamicFormFields = document.getElementById('dynamicFormFields');
-    dynamicFormFields.innerHTML = '';
-
-    // Add category-specific fields
-    if (category && goalTypeFields[category]) {
-        goalTypeFields[category].fields.forEach(field => {
-            dynamicFormFields.appendChild(createFormField(field));
-        });
-    }
-
-    // Add common fields
-    commonFields.forEach(field => {
-        dynamicFormFields.appendChild(createFormField(field));
-    });
-}
-
-// Initialize form field population
-document.addEventListener('DOMContentLoaded', () => {
-    const goalCategory = document.getElementById('goalCategory');
-    if (goalCategory) {
-        goalCategory.addEventListener('change', (e) => {
-            updateFormFields(e.target.value);
-        });
-    }
-});

@@ -20,7 +20,27 @@ function renderContent(content) {
                                 <div class="poll-bar" style="width: ${option.percentage ? option.percentage : 0 }%;">${option.text ? option.text : option} (${option.percentage ? option.percentage : 0}%)</div>
                             </div>` : ''}
                         `).join('')}
-                    </div>` : `<p class="content-preview">${item.content}</p>`}
+                    </div>` : 
+                item.type === 'goal' ? `
+                    <div class="goal-content">
+                        <div class="goal-category"><i class="fas fa-tag"></i> ${item.category}</div>
+                        <p class="goal-description">${item.description}</p>
+                        <div class="goal-metrics">
+                            <div class="metric-item">
+                                <i class="fas fa-bullseye"></i>
+                                <span>Target: ${item.target} ${item.metric}</span>
+                            </div>
+                            <div class="metric-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Timeline: ${new Date(item.startDate).toLocaleDateString()} - ${new Date(item.endDate).toLocaleDateString()}</span>
+                            </div>
+                        </div>
+                        <div class="goal-milestones">
+                            <h4>Key Milestones:</h4>
+                            <p>${item.milestones}</p>
+                        </div>
+                    </div>
+                ` : `<p class="content-preview">${item.content}</p>`}
                 <div class="content-meta">
                     <div class="content-author">
                         <a href="${item.author.profile}">

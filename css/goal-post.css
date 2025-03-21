@@ -1,0 +1,70 @@
+.goal-post-form {
+    display: none;
+}
+
+.goal-post-form.active {
+    display: block;
+}
+
+.goal-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.goal-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.2);
+}
+
+select.goal-input {
+    background-color: white;
+    cursor: pointer;
+}
+
+.timeline-inputs {
+    display: flex;
+    gap: 15px;
+}
+
+.timeline-inputs .goal-input {
+    flex: 1;
+}
+
+#goalDescription,
+#goalMilestones {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#goalTarget {
+    width: 60%;
+    margin-right: 10px;
+}
+
+#goalMetric {
+    width: calc(40% - 10px);
+}
+
+.goal-post-form .media-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.goal-post-form .media-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.goal-post-form .media-btn:hover {
+    color: #4CAF50;
+}

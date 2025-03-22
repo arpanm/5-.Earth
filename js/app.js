@@ -285,6 +285,22 @@ const posts = [
             likes: 45,
             comments: []
         }
+    },{
+        id: 301,
+        author: {
+            name: 'Green Tech Solutions',
+            avatar: 'images/GreenTechSolutions.jpeg',
+            timeAgo: '6 hours ago'
+        },
+        type: 'project-update',
+        title: 'Solar Innovation Project Launch',
+        content: 'Proud to announce our latest solar innovation project! 🌞 Were developing new high-efficiency panels that will increase energy output by 30%. Join us in revolutionizing renewable energy. #GreenTech #Innovation',
+        image: 'images/solar-farm.jpeg',
+        link: 'organization.html',
+        stats: {
+            likes: 245,
+            comments: []
+        }
     },
     {
         id: 1,
@@ -409,6 +425,23 @@ const posts = [
                     timestamp: '2023-12-09 11:30:00'
                 }
             ]
+        }
+    },
+    {
+        id: 302,
+        author: {
+            name: 'Ocean Conservation Alliance',
+            avatar: 'images/ocean-conservation.avif',
+            timeAgo: '1 day ago'
+        },
+        type: 'initiative',
+        title: 'Coastal Cleanup Drive Success',
+        content: 'Our latest coastal cleanup drive removed 500kg of plastic waste! 🌊 Thanks to all volunteers and partners. Together, we are making our oceans cleaner. #OceanConservation #MarineLife',
+        image: 'images/ocean-clan.webp',
+        link: 'organization.html',
+        stats: {
+            likes: 189,
+            comments: []
         }
     },
     {
@@ -901,6 +934,15 @@ function handlePostCreation() {
     const locationTag = document.querySelector('.location-tag');
     const location = locationTag ? `${locationTag.querySelector('span').textContent}` : null;
 
+    // Get selected author from post-as-selector
+    const postAsSelector = document.querySelector('.post-as-selector');
+    const selectedAuthor = postAsSelector ? {
+        name: postAsSelector.options[postAsSelector.selectedIndex].text,
+        id: postAsSelector.value,
+        avatar: postAsSelector.value.startsWith('org') ? `images/GreenTechSolutions.jpeg` : currentUser.avatar,
+        timeAgo: 'Just now'
+    } : currentUser;
+
     const post = {
         id: Date.now(),
         content: postContent,
@@ -911,7 +953,7 @@ function handlePostCreation() {
             comments: []
         },
         timestamp: new Date().toLocaleString(),
-        author: currentUser,
+        author: selectedAuthor,
         sustainabilityScore: calculateSustainabilityScore(postContent),
         tags: extractEnvironmentalTags(postContent),
         media: mediaPreviews,
@@ -995,7 +1037,12 @@ function handleBlogPost() {
             comments: []
         },
         timestamp: new Date().toLocaleString(),
-        author: currentUser,
+        author: document.querySelector('.post-as-selector') ? {
+            name: document.querySelector('.post-as-selector').options[document.querySelector('.post-as-selector').selectedIndex].text,
+            id: document.querySelector('.post-as-selector').value,
+            avatar: document.querySelector('.post-as-selector').value.startsWith('org') ? `images/GreenTechSolutions.jpeg` : currentUser.avatar,
+            timeAgo: 'Just now'
+        } : currentUser,
         sustainabilityScore: calculateSustainabilityScore(content || title),
         tags: extractEnvironmentalTags(content || title),
         media: mediaPreviews,
@@ -1075,7 +1122,12 @@ function handleMediaPost() {
             comments: []
         },
         timestamp: new Date().toLocaleString(),
-        author: currentUser,
+        author: document.querySelector('.post-as-selector') ? {
+            name: document.querySelector('.post-as-selector').options[document.querySelector('.post-as-selector').selectedIndex].text,
+            id: document.querySelector('.post-as-selector').value,
+            avatar: document.querySelector('.post-as-selector').value.startsWith('org') ? `images/GreenTechSolutions.jpeg` : currentUser.avatar,
+            timeAgo: 'Just now'
+        } : currentUser,
         sustainabilityScore: calculateSustainabilityScore(caption),
         tags: extractEnvironmentalTags(caption),
         media: mediaPreviews,
@@ -1149,7 +1201,12 @@ function handlePollPost() {
             comments: []
         },
         timestamp: new Date().toLocaleString(),
-        author: currentUser,
+        author: document.querySelector('.post-as-selector') ? {
+            name: document.querySelector('.post-as-selector').options[document.querySelector('.post-as-selector').selectedIndex].text,
+            id: document.querySelector('.post-as-selector').value,
+            avatar: document.querySelector('.post-as-selector').value.startsWith('org') ? `images/GreenTechSolutions.jpeg` : currentUser.avatar,
+            timeAgo: 'Just now'
+        } : currentUser,
         sustainabilityScore: calculateSustainabilityScore(pollQuestion),
         tags: extractEnvironmentalTags(pollQuestion),
         type: 'poll'
@@ -1236,7 +1293,12 @@ function handleEventPost() {
             comments: []
         },
         timestamp: new Date().toLocaleString(),
-        author: currentUser,
+        author: document.querySelector('.post-as-selector') ? {
+            name: document.querySelector('.post-as-selector').options[document.querySelector('.post-as-selector').selectedIndex].text,
+            id: document.querySelector('.post-as-selector').value,
+            avatar: document.querySelector('.post-as-selector').value.startsWith('org') ? `images/GreenTechSolutions.jpeg` : currentUser.avatar,
+            timeAgo: 'Just now'
+        } : currentUser,
         sustainabilityScore: calculateSustainabilityScore(eventDescription || eventTitle),
         tags: extractEnvironmentalTags(eventDescription || eventTitle),
         media: mediaPreviews,
@@ -1337,11 +1399,15 @@ function handleGreenProjectPost() {
             comments: []
         },
         timestamp: new Date().toLocaleString(),
-        author: currentUser,
+        author: document.querySelector('.post-as-selector') ? {
+            name: document.querySelector('.post-as-selector').options[document.querySelector('.post-as-selector').selectedIndex].text,
+            id: document.querySelector('.post-as-selector').value,
+            avatar: document.querySelector('.post-as-selector').value.startsWith('org') ? `images/GreenTechSolutions.jpeg` : currentUser.avatar,
+            timeAgo: 'Just now'
+        } : currentUser,
         sustainabilityScore: calculateSustainabilityScore(projectDescription || projectTitle),
         tags: extractEnvironmentalTags(projectDescription || projectTitle),
         media: mediaPreviews,
-        location: location,
         type: 'green-project'
     };
 
@@ -1441,7 +1507,12 @@ function handleGoalPost() {
             comments: []
         },
         timestamp: new Date().toLocaleString(),
-        author: currentUser,
+        author: document.querySelector('.post-as-selector') ? {
+            name: document.querySelector('.post-as-selector').options[document.querySelector('.post-as-selector').selectedIndex].text,
+            id: document.querySelector('.post-as-selector').value,
+            avatar: document.querySelector('.post-as-selector').value.startsWith('org') ? `images/GreenTechSolutions.jpeg` : currentUser.avatar,
+            timeAgo: 'Just now'
+        } : currentUser,
         sustainabilityScore: calculateSustainabilityScore(milestones || description),
         tags: extractEnvironmentalTags(milestones || description),
         media: mediaPreviews,

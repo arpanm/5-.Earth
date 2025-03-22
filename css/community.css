@@ -2904,6 +2904,27 @@ footer {
     cursor: pointer;
 }
 
+.posting-identity-selector {
+    margin-bottom: 1rem;
+}
+
+.post-as-selector {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    background-color: white;
+    font-size: 0.9rem;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+.post-as-selector:hover,
+.post-as-selector:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
 .goal-action-selectors {
     margin: 1rem 0;
     display: flex;

@@ -778,7 +778,7 @@ const currentUser = {
 };
 
 const quickPostBtn = document.getElementById('quick-post-btn');
-const postsContainer = document.querySelector('.posts-container');
+const postsContainer1 = document.querySelector('.posts-container1');
 const textarea = document.querySelector('textarea');
 
 
@@ -1545,18 +1545,18 @@ function createPost(post) {
     posts.unshift(post);
     
     // Only update the new post in the DOM
-    const postsContainer = document.querySelector('.posts-container');
-    if (postsContainer) {
+    const postsContainer1 = document.querySelector('.posts-container1');
+    if (postsContainer1) {
         const postElement = document.createElement('div');
         postElement.className = 'post-container';
         postElement.setAttribute('data-post-id', post.id);
         postElement.appendChild(createPostCard(post));
         
         // Insert the new post at the beginning of the container
-        if (postsContainer.firstChild) {
-            postsContainer.insertBefore(postElement, postsContainer.firstChild);
+        if (postsContainer1.firstChild) {
+            postsContainer1.insertBefore(postElement, postsContainer1.firstChild);
         } else {
-            postsContainer.appendChild(postElement);
+            postsContainer1.appendChild(postElement);
         }
         
         // Animate the new post
@@ -1610,7 +1610,7 @@ function renderSustainabilityScore(score) {
 }
 
 function animateNewPost() {
-    const firstPost = postsContainer.firstElementChild;
+    const firstPost = postsContainer1.firstElementChild;
     if (firstPost) {
         firstPost.style.opacity = '0';
         firstPost.style.transform = 'translateY(-20px)';
@@ -1811,16 +1811,41 @@ function getPostContent(post) {
 
 // Initialize posts container
 function initializePosts() {
-    const postsContainer = document.querySelector('.posts-container');
-    if (!postsContainer) return;
+    const postsContainer1 = document.querySelector('.posts-container1');
+    if (!postsContainer1) return;
 
     // Clear existing content
-    postsContainer.innerHTML = '';
+    postsContainer1.innerHTML = '';
 
     // Add posts
-    const allPosts = [...posts];
-    allPosts.forEach(post => {
-        postsContainer.appendChild(createPostCard(post));
+    const allPosts1 = [...posts].slice(0, 2);
+    allPosts1.forEach(post => {
+        postsContainer1.appendChild(createPostCard(post));
+    });
+
+    const postsContainer2 = document.querySelector('.posts-container2');
+    if (!postsContainer2) return;
+
+    // Clear existing content
+    postsContainer2.innerHTML = '';
+
+    // Add posts
+    const allPosts2 = [...posts].slice(2, 5);
+    allPosts2.forEach(post => {
+        postsContainer2.appendChild(createPostCard(post));
+    });
+
+
+    const postsContainer3 = document.querySelector('.posts-container3');
+    if (!postsContainer3) return;
+
+    // Clear existing content
+    postsContainer3.innerHTML = '';
+
+    // Add posts
+    const allPosts3 = [...posts].slice(5);
+    allPosts3.forEach(post => {
+        postsContainer3.appendChild(createPostCard(post));
     });
 
     // Initialize post interactions
@@ -1828,15 +1853,37 @@ function initializePosts() {
 }
 
 function renderPosts(filteredPosts=posts) {
-    const postsContainer = document.querySelector('.posts-container');
-    if (!postsContainer) return;
+    const postsContainer1 = document.querySelector('.posts-container1');
+    if (!postsContainer1) return;
 
     // Clear existing content
-    postsContainer.innerHTML = '';
+    postsContainer1.innerHTML = '';
 
     // Add posts
-    filteredPosts.forEach(post => {
-        postsContainer.appendChild(createPostCard(post));
+    filteredPosts.slice(0,2).forEach(post => {
+        postsContainer1.appendChild(createPostCard(post));
+    });
+
+    const postsContainer2 = document.querySelector('.posts-container2');
+    if (!postsContainer2) return;
+
+    // Clear existing content
+    postsContainer2.innerHTML = '';
+
+    // Add posts
+    filteredPosts.slice(2,5).forEach(post => {
+        postsContainer2.appendChild(createPostCard(post));
+    });
+
+    const postsContainer3 = document.querySelector('.posts-container3');
+    if (!postsContainer3) return;
+
+    // Clear existing content
+    postsContainer3.innerHTML = '';
+
+    // Add posts
+    filteredPosts.slice(5).forEach(post => {
+        postsContainer3.appendChild(createPostCard(post));
     });
 
     // Re-initialize post interactions after rendering

@@ -263,6 +263,30 @@ document.addEventListener('DOMContentLoaded', function() {
 // Sample post data - In a real app, this would come from an API
 const posts = [
     {
+        id: 10,
+        author: {
+            name: 'Michael Chen',
+            avatar: 'images/profile-man-2.jpg',
+            timeAgo: '1 day ago'
+        },
+        type: 'goal',
+        title: 'Urban Composting Network',
+        content: 'Excited to launch our community composting initiative! 🌱 Our goal is to establish 5 neighborhood composting stations by 2024.',
+        description: 'A community-driven initiative to reduce organic waste and create nutrient-rich soil for local gardens through a network of neighborhood composting stations.',
+        image: 'images/waste-management.jpeg',
+        category: 'waste-management',
+        target: 5,
+        metric: 'composting stations',
+        progress: 0,
+        startDate: '2024-01-20',
+        endDate: '2024-12-31',
+        milestones: '1. Site selection and community engagement (Feb 2024)\n2. First station setup and training (Apr 2024)\n3. Three stations operational (Aug 2024)\n4. All five stations running (Dec 2024)',
+        stats: {
+            likes: 45,
+            comments: []
+        }
+    },
+    {
         id: 1,
         author: {
             name: 'Sarah Johnson',
@@ -298,6 +322,55 @@ const posts = [
                     timestamp: '2023-12-10 15:15:00'
                 }
             ]
+        }
+    },
+    {
+        id: 202,
+        author: {
+            name: 'Admin',
+            avatar: 'images/admin.jpeg',
+            timeAgo: '2 day ago'
+        },
+        type: 'system',
+        title: 'Goal Milestone Achievement',
+        content: 'Congratulations! The community has reached 75% of the Zero Waste Challenge goal! Together we have prevented 1500kg of waste from reaching landfills. Keep up the great work! 🌍♻️',
+        timestamp: new Date().toLocaleString(),
+        goal: {
+            id: 4,
+            title: 'Zero Waste Challenge',
+            category: 'waste-reduction',
+            goalTarget: 2000,
+            metric: 'kg waste',
+            currentProgress: 1500,
+            milestone: '75%'
+        },
+        stats: {
+            likes: 245,
+            comments: []
+        }
+    },
+    {
+        id: 11,
+        author: {
+            name: 'Emily Rodriguez',
+            avatar: 'images/profile-woman-2.avif',
+            timeAgo: '3 days ago'
+        },
+        type: 'goal',
+        title: 'Solar for Schools',
+        content: 'Launching an initiative to install solar panels in 10 local schools! 🌞 Help us bring renewable energy education and sustainable power to our education system.',
+        description: 'A comprehensive project to install solar panels across 10 local schools, reducing energy costs and providing hands-on renewable energy education opportunities.',
+        image: 'images/solar-farm.jpeg',
+        category: 'renewable-energy',
+        target: 500,
+        metric: 'kW capacity',
+        progress: 0,
+        startDate: '2024-02-01',
+        endDate: '2025-01-31',
+        milestones: '1. School assessment and planning (Feb-Mar 2024)\n2. First three schools installation (Apr-Jun 2024)\n3. Next four schools installation (Jul-Oct 2024)\n4. Final three schools completion (Nov 2024-Jan 2025)',
+        stats: {
+            likes: 89,
+            comments: []
         }
     },
     {
@@ -373,6 +446,52 @@ const posts = [
         }
     },
     {
+        id: 12,
+        author: {
+            name: 'David Kim',
+            avatar: 'images/profile-man.avif',
+            timeAgo: '5 days ago'
+        },
+        type: 'goal',
+        title: 'Wildlife Corridor Project',
+        content: 'Starting a crucial biodiversity initiative! 🦋 Our goal: Create 3 urban wildlife corridors connecting existing green spaces.',
+        description: 'An urban biodiversity project to establish three wildlife corridors that connect existing green spaces, enhancing habitat connectivity and supporting local wildlife populations.',
+        image: 'images/wildlife-sanctuary.jpeg',
+        category: 'biodiversity',
+        target: 3,
+        metric: 'corridors',
+        progress: 0,
+        startDate: '2024-03-01',
+        endDate: '2025-12-31',
+        milestones: '1. Environmental impact study and route planning (Mar-May 2024)\n2. First corridor development (Jun-Dec 2024)\n3. Second corridor implementation (Jan-Jun 2025)\n4. Final corridor completion (Jul-Dec 2025)',
+        stats: {
+            likes: 67,
+            comments: []
+        }
+    },
+    {
+        id: 203,
+        type: 'system',
+        author: {
+            name: 'Admin',
+            avatar: 'images/admin.jpeg',
+            timeAgo: '2 day ago'
+        },
+        title: 'Badge Earned',
+        content: 'Sarah Johnson has earned the "Waste Warrior" badge for contributing to 10 waste reduction goals! 🏆 This badge recognizes dedicated commitment to reducing waste and promoting recycling.',
+        timestamp: new Date().toLocaleString(),
+        badge: {
+            name: 'Waste Warrior',
+            level: 'Gold',
+            icon: '🏆',
+            category: 'waste-reduction'
+        },
+        stats: {
+            likes: 156,
+            comments: []
+        }
+    },
+    {
         id: 201,
         type: 'blog',
         title: 'Revolutionizing Waste Management',
@@ -391,7 +510,8 @@ const posts = [
             id: 1,
             name: 'Sarah Jain',
             avatar: 'images/profile-woman.png',
-            profile: 'user-profile.html'
+            profile: 'user-profile.html',
+            timeAgo: '11 days ago'
         },
         stats: {
             likes: 98,
@@ -408,6 +528,31 @@ const posts = [
         timestamp: '2024-01-15T10:30:00Z'
     },
     {
+        id: 204,
+        type: 'system',
+        author: {
+            name: 'Admin',
+            avatar: 'images/admin.jpeg',
+            timeAgo: '12 day ago'
+        },
+        title: 'Goal Completed',
+        content: 'Amazing achievement! The Solar Panel Installation project has reached its goal of 10,000 kWh renewable energy generation! This will reduce our carbon footprint by approximately 7,000 kg CO2 annually. 🌞⚡',
+        timestamp: new Date().toLocaleString(),
+        goal: {
+            id: 3,
+            title: 'Solar Panel Installation',
+            category: 'energy-efficiency',
+            goalTarget: 10000,
+            metric: 'kWh',
+            currentProgress: 10000,
+            milestone: '100%'
+        },
+        stats: {
+            likes: 412,
+            comments: []
+        }
+    },
+    {
         id: 202,
         type: 'quick-post',
         title: 'Solar Panel Installation Tips',
@@ -417,7 +562,8 @@ const posts = [
             id: 2,
             name: 'Mike Chen',
             avatar: 'images/profile-man.avif',
-            profile: 'user-profile.html'
+            profile: 'user-profile.html',
+            timeAgo: '12 days ago'
         },
         stats: {
             likes: 76,
@@ -443,7 +589,8 @@ const posts = [
             id: 3,
             name: 'Emma Wilson',
             avatar: 'images/profile-woman-2.avif',
-            profile: 'user-profile.html'
+            profile: 'user-profile.html',
+            timeAgo: '12 days ago'
         },
         stats: {
             likes: 22,
@@ -481,7 +628,8 @@ const posts = [
             id: 1,
             name: 'Sarah Jain',
             avatar: 'images/profile-woman.png',
-            profile: 'user-profile.html'
+            profile: 'user-profile.html',
+            timeAgo: '13 days ago'
         },
         stats: {
             likes: 89,
@@ -516,7 +664,8 @@ const posts = [
             id: 4,
             name: 'Lisa Thompson',
             avatar: 'images/profile-woman.png',
-            profile: 'user-profile.html'
+            profile: 'user-profile.html',
+            timeAgo: '13 days ago'
         },
         stats: {
             likes: 112,
@@ -542,7 +691,8 @@ const posts = [
             id: 2,
             name: 'Mike Chen',
             avatar: 'images/profile-man.avif',
-            profile: 'user-profile.html'
+            profile: 'user-profile.html',
+            timeAgo: '13 days ago'
         },
         stats: {
             likes: 87,
@@ -568,7 +718,8 @@ const posts = [
             id: 3,
             name: 'Emma Wilson',
             avatar: 'images/profile-woman-2.avif',
-            profile: 'user-profile.html'
+            profile: 'user-profile.html',
+            timeAgo: '15 days ago'
         },
         stats: {
             likes: 134,

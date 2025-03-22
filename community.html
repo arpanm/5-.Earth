@@ -75,7 +75,18 @@
                     </button>
                 </div>
                 <div class="post-editor quick-post-form active">
+                    <input type="hidden" class="post-type-selector" value="quick-post">
                     <textarea placeholder="Share your eco-friendly initiative, sustainability tip, or environmental project..."></textarea>
+                    <div class="goal-action-selectors">
+                        <select id="quickPostGoal" class="goal-selector" onchange="toggleActionTypeSelector(this)">
+                            <option value="">Link to a Goal (Optional)</option>
+                            <!-- Goals will be dynamically populated -->
+                        </select>
+                        <select id="quickPostGoalAction" class="action-type-selector" style="display: none;">
+                            <!-- Activities will be dynamically populated -->
+                        </select>
+                        <div id="quickPostGoalProgress"><div class="goal-progress-container" style="display: none;"></div></div>
+                    </div>
                     <div class="post-actions">
                         <div class="media-actions">
                             <button class="media-btn" title="Add Photo">
@@ -96,6 +107,7 @@
                 </div>
                 <div class="post-editor blog-post-form">
                     <input type="text" class="blog-title" placeholder="Enter your blog title...">
+                    <input type="hidden" class="post-type-selector" value="blog">
                     <select class="blog-category">
                         <option value="">Select Category</option>
                         <option value="sustainability">Sustainability</option>
@@ -104,6 +116,16 @@
                         <option value="conservation">Conservation</option>
                     </select>
                     <textarea class="blog-content" placeholder="Write your blog content here..."></textarea>
+                    <div class="goal-action-selectors">
+                        <select id="blogGoal" class="goal-selector" onchange="toggleActionTypeSelector(this)">
+                            <option value="">Link to a Goal (Optional)</option>
+                            <!-- Goals will be dynamically populated -->
+                        </select>
+                        <select id="blogGoalAction" class="action-type-selector" style="display: none;">
+                            <!-- Activities will be dynamically populated -->
+                        </select>
+                        <div id="blogGoalProgress"><div class="goal-progress-container" style="display: none;"></div></div>
+                    </div>
                     <div class="post-actions">
                         <div class="media-actions">
                             <button class="media-btn" title="Add Photo">
@@ -121,6 +143,7 @@
                 </div>
                 <div class="post-editor media-post-form">
                     <div class="media-upload-area" id="mediaUploadArea">
+                        <input type="hidden" class="post-type-selector" value="media">
                         <div class="upload-instructions">
                             <i class="fas fa-cloud-upload-alt"></i>
                             <p>Drag and drop your media files here<br>or click to select files</p>
@@ -128,6 +151,16 @@
                         <div class="media-previews" id="mediaPreviews"></div>
                     </div>
                     <textarea class="media-caption" placeholder="Write a caption for your media..."></textarea>
+                    <div class="goal-action-selectors">
+                        <select id="mediaGoal" class="goal-selector" onchange="toggleActionTypeSelector(this)">
+                            <option value="">Link to a Goal (Optional)</option>
+                            <!-- Goals will be dynamically populated -->
+                        </select>
+                        <select id="mediaGoalAction" class="action-type-selector" style="display: none;">
+                            <!-- Activities will be dynamically populated -->
+                        </select>
+                        <div id="mediaGoalProgress"><div class="goal-progress-container" style="display: none;"></div></div>
+                    </div>
                     <div class="post-actions">
                         <div class="media-actions">
                             <button class="media-btn" title="Add Location">
@@ -142,6 +175,7 @@
                 </div>
                 <div class="post-editor poll-post-form">
                     <input type="text" class="poll-question" placeholder="Ask a question...">
+                    <input type="hidden" class="post-type-selector" value="poll">
                     <div class="poll-options-container">
                         <div class="poll-option-input">
                             <input type="text" placeholder="Option 1" class="poll-option">
@@ -172,6 +206,16 @@
                             </label>
                         </div>
                     </div>
+                    <div class="goal-action-selectors">
+                        <select id="pollGoal" class="goal-selector" onchange="toggleActionTypeSelector(this)">
+                            <option value="">Link to a Goal (Optional)</option>
+                            <!-- Goals will be dynamically populated -->
+                        </select>
+                        <select id="pollGoalAction" class="action-type-selector" style="display: none;">
+                            <!-- Activities will be dynamically populated -->
+                        </select>
+                        <div id="pollGoalProgress"><div class="goal-progress-container" style="display: none;"></div></div>
+                    </div>
                     <div class="post-actions">
                         <div class="media-actions">
                             
@@ -186,6 +230,7 @@
                     <div class="form-group">
                         <input type="text" id="eventTitle" class="event-input" placeholder="Event Title" required>
                     </div>
+                    <input type="hidden" class="post-type-selector" value="event">
                     <div class="form-group">
                         <input type="date" id="eventDate" class="event-input" required>
                     </div>
@@ -197,6 +242,16 @@
                     </div>
                     <div class="form-group">
                         <textarea id="eventDescription" class="event-input" placeholder="Event Description" required></textarea>
+                    </div>
+                    <div class="goal-action-selectors">
+                        <select id="eventGoal" class="goal-selector" onchange="toggleActionTypeSelector(this)">
+                            <option value="">Link to a Goal (Optional)</option>
+                            <!-- Goals will be dynamically populated -->
+                        </select>
+                        <select id="eventGoalAction" class="action-type-selector" style="display: none;">
+                            <!-- Activities will be dynamically populated -->
+                        </select>
+                        <div id="eventGoalProgress"><div class="goal-progress-container" style="display: none;"></div></div>
                     </div>
                     <div class="post-actions">
                         <div class="media-actions">
@@ -220,6 +275,7 @@
                     <div class="form-group">
                         <input type="text" id="projectTitle" class="project-input" placeholder="Project Title" required>
                     </div>
+                    <input type="hidden" class="post-type-selector" value="project">
                     <div class="form-group">
                         <textarea id="projectDescription" class="project-input" placeholder="Project Description" required></textarea>
                     </div>
@@ -234,6 +290,16 @@
                     </div>
                     <div class="form-group">
                         <textarea id="projectResources" class="project-input" placeholder="Required Resources (Budget, materials, volunteers, etc.)" required></textarea>
+                    </div>
+                    <div class="goal-action-selectors">
+                        <select id="projectGoal" class="goal-selector" onchange="toggleActionTypeSelector(this)">
+                            <option value="">Link to a Goal (Optional)</option>
+                            <!-- Goals will be dynamically populated -->
+                        </select>
+                        <select id="projectGoalAction" class="action-type-selector" style="display: none;">
+                            <!-- Activities will be dynamically populated -->
+                        </select>
+                        <div id="projectGoalProgress"><div class="goal-progress-container" style="display: none;"></div></div>
                     </div>
                     <div class="post-actions">
                         <div class="media-actions">
@@ -254,6 +320,7 @@
                     <div class="form-group">
                         <input type="text" id="goalTitle" class="goal-input" placeholder="Goal Title" required>
                     </div>
+                    <input type="hidden" class="post-type-selector" value="goal">
                     <div class="form-group">
                         <select id="goalCategory" class="goal-input" required>
                             <option value="">Select Goal Category</option>

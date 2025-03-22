@@ -273,6 +273,15 @@ const posts = [
         title: 'Cleanup at Brighton Beach!',
         content: 'Just witnessed an amazing community cleanup at Brighton Beach! 🌊 Over 50 volunteers came together to collect plastic waste. Small actions, big impact! #OceanCleanup #Sustainability',
         image: 'images/ocean-clan.webp',
+        goal: {
+            id: 2,
+            title: 'Zero Waste Challenge',
+            category: 'waste-reduction',
+            goalTarget: 1000,
+            metric: 'kg waste',
+            currentProgress: 400,
+            contribution: 25
+        },
         stats: {
             likes: 128,
             comments: [
@@ -299,9 +308,18 @@ const posts = [
             timeAgo: '1 day ago'
         },
         type: 'blog',
-        title: 'Revolutionary Solar Panel Technology Breakthrough',
-        content: 'Our team has developed a new solar panel coating that increases efficiency by 35% while reducing production costs. This breakthrough could make solar energy more accessible to communities worldwide...',
-        image: 'images/green-tech.jpeg',
+        title: 'Solar Installation Success!',
+        content: 'Successfully completed our latest solar panel installation project! This installation will help reduce carbon emissions by 50 tons annually. 🌞 #RenewableEnergy #Sustainability',
+        image: 'images/solar-solutions.jpg',
+        goal: {
+            id: 3,
+            title: 'Solar Panel Installation',
+            category: 'energy-efficiency',
+            goalTarget: 10000,
+            metric: 'kWh',
+            currentProgress: 7500,
+            contribution: 500
+        },
         stats: {
             likes: 342,
             comments: [
@@ -360,6 +378,15 @@ const posts = [
         title: 'Revolutionizing Waste Management',
         content: 'Discover how our new recycling initiative is transforming the way we handle waste...',
         image: 'images/waste-management.webp',
+        goal: {
+            id: 4,
+            title: 'Zero Waste Challenge',
+            category: 'waste-reduction',
+            goalTarget: 2000,
+            metric: 'kg waste',
+            currentProgress: 1400,
+            contribution: 32
+        },
         author: {
             id: 1,
             name: 'Sarah Jain',
@@ -441,6 +468,15 @@ const posts = [
         location: 'City Park, New York',
         description: 'Join us for a day of environmental awareness and community action...',
         image: 'images/green-earth.jpg',
+        goal: {
+            id: 5,
+            title: 'Go Green Neighborhood',
+            category: 'plantation',
+            goalTarget: 1000,
+            metric: 'trees',
+            currentProgress: 600,
+            contribution: 15
+        },
         author: {
             id: 1,
             name: 'Sarah Jain',
@@ -560,6 +596,7 @@ const currentUser = {
 const quickPostBtn = document.getElementById('quick-post-btn');
 const postsContainer = document.querySelector('.posts-container');
 const textarea = document.querySelector('textarea');
+
 
 const blogPostBtn = document.getElementById('blog-post-btn');
 
@@ -730,6 +767,28 @@ function handlePostCreation() {
         location: location,
         type: 'quick-post'
     };
+
+    const goalSelect = document.getElementById('quickPostGoal');
+    if (goalSelect && mockUserGoals[goalSelect.value]) {
+        const goal = mockUserGoals[goalSelect.value];
+        post.goal = goal;
+
+        const actions = getRelevantActionTypes(goal.category, "quick-post");
+        const actionSelect = document.getElementById('quickPostGoalAction');
+        if (actionSelect) {
+            const selectedAction = actions.filter(item => item.value == actionSelect.value);
+            if (actionSelect && actionSelect.length > 1) {
+                post.action = selectedAction[0];    
+            } else {
+                post.action = selectedAction;
+            }
+            const progressDiv = document.getElementById('quickPostGoalProgress');
+            const progressInput = progressDiv.querySelector('.contribution-value');
+            if (progressInput) {
+                post.goal.contribution = parseInt(progressInput.value);
+            }
+        }
+    }
     // Create post with media and location
     createPost(post);
 
@@ -737,6 +796,9 @@ function handlePostCreation() {
     textarea.value = '';
     document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
     if (locationTag) locationTag.remove();
+
+    goalSelect.selectedIndex = 0;
+    toggleActionTypeSelector(goalSelect);
 
     // Add animation effect
     textarea.style.borderColor = 'var(--success-color)';
@@ -788,6 +850,28 @@ function handleBlogPost() {
         media: mediaPreviews,
         type: 'blog'
     };
+
+    const goalSelect = document.getElementById('blogGoal');
+    if (goalSelect && mockUserGoals[goalSelect.value]) {
+        const goal = mockUserGoals[goalSelect.value];
+        post.goal = goal;
+
+        const actions = getRelevantActionTypes(goal.category, "blog");
+        const actionSelect = document.getElementById('blogGoalAction');
+        if (actionSelect) {
+            const selectedAction = actions.filter(item => item.value == actionSelect.value);
+            if (actionSelect && actionSelect.length > 1) {
+                post.action = selectedAction[0];    
+            } else {
+                post.action = selectedAction;
+            }
+            const progressDiv = document.getElementById('blogGoalProgress');
+            const progressInput = progressDiv.querySelector('.contribution-value');
+            if (progressInput) {
+                post.goal.contribution = parseInt(progressInput.value);
+            }
+        }
+    }
     // Create post with media and location
     createPost(post);
 
@@ -796,6 +880,9 @@ function handleBlogPost() {
     categorySelect.value = '';
     contentTextarea.value = '';
     document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
+
+    goalSelect.selectedIndex = 0;
+    toggleActionTypeSelector(goalSelect);
 
     // Add animation effect
     const blogForm = document.querySelector('.blog-title');
@@ -844,6 +931,28 @@ function handleMediaPost() {
         location: location,
         type: 'media'
     };
+
+    const goalSelect = document.getElementById('mediaGoal');
+    if (goalSelect && mockUserGoals[goalSelect.value]) {
+        const goal = mockUserGoals[goalSelect.value];
+        post.goal = goal;
+
+        const actions = getRelevantActionTypes(goal.category, "media");
+        const actionSelect = document.getElementById('mediaGoalAction');
+        if (actionSelect) {
+            const selectedAction = actions.filter(item => item.value == actionSelect.value);
+            if (actionSelect && actionSelect.length > 1) {
+                post.action = selectedAction[0];    
+            } else {
+                post.action = selectedAction;
+            }
+            const progressDiv = document.getElementById('mediaGoalProgress');
+            const progressInput = progressDiv.querySelector('.contribution-value');
+            if (progressInput) {
+                post.goal.contribution = parseInt(progressInput.value);
+            }
+        }
+    }
     // Create post with media and location
     createPost(post);
 
@@ -851,6 +960,9 @@ function handleMediaPost() {
     document.querySelector('.media-caption').value = '';
     document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
     if (locationTag) locationTag.remove();
+
+    goalSelect.selectedIndex = 0;
+    toggleActionTypeSelector(goalSelect);
 
     // Add animation effect
     const captionInput = document.querySelector('.media-caption');
@@ -891,6 +1003,28 @@ function handlePollPost() {
         tags: extractEnvironmentalTags(pollQuestion),
         type: 'poll'
     };
+
+    const goalSelect = document.getElementById('pollGoal');
+    if (goalSelect && mockUserGoals[goalSelect.value]) {
+        const goal = mockUserGoals[goalSelect.value];
+        post.goal = goal;
+
+        const actions = getRelevantActionTypes(goal.category, "poll");
+        const actionSelect = document.getElementById('pollGoalAction');
+        if (actionSelect) {
+            const selectedAction = actions.filter(item => item.value == actionSelect.value);
+            if (actionSelect && actionSelect.length > 1) {
+                post.action = selectedAction[0];    
+            } else {
+                post.action = selectedAction;
+            }
+            const progressDiv = document.getElementById('pollGoalProgress');
+            const progressInput = progressDiv.querySelector('.contribution-value');
+            if (progressInput) {
+                post.goal.contribution = parseInt(progressInput.value);
+            }
+        }
+    }
     // Create post with media and location
     createPost(post);
 
@@ -899,6 +1033,9 @@ function handlePollPost() {
     document.querySelectorAll('.poll-option').forEach(option => option.value = '');
     document.querySelector('.duration-select').value = '1';
     document.querySelector('.multiple-choice-checkbox').checked = false;
+
+    goalSelect.selectedIndex = 0;
+    toggleActionTypeSelector(goalSelect);
 
     // Add success animation
     const pollForm = document.querySelector('.poll-question');
@@ -955,6 +1092,28 @@ function handleEventPost() {
         location: location,
         type: 'event'
     };
+
+    const goalSelect = document.getElementById('eventGoal');
+    if (goalSelect && mockUserGoals[goalSelect.value]) {
+        const goal = mockUserGoals[goalSelect.value];
+        post.goal = goal;
+
+        const actions = getRelevantActionTypes(goal.category, "event");
+        const actionSelect = document.getElementById('eventGoalAction');
+        if (actionSelect) {
+            const selectedAction = actions.filter(item => item.value == actionSelect.value);
+            if (actionSelect && actionSelect.length > 1) {
+                post.action = selectedAction[0];    
+            } else {
+                post.action = selectedAction;
+            }
+            const progressDiv = document.getElementById('eventGoalProgress');
+            const progressInput = progressDiv.querySelector('.contribution-value');
+            if (progressInput) {
+                post.goal.contribution = parseInt(progressInput.value);
+            }
+        }
+    }
     // Create post with media and location
     createPost(post);
 
@@ -966,6 +1125,9 @@ function handleEventPost() {
     document.getElementById('eventDescription').value = '';
     document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
     if (locationTag) locationTag.remove();
+
+    goalSelect.selectedIndex = 0;
+    toggleActionTypeSelector(goalSelect);
 
     // Add animation effect
     const eventForm = document.getElementById('eventTitle');
@@ -1031,6 +1193,28 @@ function handleGreenProjectPost() {
         location: location,
         type: 'green-project'
     };
+
+    const goalSelect = document.getElementById('projectGoal');
+    if (goalSelect && mockUserGoals[goalSelect.value]) {
+        const goal = mockUserGoals[goalSelect.value];
+        post.goal = goal;
+
+        const actions = getRelevantActionTypes(goal.category, "project");
+        const actionSelect = document.getElementById('projectGoalAction');
+        if (actionSelect) {
+            const selectedAction = actions.filter(item => item.value == actionSelect.value);
+            if (actionSelect && actionSelect.length > 1) {
+                post.action = selectedAction[0];    
+            } else {
+                post.action = selectedAction;
+            }
+            const progressDiv = document.getElementById('projectGoalProgress');
+            const progressInput = progressDiv.querySelector('.contribution-value');
+            if (progressInput) {
+                post.goal.contribution = parseInt(progressInput.value);
+            }
+        }
+    }
     // Create post with media and location
     createPost(post);
 
@@ -1041,6 +1225,9 @@ function handleGreenProjectPost() {
     document.getElementById('projectEndDate').value = '';
     document.getElementById('projectResources').value = '';
     document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
+
+    goalSelect.selectedIndex = 0;
+    toggleActionTypeSelector(goalSelect);
 
     const greenProjectForm = document.getElementById('projectTitle');
     greenProjectForm.style.borderColor = 'var(--success-color)';
@@ -1233,6 +1420,7 @@ function createPostCard(post) {
             <span class="post-type"><i class="fas ${getPostTypeIcon(post.type)}"></i> ${formatPostType(post.type)}</span>
         </div>
         ${getPostContent(post)}
+        ${post.goal? createGoalProgressHTML(post.goal, post.action) : ''}
         ${post.media && post.media.length > 0 ? `
         <div class="post-media">
             ${post.media.map(media => 
@@ -1252,6 +1440,42 @@ function createPostCard(post) {
     article.setAttribute('data-post-id', post.id);
 
     return article;
+}
+
+// Function to create goal progress HTML
+function createGoalProgressHTML(goal, action) {
+    const percentage = goal.contribution ? 
+                        ((goal.currentProgress + goal.contribution) / goal.goalTarget) * 100 
+                        : ((goal.currentProgress) / goal.goalTarget) * 100;
+    return `
+        <div class="goal-progress-container">
+            <div class="goal-info">
+                <h3>Associated Goal:</h3>
+                <h4>${goal.title}</h4>
+                <span class="goal-category">${goal.category}</span>
+            </div>
+            ${action ? `
+                <div class="action-info">
+                    <h5>Action Type:</h5>
+                    <h6>${action.text}</h6>
+                    <span class="action-category">${action.value}</span>
+                </div>
+            ` : ''}
+            <div class="goal-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${percentage}%"></div>
+                </div>
+                <div class="progress-text">
+                    Progress: ${goal.currentProgress} ${goal.metric} of ${goal.goalTarget} ${goal.metric} (${percentage.toFixed(1)}%)
+                </div>
+                ${goal.contribution ? `
+                    <div class="contribution-input">
+                        <span>Contribution: ${goal.contribution} ${goal.metric}</span>
+                    </div>
+                `: '' }
+            </div>
+        </div>
+    `;
 }
 
 // Helper function to get post type icon
@@ -1619,4 +1843,220 @@ function handleMediaUpload(files) {
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeMediaButtons();
+});
+
+// Mock user goals data for testing
+const mockUserGoals = [
+    { 
+        id: 1, 
+        title: "Reduce Carbon Footprint", 
+        category: "carbon-reduction",
+        goalTarget: 5000,
+        metric: "kg CO2",
+        currentProgress: 2500
+    },
+    { 
+        id: 2, 
+        title: "Zero Waste Challenge", 
+        category: "waste-reduction",
+        goalTarget: 1000,
+        metric: "kg waste",
+        currentProgress: 400
+    },
+    { 
+        id: 3, 
+        title: "Solar Panel Installation", 
+        category: "energy-efficiency",
+        goalTarget: 10000,
+        metric: "kWh",
+        currentProgress: 7500
+    },
+    { 
+        id: 4, 
+        title: "Water Conservation Project", 
+        category: "water-conservation",
+        goalTarget: 50000,
+        metric: "liters",
+        currentProgress: 35000
+    }
+];
+
+// Function to toggle action type selector visibility and update options based on goal category and post type
+function toggleActionTypeSelector(goalSelector) {
+    const actionTypeSelector = goalSelector.parentElement.querySelector('.action-type-selector');
+    const postTypeSelector = goalSelector.parentElement.parentElement.querySelector('.post-type-selector');
+    const postType = postTypeSelector ? postTypeSelector.value : null;
+    const progressContainer = goalSelector.parentElement.querySelector('.goal-progress-container');
+
+    if (goalSelector.value) {
+        // Find the selected goal's category and progress
+        const selectedGoal = mockUserGoals.find(goal => goal.id === parseInt(goalSelector.value));
+        const category = selectedGoal ? selectedGoal.category : null;
+        
+        // Update progress display
+        if (progressContainer) {
+            const percentage = (selectedGoal.currentProgress / selectedGoal.goalTarget) * 100;
+            progressContainer.innerHTML = `
+                <div class="goal-progress">
+                    <div class="progress-bar" style="width: ${percentage}%"></div>
+                </div>
+                <div class="progress-text">
+                    Progress: ${selectedGoal.currentProgress} ${selectedGoal.metric} of ${selectedGoal.goalTarget} ${selectedGoal.metric} (${percentage.toFixed(1)}%)
+                </div>
+                <div class="contribution-input">
+                    <input type="number" id="progressContribution" class="contribution-value" placeholder="Enter your contribution" min="0" step="0.01">
+                    <span>${selectedGoal.metric}</span>
+                </div>
+                <div class="contribution-preview"></div>
+            `;
+            progressContainer.style.display = 'block';
+            
+            // Add event listener for contribution input
+            const contributionInput = progressContainer.querySelector('.contribution-value');
+            const contributionPreview = progressContainer.querySelector('.contribution-preview');
+            
+            contributionInput.addEventListener('input', (e) => {
+                const contributionValue = parseFloat(e.target.value) || 0;
+                const newProgress = selectedGoal.currentProgress + contributionValue;
+                const newPercentage = (newProgress / selectedGoal.goalTarget) * 100;
+                
+                if (contributionValue > 0) {
+                    contributionPreview.textContent = `New progress will be: ${newProgress} ${selectedGoal.metric} (${newPercentage.toFixed(1)}%)`;
+                    contributionPreview.style.display = 'block';
+                } else {
+                    contributionPreview.style.display = 'none';
+                }
+            });
+        }
+        
+        // Clear existing options except the first one
+        while (actionTypeSelector.options.length > 1) {
+            actionTypeSelector.remove(1);
+        }
+        
+        // Add relevant action types based on goal category and post type
+        const actionTypes = getRelevantActionTypes(category, postType);
+        actionTypes.forEach(action => {
+            const option = document.createElement('option');
+            option.value = action.value;
+            option.textContent = action.text;
+            actionTypeSelector.appendChild(option);
+        });
+        
+        actionTypeSelector.style.display = 'block';
+    } else {
+        actionTypeSelector.style.display = 'none';
+        actionTypeSelector.value = '';
+        if (progressContainer) {
+            progressContainer.style.display = 'none';
+            progressContainer.value = '';
+        }
+    }
+}
+
+// Function to get relevant action types based on goal category and post type
+function getRelevantActionTypes(category, postType) {
+    const commonActions = [
+        { value: 'educational', text: 'Educational (Blogs & Awareness)' },
+        { value: 'community', text: 'Community Engagement (Events & Challenges)' }
+    ];
+    
+    const categorySpecificActions = {
+        'carbon-reduction': [
+            { value: 'action-based', text: 'Action-Based (Carbon Offset Projects)' },
+            { value: 'monitoring', text: 'Monitoring & Reporting (Carbon Footprint Tracking)' }
+        ],
+        'waste-reduction': [
+            { value: 'action-based', text: 'Action-Based (Recycling & Composting)' },
+            { value: 'purchasing', text: 'Purchasing & Selling (Zero-Waste Products)' }
+        ],
+        'energy-efficiency': [
+            { value: 'action-based', text: 'Action-Based (Energy System Installation)' },
+            { value: 'monitoring', text: 'Monitoring & Reporting (Energy Usage Tracking)' }
+        ],
+        'water-conservation': [
+            { value: 'action-based', text: 'Action-Based (Water-Saving Implementation)' },
+            { value: 'monitoring', text: 'Monitoring & Reporting (Water Usage Tracking)' }
+        ]
+    };
+
+    const postTypeActions = {
+        'quick-post': [
+            { value: 'action-based', text: 'Action-Based (Quick Updates & Progress)' },
+            { value: 'monitoring', text: 'Monitoring & Reporting (Quick Stats)' }
+        ],
+        'blog': [
+            { value: 'educational', text: 'Educational (Detailed Articles)' },
+            { value: 'monitoring', text: 'Monitoring & Reporting (Analysis & Insights)' }
+        ],
+        'poll': [
+            { value: 'community', text: 'Community Engagement (Surveys & Polls)' },
+            { value: 'educational', text: 'Educational (Knowledge Assessment)' }
+        ],
+        'event': [
+            { value: 'community', text: 'Community Engagement (Events & Meetups)' },
+            { value: 'action-based', text: 'Action-Based (Group Activities)' }
+        ],
+        'milestone': [
+            { value: 'monitoring', text: 'Monitoring & Reporting (Achievement Tracking)' },
+            { value: 'action-based', text: 'Action-Based (Goal Progress)' }
+        ],
+        'project': [
+            { value: 'action-based', text: 'Action-Based (Project Implementation)' },
+            { value: 'monitoring', text: 'Monitoring & Reporting (Project Progress)' }
+        ],
+        'media': [
+            { value: 'educational', text: 'Educational (Learning Resources)' },
+            { value: 'community', text: 'Community Engagement (Knowledge Sharing)' }
+        ],
+        'innovation': [
+            { value: 'action-based', text: 'Action-Based (Innovation Implementation)' },
+            { value: 'educational', text: 'Educational (Innovation Insights)' }
+        ]
+    };
+
+    let relevantActions = [];
+
+    // Add category-specific actions if category exists
+    if (category && categorySpecificActions[category]) {
+        relevantActions = [...categorySpecificActions[category]];
+    }
+
+    // Add post-type-specific actions if post type exists
+    if (postType && postTypeActions[postType]) {
+        relevantActions = [...relevantActions, ...postTypeActions[postType]];
+    }
+
+    // Add common actions if no specific actions found or as additional options
+    return relevantActions.length > 0 ? [...new Set([...relevantActions, ...commonActions])] : commonActions;
+}
+
+// Function to populate goal selectors with user's goals
+function populateGoalSelectors() {
+    // Get all goal selectors
+    const goalSelectors = document.querySelectorAll('.goal-selector');
+    
+    // For testing, use mockUserGoals instead of localStorage
+    const userGoals = mockUserGoals;
+    
+    // Populate each selector
+    goalSelectors.forEach(selector => {
+        // Clear existing options except the first one
+        while (selector.options.length > 1) {
+            selector.remove(1);
+        }
+        
+        // Add user's goals as options
+        userGoals.forEach(goal => {
+            const option = document.createElement('option');
+            option.value = goal.id;
+            option.textContent = goal.title;
+            selector.appendChild(option);
+        });
+    });
+}
+
+// Initialize goal selectors when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    populateGoalSelectors();
 });

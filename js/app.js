@@ -143,7 +143,7 @@ function toggleSection(header) {
     const icon = header.querySelector('.toggle-icon');
     
     content.style.display = content.style.display === 'none' ? 'block' : 'none';
-    icon.style.transform = content.style.display === 'none' ? 'rotate(0deg)' : 'rotate(180deg)';
+    icon.style.transform = content.style.display === 'none' ? 'rotate(0deg)' : 'rotate(405deg)';
     icon.style.transition = 'transform 0.3s ease';
 }
 

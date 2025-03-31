@@ -2048,6 +2048,7 @@ function getPostContent(post) {
                         <p><i class="fas fa-map-marker-alt"></i> ${post.location}</p>
                     </div>
                     <p class="event-description">${post.description}</p>
+                    ${post.image ? `<img src="${post.image}" alt="${post.title}" class="post-image">` : ''}
                 </div>
             `;
         case 'green-project':
@@ -2069,6 +2070,7 @@ function getPostContent(post) {
                             <h4><i class="fas fa-tools"></i> Required Resources</h4>
                             <p>${post.resources}</p>
                         </div>
+                        ${post.image ? `<img src="${post.image}" alt="${post.title}" class="post-image">` : ''}
                     </div>
                 </div>
             `;
@@ -2081,6 +2083,18 @@ function getPostContent(post) {
                                 <h3>${post.title}</h3>
                             </div>
                         </div>
+                    </div>
+                    <div class="post-actions">
+                        ${!post.participants.includes( currentUser.id ) ? 
+                            `<button class="join-btn" onclick="joinCommunityGoal('${post.id}')">
+                                <span class="btn-text">Join Initiative</span>
+                                <i class="fas fa-plus-circle"></i>
+                            </button>` :
+                            `<button class="joined-btn" disabled>
+                                <span class="btn-text">Joined</span>
+                                <i class="fas fa-check-circle"></i>
+                            </button>`
+                        }
                     </div>
                     <div class="post-content">
                         <p>${post.description}</p>
@@ -2097,6 +2111,10 @@ function getPostContent(post) {
                                 <i class="fas fa-calendar"></i>
                                 <span>${new Date(post.startDate).toLocaleDateString()} - ${new Date(post.endDate).toLocaleDateString()}</span>
                             </div>
+                            <div class="goal-milestones">
+                                <h4><i class="fas fa-flag"></i> Key Milestones</h4>
+                                <p>${post.milestones}</p>
+                            </div>
                         </div>
                         <div class="goal-progress">
                             <div class="progress-bar">
@@ -2104,12 +2122,7 @@ function getPostContent(post) {
                             </div>
                             <span class="progress-text">${Math.round((post.currentParticipants / post.targetParticipants) * 100)}% of target participants</span>
                         </div>
-                    </div>
-                    <div class="post-actions">
-                        ${!post.participants.includes( currentUser.id ) ? 
-                            `<button class="join-btn primary-btn" onclick="joinCommunityGoal('${post.id}')">Join Initiative</button>` :
-                            `<button class="joined-btn" disabled>Joined</button>`
-                        }
+                        ${post.image ? `<img src="${post.image}" alt="${post.title}" class="post-image">` : ''}
                     </div>
                 </div>
             `;

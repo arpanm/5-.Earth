@@ -422,7 +422,7 @@
                         <textarea id="communityGoalMilestones" class="goal-input" placeholder="Key milestones to achieve this community goal..." required></textarea>
                     </div>
                     <div class="form-group">
-                        <select id="communityGoalLocation" class="goal-input" required>
+                        <select id="communityGoalLocation" class="goal-input" required onchange="handleCommunityLocationChange()">
                             <option value="">Select Location Type</option>
                             <option value="neighborhood">Neighborhood</option>
                             <option value="city">City</option>
@@ -430,6 +430,7 @@
                             <option value="country">Country</option>
                             <option value="global">Global</option>
                         </select>
+                        <input type="text" id="communityGoalLocationName" class="goal-input" style="display: none;" placeholder="Location Name">
                     </div>
                     <div class="post-actions">
                         <div class="media-actions">
@@ -438,6 +439,9 @@
                             </button>
                             <button class="media-btn" title="Add Document">
                                 <i class="fas fa-file-alt"></i>
+                            </button>
+                            <button class="media-btn" title="Add Location">
+                                <i class="fas fa-map-marker-alt"></i>
                             </button>
                         </div>
                         <button id="community-goal-post-btn" class="primary-btn">

@@ -137,6 +137,27 @@ function handleMediaUpload(files) {
     });
 }
 
+// Function to handle community goal location change
+function handleCommunityLocationChange() {
+    const locationSelect = document.getElementById('communityGoalLocation');
+    const locationNameInput = document.getElementById('communityGoalLocationName');
+    const selectedValue = locationSelect.value;
+
+    if (selectedValue === 'global') {
+        locationNameInput.style.display = 'none';
+        locationNameInput.required = false;
+        locationNameInput.value = '';
+    } else if (selectedValue) {
+        locationNameInput.style.display = 'block';
+        locationNameInput.required = true;
+        locationNameInput.placeholder = `${selectedValue.charAt(0).toUpperCase() + selectedValue.slice(1)} Name`;
+    } else {
+        locationNameInput.style.display = 'none';
+        locationNameInput.required = false;
+        locationNameInput.value = '';
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Set up media upload area event listeners
     const mediaUploadArea = document.getElementById('mediaUploadArea');
@@ -278,10 +299,15 @@ const posts = [
         target: 50,
         metric: 'participating homes',
         progress: 15,
+        targetParticipants: 50,
+        currentParticipants: 8,
         participants: [45, 35, 20, 10, 5, 21, 22, 23],
         startDate: '2024-01-01',
         endDate: '2024-12-31',
         milestones: '1. Initial assessment and planning (Jan-Feb 2024)\n2. First 20 installations (Mar-May 2024)\n3. Mid-project review and optimization (Jun 2024)\n4. Remaining installations (Jul-Dec 2024)',
+        location: 'Neighborhood',
+        locationName: 'Oak Ridge',
+        locationTag: 'Neighborhood: Oak Ridge',
         stats: {
             likes: 156,
             comments: [
@@ -326,17 +352,21 @@ const posts = [
             timeAgo: '5 days ago'
         },
         type: 'community-goal',
-        title: 'Community Water Conservation Challenge',
+        title: 'Water Conservation Challenge',
         content: '💧 Join 200 households in our 3-month water conservation challenge! We have already saved 50,000 liters collectively. Target: 200,000 liters by March 2024. Every drop counts!',
-        description: 'A community-wide initiative to reduce water consumption through smart meters, rainwater harvesting, and water-efficient practices.',
+        description: 'A world-wide initiative to reduce water consumption through smart meters, rainwater harvesting, and water-efficient practices.',
         image: 'images/water-conservation.jpeg',
         category: 'water-conservation',
         target: 200000,
         metric: 'liters saved',
         progress: 50000,
+        targetParticipants: 200000,
+        currentParticipants: 50000,
         participants: [75, 50, 30, 20, 10, 5, 1, 10, 21],
         startDate: '2024-01-01',
         endDate: '2024-03-31',
+        location: 'Global',
+        locationTag: 'Global',
         milestones: '1. Smart meter installation (Jan 2024)\n2. 50,000L milestone (Achieved!)\n3. 100,000L milestone (Feb 2024)\n4. Final goal (Mar 2024)',
         stats: {
             likes: 234,
@@ -462,18 +492,23 @@ const posts = [
             timeAgo: '3 days ago'
         },
         type: 'community-goal',
-        title: 'Neighborhood Zero Waste Program',
-        content: '♻️ Our community is going zero waste! Join 150 households in reducing waste. Current achievement: 2,500 kg diverted from landfills. Goal: 10,000 kg by year-end!',
-        description: 'A collaborative effort to achieve zero waste through composting, recycling, and waste reduction strategies.',
+        title: 'Bangalore Zero Waste Program',
+        content: '♻️ Our community is going zero waste! Join 10 thousands households in reducing waste. Current achievement: 2,500 kg diverted from landfills. Goal: 10,000 kg by year-end!',
+        description: 'A collaborative effort to achieve zero waste through composting, recycling, and waste reduction strategies in Bangalore.',
         image: 'images/waste-management.jpeg',
         category: 'waste-reduction',
         target: 10000,
         metric: 'kg waste diverted',
         progress: 2500,
+        targetParticipants: 10000,
+        currentParticipants: 2500,
         participants: [150, 100, 50, 25, 10, 5, 2, 22, 11, 10, 9, 8, 7, 6, 15, 4, 3, 23, 12],
         startDate: '2024-01-01',
         endDate: '2024-12-31',
         milestones: '1. Program launch and training (Jan 2024)\n2. 2,500 kg milestone (Achieved!)\n3. 5,000 kg milestone (Jun 2024)\n4. Final goal (Dec 2024)',
+        location: 'City',
+        locationName: 'Bangalore',
+        locationTag: 'City: Bangalore',
         stats: {
             likes: 189,
             comments: [
@@ -1679,8 +1714,17 @@ function handleCommunityPost() {
     const communityEndDate = document.getElementById('communityGoalEndDate').value;
     const milestones = document.getElementById('communityGoalMilestones').value;
     const location = document.getElementById('communityGoalLocation').value;
+    const locationName = document.getElementById('communityGoalLocationName').value;
 
-    if (!title || !category || !description || !target || !location || !communityStartDate || !communityEndDate || !milestones) {
+    let locationTag = location;
+    if (location !== 'global' && !locationName) {
+        alert('Please enter the location name');
+        return;
+    } else if (location !== 'global' && locationName) {
+        locationTag = location + ": " + locationName;
+    }
+
+    if (!title || !category || !description || !target || !locationTag || !communityStartDate || !communityEndDate || !milestones) {
         alert('Please fill in all required fields');
         return;
     }
@@ -1716,6 +1760,8 @@ function handleCommunityPost() {
         target: target,
         participants: [currentUser.id],
         location: location,
+        locationName: locationName,
+        locationTag: locationTag,
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString(),
         resources: projectResources,
@@ -2045,7 +2091,7 @@ function getPostContent(post) {
                             </div>
                             <div class="goal-stat">
                                 <i class="fas fa-map-marker-alt"></i>
-                                <span>${post.location}</span>
+                                <span>${post.locationTag}</span>
                             </div>
                             <div class="goal-stat">
                                 <i class="fas fa-calendar"></i>

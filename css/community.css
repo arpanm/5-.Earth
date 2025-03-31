@@ -91,7 +91,7 @@ body {
 
 /* Create Post Section Styles */
 .create-post-section {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 2rem auto;
     padding: 1rem;
     margin-top: 4rem;
@@ -307,7 +307,7 @@ body {
 
 /* Feed Section Styles */
 .feed-section {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 2rem auto;
     padding: 1rem;
 }
@@ -1193,7 +1193,7 @@ footer {
 
 /* Feed Section Styles */
 .feed-section {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 2rem auto;
     padding: 1rem;
 }
@@ -2093,7 +2093,7 @@ footer {
 
 /* Feed Section Styles */
 .feed-section {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 2rem auto;
     padding: 1rem;
 }

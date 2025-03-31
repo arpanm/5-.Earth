@@ -1,0 +1,336 @@
+.feed-filters {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    padding: 12px 20px;
+    margin: 16px 0;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+@media screen and (max-width: 768px) {
+    .filter-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 0;
+    }
+
+    .filter-section {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        padding: 0 0 12px 0;
+    }
+
+    .filter-section:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .filter-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .filter-btn {
+        flex: 1 1 calc(50% - 4px);
+        min-width: 120px;
+        padding: 8px;
+        justify-content: center;
+    }
+
+    .filter-title {
+        margin-bottom: 8px;
+    }
+}
+
+.filter-row:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.filter-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.filter-section:last-child {
+    padding-right: 0;
+    border-right: none;
+}
+
+.filter-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c3e50;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.filter-title i {
+    font-size: 16px;
+    color: #3498db;
+}
+
+.filter-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.location-filters-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.location-type-container,
+.location-input-container {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+}
+
+.location-input-wrapper {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 4px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    min-height: 45px;
+    align-items: center;
+}
+
+.location-input-wrapper:hover {
+    background-color: #fff;
+    border-color: #3498db;
+}
+
+.location-input-wrapper:focus-within {
+    background-color: #fff;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.location-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    background-color: #e1f0ff;
+    border-radius: 16px;
+    font-size: 13px;
+    color: #2171c1;
+    margin: 2px;
+}
+
+.location-chip .remove-location {
+    margin-left: 6px;
+    cursor: pointer;
+    color: #2171c1;
+    opacity: 0.7;
+}
+
+.location-chip .remove-location:hover {
+    opacity: 1;
+}
+
+.other-filters-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.other-filters-row > * {
+    flex: 1;
+    min-width: 150px;
+}
+
+.filter-select {
+    padding: 8px 12px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #2c3e50;
+    background-color: #fff;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
+
+.filter-select:hover, .filter-select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    outline: none;
+}
+
+.filter-search {
+    flex: 1;
+    min-width: 150px;
+    padding: 8px;
+    border: none;
+    font-size: 14px;
+    color: #2c3e50;
+    background: transparent;
+    outline: none;
+}
+
+.location-suggestions {
+    max-height: 200px;
+    background: white;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow-y: auto;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    width: 150px;
+}
+
+.location-suggestions.show {
+    display: block;
+}
+
+.location-input-container {
+    position: relative;
+}
+
+#locationInput {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+#locationInput:focus {
+    border-radius: 8px 8px 0 0;
+}
+
+.location-suggestion {
+    padding: 10px 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.location-suggestion:hover {
+    background-color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+    .feed-filters {
+        padding: 10px;
+        margin: 10px 0;
+    }
+    
+    .filter-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        padding-bottom: 15px;
+    }
+    
+    .filter-section {
+        width: 100%;
+        padding: 0;
+        border-right: none;
+        flex-wrap: wrap;
+    }
+
+    .filter-title {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    .filter-content {
+        width: 100%;
+    }
+
+    .location-filters-row {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .location-type-container,
+    .location-input-container {
+        width: 100%;
+    }
+
+    .other-filters-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .other-filters-row > * {
+        width: 100%;
+        max-width: none;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+
+    .location-suggestions {
+        max-height: 50vh;
+        border-radius: 12px 12px 0 0;
+        border-bottom: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .feed-filters {
+        padding: 8px;
+        margin: 8px 0;
+    }
+
+    .filter-row {
+        gap: 12px;
+        padding-bottom: 12px;
+    }
+
+    .location-chip {
+        font-size: 12px;
+        padding: 3px 6px;
+    }
+
+    .filter-select,
+    .filter-search {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+}

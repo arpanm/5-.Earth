@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/dropdown.css">
     <link rel="stylesheet" href="css/goal-post.css">
     <link rel="stylesheet" href="css/goal-feed.css">
+    <link rel="stylesheet" href="css/feed-filters.css">
 </head>
 <body>
     <header>
@@ -59,6 +60,10 @@
 
     <main>
         <section id="create-post" class="create-post-section">
+            <div class="post-header" onclick="toggleSection(this)">
+                <h3>Create New Post</h3>
+                <i class="fas fa-chevron-up toggle-icon"></i>
+            </div>
             <div class="post-container">
                 <div class="post-types">
                     <button class="post-type-btn active" data-type="quick-post">
@@ -454,27 +459,105 @@
         </section>
 
         <section id="feed" class="feed-section">
+            <div class="post-header" onclick="toggleSection(this)">
+                <h3>Filters</h3>
+                <i class="fas fa-chevron-up toggle-icon"></i>
+            </div>
             <div class="feed-filters">
-                <button class="filter-btn active" data-filter="all">
-                    <i class="fas fa-globe"></i> All
-                </button>
-                <button class="filter-btn" data-filter="my-posts">
-                    <i class="fas fa-user"></i> My Posts
-                </button>
-                <button class="filter-btn" data-filter="following">
-                    <i class="fas fa-user-friends"></i> Following
-                </button>
-                <button class="filter-btn" data-filter="trending">
-                    <i class="fas fa-fire"></i> Trending
-                </button>
-                <div class="feed-sort">
-                    <select id="feed-sort-select">
-                        <option value="recent">Most Recent</option>
-                        <option value="popular">Most Popular</option>
-                        <option value="impact">Highest Impact</option>
-                    </select>
+                <div class="filter-row">
+                    <div class="filter-section view-filter-section">
+                        <div class="filter-title">
+                            <i class="fas fa-eye"></i>
+                            View
+                        </div>
+                        <div class="filter-content">
+                            <button class="filter-btn active" data-filter="all">
+                                <i class="fas fa-globe"></i> All
+                            </button>
+                            <button class="filter-btn" data-filter="my-posts">
+                                <i class="fas fa-user"></i> My Posts
+                            </button>
+                            <button class="filter-btn" data-filter="following">
+                                <i class="fas fa-user-friends"></i> Following
+                            </button>
+                            <button class="filter-btn" data-filter="trending">
+                                <i class="fas fa-fire"></i> Trending
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-row">
+                    <div class="filter-section location-filter-section">
+                        <div class="filter-title">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Location
+                        </div>
+                        <div class="filter-content">
+                            <select id="locationTypeFilter" class="filter-select">
+                                <option value="all">All Locations</option>
+                                <option value="Global">Global</option>
+                                <option value="Country">Country</option>
+                                <option value="Region">Region</option>
+                                <option value="City">City</option>
+                                <option value="Neighborhood">Neighborhood</option>
+                            </select>
+                            <div class="location-input-container">
+                                <input type="text" id="locationInput" class="filter-search" placeholder="Enter location..." style="display: none;">
+                                <div class="location-suggestions" id="locationSuggestions"></div>
+                                <div id="selectedLocations" class="selected-locations"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-row">
+                    <div class="filter-section">
+                        <div class="filter-title">Post Type</div>
+                        <div class="filter-content">
+                            <select id="postTypeFilter" class="filter-select">
+                                <option value="all"><i class="fas fa-globe"></i>All Posts</option>
+                                <option value="quick-post"><i class="fas fa-bolt"></i>Quick Posts</option>
+                                <option value="goal"><i class="fas fa-bullseye"></i>Goals</option>
+                                <option value="community"><i class="fas fa-users"></i>Community</option>
+                                <option value="blog"><i class="fas fa-blog"></i>Blogs</option>
+                                <option value="media"><i class="fas fa-photo-video"></i>Media</option>
+                                <option value="poll"><i class="fas fa-poll"></i>Polls</option>
+                                <option value="event"><i class="fas fa-calendar-alt"></i>Events</option>
+                                <option value="green-project"><i class="fas fa-seedling"></i>Projects</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="filter-section">
+                        <div class="filter-title">Goal Category</div>
+                        <div class="filter-content">
+                            <select class="filter-select" id="goalCategoryFilter">
+                                <option value="">Select Goal Category</option>
+                                <option value="carbon-reduction">Carbon Reduction</option>
+                                <option value="waste-reduction">Waste Reduction</option>
+                                <option value="energy-efficiency">Energy Efficiency</option>
+                            <option value="water-conservation">Water Conservation</option>
+                            <option value="biodiversity">Biodiversity</option>
+                            <option value="sustainable-living">Sustainable Living</option>
+                        </select>
+                    </div>
+                    <div class="filter-section">
+                        <div class="filter-title">Search</div>
+                        <div class="filter-content">
+                            <input type="text" class="filter-search" id="feedSearch" placeholder="Search in feed...">
+                        </div>
+                    </div>
+                    <div class="feed-sort">
+                        <select id="feed-sort-select">
+                            <option value="recent">Most Recent</option>
+                            <option value="popular">Most Popular</option>
+                            <option value="impact">Highest Impact</option>
+                        </select>
+                    </div>
                 </div>
             </div>
+        </section>
+        <section id="feed" class="feed-section">
             <div class="posts-container1">
                 <!-- Posts will be dynamically loaded here -->
             </div>
@@ -526,5 +609,6 @@
     <script src="js/comments.js"></script>
     <script src="js/follow-button.js"></script>
     <script src="js/community-goal-feed.js"></script>
+    <script src="js/feed-filters.js"></script>
 </body>
 </html>

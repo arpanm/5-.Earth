@@ -137,6 +137,16 @@ function handleMediaUpload(files) {
     });
 }
 
+// Function to toggle section visibility
+function toggleSection(header) {
+    const content = header.nextElementSibling;
+    const icon = header.querySelector('.toggle-icon');
+    
+    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+    icon.style.transform = content.style.display === 'none' ? 'rotate(0deg)' : 'rotate(180deg)';
+    icon.style.transition = 'transform 0.3s ease';
+}
+
 // Function to handle community goal location change
 function handleCommunityLocationChange() {
     const locationSelect = document.getElementById('communityGoalLocation');
@@ -1923,7 +1933,9 @@ function createPostCard(post) {
                 `<video src="${media.src}" controls class="post-media-item"></video>`
             ).join('')}
         </div>` : ''}
-        ${post.location ? `<div class="post-location"><i class="fas fa-map-marker-alt"></i> ${post.location}</div>` : ''}
+        ${post.locationName ?  `<div class="post-location"><i class="fas fa-map-marker-alt"></i> ${post.locationName}</div>`
+             : post.location ? `<div class="post-location"><i class="fas fa-map-marker-alt"></i> ${post.location}</div>`
+               : ''}
         <div class="post-actions">
             <button class="action-btn"><i class="far fa-heart"></i> ${post.stats?.likes || 0}</button>
             <button class="action-btn"><i class="far fa-comment"></i> ${count}</button>

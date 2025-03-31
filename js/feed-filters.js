@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const goalCategoryFilter = document.getElementById('goalCategoryFilter');
     const feedSearch = document.getElementById('feedSearch');
     const postTypeChips = document.querySelectorAll('.filter-chip');
-
+    const feedFilterToggle = document.getElementById('feedFilterToggle');
+    feedFilterToggle.click();
+    
     // Filter state
     let activeFilters = {
         locationType: 'all',
@@ -90,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function removeLocation(location) {
+    window.removeLocation = function(location) {
         activeFilters.locations = activeFilters.locations.filter(loc => loc !== location);
         updateSelectedLocations();
         applyFilters();

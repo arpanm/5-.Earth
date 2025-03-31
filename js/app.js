@@ -263,6 +263,38 @@ document.addEventListener('DOMContentLoaded', function() {
 // Sample post data - In a real app, this would come from an API
 const posts = [
     {
+        id: 401,
+        author: {
+            name: 'Community Solar Initiative',
+            avatar: 'images/solar-solutions.jpg',
+            timeAgo: '1 week ago'
+        },
+        type: 'community-goal',
+        title: 'Neighborhood Solar Power Network',
+        content: 'Join our community solar initiative! 🌞 Together, we aim to install solar panels on 50 homes in the Oak Ridge neighborhood. Current participation: 15 homes. Be part of the renewable energy revolution!',
+        description: 'A collaborative project to create a neighborhood-wide solar power network, reducing collective energy costs and carbon footprint.',
+        image: 'images/solar-farm.jpeg',
+        category: 'renewable-energy',
+        target: 50,
+        metric: 'participating homes',
+        progress: 15,
+        participants: [45, 35, 20, 10, 5, 21, 22, 23],
+        startDate: '2024-01-01',
+        endDate: '2024-12-31',
+        milestones: '1. Initial assessment and planning (Jan-Feb 2024)\n2. First 20 installations (Mar-May 2024)\n3. Mid-project review and optimization (Jun 2024)\n4. Remaining installations (Jul-Dec 2024)',
+        stats: {
+            likes: 156,
+            comments: [
+                {
+                    id: 401,
+                    text: 'Already seeing lower energy bills after joining!',
+                    author: 'Solar Pioneer',
+                    timestamp: '2024-01-15 09:30:00'
+                }
+            ]
+        }
+    },
+    {
         id: 10,
         author: {
             name: 'Michael Chen',
@@ -285,7 +317,40 @@ const posts = [
             likes: 45,
             comments: []
         }
-    },{
+    },
+    {
+        id: 402,
+        author: {
+            name: 'WaterWise Community',
+            avatar: 'images/water-wise.jpg',
+            timeAgo: '5 days ago'
+        },
+        type: 'community-goal',
+        title: 'Community Water Conservation Challenge',
+        content: '💧 Join 200 households in our 3-month water conservation challenge! We have already saved 50,000 liters collectively. Target: 200,000 liters by March 2024. Every drop counts!',
+        description: 'A community-wide initiative to reduce water consumption through smart meters, rainwater harvesting, and water-efficient practices.',
+        image: 'images/water-conservation.jpeg',
+        category: 'water-conservation',
+        target: 200000,
+        metric: 'liters saved',
+        progress: 50000,
+        participants: [75, 50, 30, 20, 10, 5, 1, 10, 21],
+        startDate: '2024-01-01',
+        endDate: '2024-03-31',
+        milestones: '1. Smart meter installation (Jan 2024)\n2. 50,000L milestone (Achieved!)\n3. 100,000L milestone (Feb 2024)\n4. Final goal (Mar 2024)',
+        stats: {
+            likes: 234,
+            comments: [
+                {
+                    id: 402,
+                    text: 'The rainwater harvesting workshop was super helpful!',
+                    author: 'Water Guardian',
+                    timestamp: '2024-01-18 14:20:00'
+                }
+            ]
+        }
+    },
+    {
         id: 301,
         author: {
             name: 'Green Tech Solutions',
@@ -387,6 +452,38 @@ const posts = [
         stats: {
             likes: 89,
             comments: []
+        }
+    },
+    {
+        id: 403,
+        author: {
+            name: 'Zero Waste Neighborhood',
+            avatar: 'images/waste-management.webp',
+            timeAgo: '3 days ago'
+        },
+        type: 'community-goal',
+        title: 'Neighborhood Zero Waste Program',
+        content: '♻️ Our community is going zero waste! Join 150 households in reducing waste. Current achievement: 2,500 kg diverted from landfills. Goal: 10,000 kg by year-end!',
+        description: 'A collaborative effort to achieve zero waste through composting, recycling, and waste reduction strategies.',
+        image: 'images/waste-management.jpeg',
+        category: 'waste-reduction',
+        target: 10000,
+        metric: 'kg waste diverted',
+        progress: 2500,
+        participants: [150, 100, 50, 25, 10, 5, 2, 22, 11, 10, 9, 8, 7, 6, 15, 4, 3, 23, 12],
+        startDate: '2024-01-01',
+        endDate: '2024-12-31',
+        milestones: '1. Program launch and training (Jan 2024)\n2. 2,500 kg milestone (Achieved!)\n3. 5,000 kg milestone (Jun 2024)\n4. Final goal (Dec 2024)',
+        stats: {
+            likes: 189,
+            comments: [
+                {
+                    id: 403,
+                    text: 'The composting workshop changed how I think about waste!',
+                    author: 'Green Living',
+                    timestamp: '2024-01-20 16:45:00'
+                }
+            ]
         }
     },
     {
@@ -794,6 +891,8 @@ const greenProjectPostBtn = document.getElementById('green-project-post-btn');
 
 const goalPostBtn = document.getElementById('goal-post-btn');
 
+const communityPostBtn = document.getElementById('community-goal-post-btn');
+
 // Get all post type buttons and post editors
 const postTypeBtns = document.querySelectorAll('.post-type-btn');
 const postEditors = document.querySelectorAll('.post-editor');
@@ -825,6 +924,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.green-project-post-form').classList.add('active');
             } else if (type === 'goal') {
                 document.querySelector('.goal-post-form').classList.add('active');
+            } else if (type === 'community-goal') {
+                document.querySelector('.community-goal-post-form').classList.add('active');
             }
         });
     });
@@ -872,6 +973,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle goal post submission
     if (goalPostBtn) {
         goalPostBtn.addEventListener('click', handleGoalPost);
+    }
+
+    // Handle goal post submission
+    if (communityPostBtn) {
+        communityPostBtn.addEventListener('click', handleCommunityPost);
     }
 
     // Global handlers for post interactions
@@ -1090,7 +1196,10 @@ function handleBlogPost() {
     }, 1000);
 
     // Switch back to quick post form
-    document.querySelector('.post-type-btn[data-type="quick-post"]').click();
+    const quickPostBtn = document.querySelector('.post-type-btn[data-type="quick-post"]');
+    if (quickPostBtn) {
+        quickPostBtn.click();
+    }
 }
 
 function handleMediaPost() {
@@ -1175,7 +1284,10 @@ function handleMediaPost() {
     }, 1000);
 
     // Switch back to quick post form
-    document.querySelector('.post-type-btn[data-type="quick-post"]').click();
+    const quickPostBtn = document.querySelector('.post-type-btn[data-type="quick-post"]');
+    if (quickPostBtn) {
+        quickPostBtn.click();
+    }
 }
 
 function handlePollPost() {
@@ -1253,7 +1365,10 @@ function handlePollPost() {
     }, 1000);
 
     // Switch back to quick post form
-    document.querySelector('.post-type-btn[data-type="quick-post"]').click();
+    const quickPostBtn = document.querySelector('.post-type-btn[data-type="quick-post"]');
+    if (quickPostBtn) {
+        quickPostBtn.click();
+    }
 }
 
 function handleEventPost() {
@@ -1350,7 +1465,10 @@ function handleEventPost() {
     }, 1000);
 
     // Switch back to quick post form
-    document.querySelector('.post-type-btn[data-type="quick-post"]').click();
+    const quickPostBtn = document.querySelector('.post-type-btn[data-type="quick-post"]');
+    if (quickPostBtn) {
+        quickPostBtn.click();
+    }
 }
 
 function handleGreenProjectPost() {
@@ -1452,10 +1570,14 @@ function handleGreenProjectPost() {
         greenProjectForm.style.borderColor = '#ddd';
     }, 1000);
 
-    document.querySelector('.post-type-btn[data-type="quick-post"]').click();
+    const quickPostBtn = document.querySelector('.post-type-btn[data-type="quick-post"]');
+    if (quickPostBtn) {
+        quickPostBtn.click();
+    }
 }
 
 function handleGoalPost() {
+    const projectResources = [];
     const title = document.getElementById('goalTitle').value;
     const category = document.getElementById('goalCategory').value;
     const description = document.getElementById('goalDescription').value;
@@ -1537,7 +1659,111 @@ function handleGoalPost() {
         goalForm.style.borderColor = '#ddd';
     }, 1000);
 
-    document.querySelector('.post-type-btn[data-type="quick-post"]').click();
+    const quickPostBtn = document.querySelector('.post-type-btn[data-type="quick-post"]');
+    if (quickPostBtn) {
+        quickPostBtn.click();
+    }
+    const createGoalModal = document.getElementById('createGoalModal');
+    if (createGoalModal) {
+        createGoalModal.style.display = 'none';
+    }
+}
+
+function handleCommunityPost() {
+    const projectResources = [];
+    const title = document.getElementById('communityGoalTitle').value;
+    const category = document.getElementById('communityGoalCategory').value;
+    const description = document.getElementById('communityGoalDescription').value;
+    const target = document.getElementById('targetParticipants').value;
+    const communityStartDate = document.getElementById('communityGoalStartDate').value;
+    const communityEndDate = document.getElementById('communityGoalEndDate').value;
+    const milestones = document.getElementById('communityGoalMilestones').value;
+    const location = document.getElementById('communityGoalLocation').value;
+
+    if (!title || !category || !description || !target || !location || !communityStartDate || !communityEndDate || !milestones) {
+        alert('Please fill in all required fields');
+        return;
+    }
+
+    const startDate = new Date(communityStartDate);
+    const endDate = new Date(communityEndDate);
+    if (endDate < startDate) {
+        alert('End date cannot be earlier than start date');
+        return;
+    }
+
+    
+    const mediaPreviews = [];
+    document.querySelectorAll('.media-preview').forEach(preview => {
+        const mediaElement = preview.querySelector('img, video');
+        if (mediaElement) {
+            mediaPreviews.push({
+                type: mediaElement.tagName.toLowerCase(),
+                src: mediaElement.src
+            });
+        }
+    });
+
+    const post = {
+        id: Date.now(),
+        category: category,
+        content: description,
+        milestones: milestones,
+        title: title,
+        description: description,
+        goals: category,
+        current: 1,
+        target: target,
+        participants: [currentUser.id],
+        location: location,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        resources: projectResources,
+        currentParticipants: 1,
+        targetParticipants: target,
+        metric: 'participants',
+        stats: {
+            likes: 0,
+            comments: []
+        },
+        timestamp: new Date().toLocaleString(),
+        author: document.querySelector('.post-as-selector') ? {
+            name: document.querySelector('.post-as-selector').options[document.querySelector('.post-as-selector').selectedIndex].text,
+            id: document.querySelector('.post-as-selector').value,
+            avatar: document.querySelector('.post-as-selector').value.startsWith('org') ? `images/GreenTechSolutions.jpeg` : currentUser.avatar,
+            timeAgo: 'Just now'
+        } : currentUser,
+        sustainabilityScore: calculateSustainabilityScore(milestones || description),
+        tags: extractEnvironmentalTags(milestones || description),
+        media: mediaPreviews,
+        type: 'community-goal'
+    };
+    // Create post with media and location
+    createPost(post);
+
+    document.getElementById('communityGoalTitle').value = '';
+    document.getElementById('communityGoalCategory').value = '';
+    document.getElementById('communityGoalDescription').value = '';
+    document.getElementById('targetParticipants').value = '';
+    document.getElementById('communityGoalStartDate').value = '';
+    document.getElementById('communityGoalEndDate').value = '';
+    document.getElementById('communityGoalMilestones').value = '';
+    document.querySelectorAll('.media-preview').forEach(preview => preview.remove());
+
+    const communityForm = document.getElementById('communityGoalTitle');
+    communityForm.style.borderColor = 'var(--success-color)';
+    setTimeout(() => {
+        communityForm.style.borderColor = '#ddd';
+    }, 1000);
+
+    const quickPostBtn = document.querySelector('.post-type-btn[data-type="quick-post"]');
+    if (quickPostBtn) {
+        quickPostBtn.click();
+    }
+    const createcommunityModal = document.getElementById('createcommunityGoalModal');
+    if (createcommunityModal) {
+        createcommunityModal.style.display = 'none';
+    }
 }
 
 function createPost(post) {
@@ -1708,7 +1934,8 @@ function getPostTypeIcon(type) {
         'media': 'fa-photo-video',
         'poll': 'fa-poll',
         'event': 'fa-calendar-alt',
-        'goal': 'fa-bullseye'
+        'goal': 'fa-bullseye',
+        'community-goal' : 'fa-users'
     };
     return icons[type] || 'fa-bolt';
 }
@@ -1796,6 +2023,47 @@ function getPostContent(post) {
                             <h4><i class="fas fa-tools"></i> Required Resources</h4>
                             <p>${post.resources}</p>
                         </div>
+                    </div>
+                </div>
+            `;
+        case 'community-goal':
+            return `
+                <div class="post-card community-goal-post" data-post-id="${post.id}">
+                    <div class="post-header">
+                        <div class="post-meta">
+                            <div class="post-info">
+                                <h3>${post.title}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>${post.description}</p>
+                        <div class="goal-details">
+                            <div class="goal-stat">
+                                <i class="fas fa-users"></i>
+                                <span>${post.currentParticipants}/${post.targetParticipants} Participants</span>
+                            </div>
+                            <div class="goal-stat">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${post.location}</span>
+                            </div>
+                            <div class="goal-stat">
+                                <i class="fas fa-calendar"></i>
+                                <span>${new Date(post.startDate).toLocaleDateString()} - ${new Date(post.endDate).toLocaleDateString()}</span>
+                            </div>
+                        </div>
+                        <div class="goal-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${(post.currentParticipants / post.targetParticipants) * 100}%"></div>
+                            </div>
+                            <span class="progress-text">${Math.round((post.currentParticipants / post.targetParticipants) * 100)}% of target participants</span>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        ${!post.participants.includes( currentUser.id ) ? 
+                            `<button class="join-btn primary-btn" onclick="joinCommunityGoal('${post.id}')">Join Initiative</button>` :
+                            `<button class="joined-btn" disabled>Joined</button>`
+                        }
                     </div>
                 </div>
             `;

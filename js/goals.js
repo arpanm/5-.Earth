@@ -128,20 +128,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const filterSelects = document.querySelectorAll('.filter-options select');
     const searchInput = document.querySelector('.search-bar input');
     const searchBtn = document.querySelector('.search-bar button');
+    const tabBtns = document.querySelectorAll('.goals-type-tab-btn');
+    let selectedGoalTypes = [];
 
-    // Modal functionality with proper z-index and display
-    createGoalBtn.addEventListener('click', () => {
-        createGoalModal.classList.add('active');
-    });
-
-    closeBtn.addEventListener('click', () => {
-        createGoalModal.classList.remove('active');
-    });
-
-    window.addEventListener('click', (e) => {
-        if (e.target === createGoalModal) {
-            createGoalModal.classList.remove('active');
-        }
+    // Move tab button click handlers outside filterGoals
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tabId = this.getAttribute('data-value');
+            
+            // Toggle active class
+            this.classList.toggle('active');
+            
+            // Update selected goal types
+            if (this.classList.contains('active')) {
+                selectedGoalTypes.push(tabId);
+            } else {
+                selectedGoalTypes = selectedGoalTypes.filter(type => type !== tabId);
+            }
+            
+            // Call filterGoals with updated selection
+            filterGoals();
+        });
     });
 
     // Filter functionality
@@ -155,31 +162,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 filters[select.id] = select.value;
             }
         });
-
+        
+        // Add selected goal types to filters
+        if (selectedGoalTypes.length > 0) {
+            filters["goalTypes"] = selectedGoalTypes;
+        }
+        
         goals.forEach(goal => {
             let matchesSearch = true;
             let matchesFilters = true;
-
+        
             // Search term matching
             if (searchTerm) {
                 const title = goal.querySelector('.goal-title').textContent.toLowerCase();
                 const description = goal.querySelector('.goal-description').textContent.toLowerCase();
                 matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
             }
-
+        
             // Filter matching
             Object.entries(filters).forEach(([filterKey, filterValue]) => {
-                const goalValue = goal.getAttribute(`data-${filterKey}`);
-                if (goalValue !== filterValue) {
-                    matchesFilters = false;
+                if (filterKey === 'goalTypes') {
+                    const goalType = goal.getAttribute('data-goalType');
+                    if (!filterValue.includes(goalType)) {
+                        matchesFilters = false;
+                    }
+                } else {
+                    const goalValue = goal.getAttribute(`data-${filterKey}`);
+                    if (goalValue !== filterValue) {
+                        matchesFilters = false;
+                    }
                 }
             });
-
+        
             goal.style.display = matchesSearch && matchesFilters ? 'block' : 'none';
         });
 
         // Update empty state message
-        const activeTab = document.querySelector('.tab-content.active');
+        const activeTab = document.querySelector('.goals-tabs-button-group.active');
         const visibleGoals = activeTab.querySelectorAll('.goal-card[style="display: block"]');
         const emptyMessage = activeTab.querySelector('.empty-goals-message') || createEmptyMessage();
         
@@ -212,20 +231,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form submission handler
     createGoalForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        alert("Goal created successfully!");
         
+        // Get form elements
+        const goalTitle = document.getElementById('goalTitle');
+        const goalDescription = document.getElementById('goalDescription');
+        const goalTarget = document.getElementById('goalTarget');
+        const goalMetric = document.getElementById('goalMetric');
+        const goalStartDate = document.getElementById('goalStartDate');
+        const goalEndDate = document.getElementById('goalEndDate');
+        const goalMilestones = document.getElementById('goalMilestones');
+
+        // Validate required fields
+        if (!goalTitle || !goalDescription || !goalCategory || !goalTarget || 
+            !goalMetric || !goalStartDate || !goalEndDate || !goalMilestones) {
+            console.error('Some form elements are missing');
+            return;
+        }
+
         // Create new goal object from form data
         const newGoal = {
             id: mockGoals.length + 1,
-            title: document.getElementById('goalTitle').value,
+            title: goalTitle.value,
             type: goalCategory.value,
-            focusArea: document.getElementById('focusArea').value.toLowerCase(),
-            timeline: document.getElementById('timeline').value.split('-')[0].toLowerCase(),
-            validation: document.getElementById('validationType').value.toLowerCase(),
-            description: document.getElementById('goalDescription').value,
+            description: goalDescription.value,
+            target: {
+                value: goalTarget.value,
+                metric: goalMetric.value
+            },
             progress: 0,
             participants: 1,
-            startDate: new Date().toISOString().split('T')[0],
-            endDate: new Date(new Date().setMonth(new Date().getMonth() + 3)).toISOString().split('T')[0]
+            startDate: goalStartDate.value,
+            endDate: goalEndDate.value,
+            milestones: goalMilestones.value,
+            projectResources: []
         };
 
         // Add new goal to mockGoals array
@@ -236,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Reset form and close modal
         createGoalForm.reset();
-        createGoalModal.classList.remove('active');
+        createGoalModal.style.display = 'none';
     });
 
     // Dynamic form fields based on goal category
@@ -301,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabBtns = document.querySelectorAll('.goals-tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
     function switchTab(tabId) {

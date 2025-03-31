@@ -62,7 +62,16 @@
             <div class="post-container">
                 <div class="post-types">
                     <button class="post-type-btn active" data-type="quick-post">
-                        <i class="fas fa-bolt"></i> Quick Post
+                        <i class="fas fa-bolt"></i> Quick Action
+                    </button>
+                    <button class="post-type-btn" data-type="goal">
+                        <i class="fas fa-bullseye"></i> Goal
+                    </button>
+                    <button class="post-type-btn" data-type="community-goal">
+                        <i class="fas fa-users"></i> Community
+                    </button>
+                    <button class="post-type-btn" data-type="event">
+                        <i class="fas fa-calendar-alt"></i> Event
                     </button>
                     <button class="post-type-btn" data-type="blog">
                         <i class="fas fa-blog"></i> Blog
@@ -73,14 +82,8 @@
                     <button class="post-type-btn" data-type="poll">
                         <i class="fas fa-poll"></i> Poll
                     </button>
-                    <button class="post-type-btn" data-type="event">
-                        <i class="fas fa-calendar-alt"></i> Event
-                    </button>
                     <button class="post-type-btn" data-type="green-project">
                         <i class="fas fa-seedling"></i> Green Project
-                    </button>
-                    <button class="post-type-btn" data-type="goal">
-                        <i class="fas fa-bullseye"></i> Goal
                     </button>
                 </div>
                 <div class="posting-identity-selector">
@@ -387,6 +390,62 @@
                         </button>
                     </div>
                 </div>
+                <div class="post-editor community-goal-post-form">
+                    <input type="hidden" class="post-type-selector" value="community-goal">
+                    <div class="form-group">
+                        <input type="text" id="communityGoalTitle" class="goal-input" placeholder="Community Goal Title" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="communityGoalCategory" class="goal-input" required>
+                            <option value="">Select Goal Category</option>
+                            <option value="solar-panel">Solar Panel Installation</option>
+                            <option value="waste-segregation">Waste Segregation</option>
+                            <option value="lake-cleaning">Lake Cleaning</option>
+                            <option value="tree-plantation">Tree Plantation</option>
+                            <option value="plastic-free">Plastic-Free Community</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="communityGoalDescription" class="goal-input" placeholder="Describe your community goal..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="targetParticipants" class="goal-input" placeholder="Target number of participants" required min="2">
+                    </div>
+                    <div class="form-group">
+                        <div class="timeline-inputs">
+                            <input type="date" id="communityGoalStartDate" class="goal-input" required>
+                            <input type="date" id="communityGoalEndDate" class="goal-input" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="communityGoalMilestones" class="goal-input" placeholder="Key milestones to achieve this community goal..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <select id="communityGoalLocation" class="goal-input" required>
+                            <option value="">Select Location Type</option>
+                            <option value="neighborhood">Neighborhood</option>
+                            <option value="city">City</option>
+                            <option value="region">Region</option>
+                            <option value="country">Country</option>
+                            <option value="global">Global</option>
+                        </select>
+                    </div>
+                    <div class="post-actions">
+                        <div class="media-actions">
+                            <button class="media-btn" title="Add Photo">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <button class="media-btn" title="Add Document">
+                                <i class="fas fa-file-alt"></i>
+                            </button>
+                        </div>
+                        <button id="community-goal-post-btn" class="primary-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Post
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -462,5 +521,6 @@
     <script src="js/content-feed.js"></script>
     <script src="js/comments.js"></script>
     <script src="js/follow-button.js"></script>
+    <script src="js/community-goal-feed.js"></script>
 </body>
 </html>

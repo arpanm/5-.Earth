@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Details - 5% Earth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/community.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/dropdown.css">
+    <link rel="stylesheet" href="css/community-list.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-leaf"></i>
+            <span>5%.Earth</span>
+        </a>
+
+        <div class="search-container">
+            <input type="text" id="global-search" class="search-input" placeholder="Search...">
+            <div id="search-results" class="search-results-container"></div>
+        </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links">
+            <li class="search-toggle"><a href="#"><i class="fas fa-search"></i> Search</a></li>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="community.html"><i class="fas fa-stream"></i> Feed</a></li>
+            <li><a href="goals.html"><i class="fas fa-calendar"></i> Goals</a></li>
+            <li><a href="community-list.html"><i class="fas fa-users"></i> Communities</a></li>
+            <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
+            <li class="others-dropdown">
+                <a href="#"><i class="fas fa-bars"></i> Others<i class="fas fa-chevron-down"></i></a>
+                <div class="others-dropdown-content">
+                    <a href="green-projects.html"><i class="fas fa-seedling"></i> Green Projects</a>
+                    <a href="organizations.html"><i class="fas fa-city"></i> Organizations</a>
+                    <a href=""><i class="fas fa-book"></i> Courses</a>
+                    <a href=""><i class="fas fa-users"></i> Users</a>
+                    <a href=""><i class="fas fa-shopping-cart"></i> Products</a>
+                    <a href=""><i class="fas fa-tools"></i> Services</a>
+                </div>
+            </li>
+            <li class="profile-dropdown">
+                <a href="#"><i class="fas fa-user"></i> Profile<i class="fas fa-chevron-down"></i></a>
+                <div class="profile-dropdown-content">
+                    <a href="myprofile.html"><i class="fas fa-user-circle"></i> My Profile</a>
+                    <a href="myorganization.html"><i class="fas fa-building"></i> My Organization</a>
+                    <a onclick="logout()" href="login.html"><i class="fas fa-sign-out"></i> Logout</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="community-details-container">
+        <div class="community-header">
+            <div class="community-cover-large" style="background-image: url('images/green-earth.jpg');"></div>
+            <div class="community-details-info">
+                <h1 class="community-title">Green Earth Warriors</h1>
+                <div class="community-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-users"></i>
+                        <span>1.2K members</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>New York City</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Created Jan 2024</span>
+                    </div>
+                </div>
+                <p>A community dedicated to promoting sustainable living and environmental conservation in urban areas. We organize regular clean-up drives, workshops on sustainable living, and advocate for green policies.</p>
+                <button class="join-community-btn">
+                    <i class="fas fa-plus"></i> Join Community
+                </button>
+            </div>
+        </div>
+
+        <div class="community-content">
+            <div class="community-sidebar">
+                <h3>Community Members</h3>
+                <div class="members-list">
+                    <div class="member-item">
+                        <img src="images/profile-man.avif" alt="Member" class="member-avatar">
+                        <div class="member-info">
+                            <a href="#" class="member-name">John Doe</a>
+                            <div class="member-role">Admin</div>
+                        </div>
+                    </div>
+                    <div class="member-item">
+                        <img src="images/profile-woman.png" alt="Member" class="member-avatar">
+                        <div class="member-info">
+                            <a href="#" class="member-name">Jane Smith</a>
+                            <div class="member-role">Moderator</div>
+                        </div>
+                    </div>
+                    <!-- More member items... -->
+                </div>
+            </div>
+
+            <div class="community-feed">
+                <div class="feed-filters">
+                    <button class="filter-btn active">All Posts</button>
+                    <button class="filter-btn">Actions</button>
+                    <button class="filter-btn">Events</button>
+                    <button class="filter-btn">Discussions</button>
+                </div>
+
+                <div class="create-post-section">
+                    <div class="post-container">
+                        <div class="post-types">
+                            <button class="post-type-btn active">
+                                <i class="fas fa-pen"></i> Post
+                            </button>
+                            <button class="post-type-btn">
+                                <i class="fas fa-image"></i> Media
+                            </button>
+                            <button class="post-type-btn">
+                                <i class="fas fa-poll"></i> Poll
+                            </button>
+                            <button class="post-type-btn">
+                                <i class="fas fa-calendar-plus"></i> Event
+                            </button>
+                        </div>
+                        <div class="post-editor active">
+                            <textarea placeholder="Share your thoughts with the community..."></textarea>
+                            <div class="post-actions">
+                                <div class="media-actions">
+                                    <button class="media-btn">
+                                        <i class="fas fa-image"></i>
+                                    </button>
+                                    <button class="media-btn">
+                                        <i class="fas fa-video"></i>
+                                    </button>
+                                    <button class="media-btn">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </button>
+                                </div>
+                                <button class="primary-btn">
+                                    <i class="fas fa-paper-plane"></i> Post
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feed-posts">
+                    <div class="feed-post">
+                        <div class="post-header">
+                            <img src="images/profile-man.avif" alt="User" class="user-avatar">
+                            <div class="post-meta">
+                                <a href="#" class="user-name">John Doe</a>
+                                <div class="post-time">2 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>Just organized a successful beach cleanup! We collected over 100 kg of plastic waste. Thanks to everyone who participated! 🌊♻️</p>
+                            <img src="images/ocean-conservation.avif" alt="Beach Cleanup" class="post-image">
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn">
+                                <i class="far fa-heart"></i>
+                                <span>124</span>
+                            </button>
+                            <button class="action-btn">
+                                <i class="far fa-comment"></i>
+                                <span>23</span>
+                            </button>
+                            <button class="action-btn">
+                                <i class="far fa-share-square"></i>
+                                <span>Share</span>
+                            </button>
+                        </div>
+                        <div class="comments-section">
+                            <div class="comment-input-area">
+                                <img src="images/profile-woman.png" alt="User" class="user-avatar-small">
+                                <div class="comment-input-wrapper">
+                                    <input type="text" class="comment-input" placeholder="Write a comment...">
+                                    <button class="comment-submit-btn">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- More feed posts... -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>&copy; 2024 5% Earth. All rights reserved.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/search-toggle.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/community-details.js"></script>
+</body>
+</html>

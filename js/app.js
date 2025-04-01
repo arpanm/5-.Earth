@@ -252,43 +252,46 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Dynamic form fields based on goal category
-    goalCategory.addEventListener('change', function() {
-        const category = this.value;
-        const goalMetric = document.getElementById('goalMetric');
-        
-        // Clear existing options
-        goalMetric.innerHTML = `<option value="">Select Metric</option>
-                                <option value="kg-co2">kg CO2</option>
-                                <option value="kwh">kWh</option>
-                                <option value="liters">Liters</option>
-                                <option value="kg-waste">kg Waste</option>
-                                <option value="trees">Trees</option>
-                                <option value="custom">Custom</option>`;
-        
-        // Set metric options based on category
-        switch(category) {
-            case 'carbon-reduction':
-                goalMetric.value = 'kg-co2';
-                break;
-            case 'waste-reduction':
-                goalMetric.value = 'kg-waste';
-                break;
-            case 'energy-efficiency':
-                goalMetric.value = 'kwh';
-                break;
-            case 'water-conservation':
-                goalMetric.value = 'liters';
-                break;
-            case 'biodiversity':
-                goalMetric.value = 'trees';
-                break;
-            case 'sustainable-living':
-                goalMetric.value = 'custom';
-                break;
-            default:
-                goalMetric.value = '';
-        }
-    });
+    const goalCategory = document.getElementById('goalCategory');
+    if (goalCategory) {
+        goalCategory.addEventListener('change', function() {
+            const category = this.value;
+            const goalMetric = document.getElementById('goalMetric');
+            
+            // Clear existing options
+            goalMetric.innerHTML = `<option value="">Select Metric</option>
+                                    <option value="kg-co2">kg CO2</option>
+                                    <option value="kwh">kWh</option>
+                                    <option value="liters">Liters</option>
+                                    <option value="kg-waste">kg Waste</option>
+                                    <option value="trees">Trees</option>
+                                    <option value="custom">Custom</option>`;
+            
+            // Set metric options based on category
+            switch(category) {
+                case 'carbon-reduction':
+                    goalMetric.value = 'kg-co2';
+                    break;
+                case 'waste-reduction':
+                    goalMetric.value = 'kg-waste';
+                    break;
+                case 'energy-efficiency':
+                    goalMetric.value = 'kwh';
+                    break;
+                case 'water-conservation':
+                    goalMetric.value = 'liters';
+                    break;
+                case 'biodiversity':
+                    goalMetric.value = 'trees';
+                    break;
+                case 'sustainable-living':
+                    goalMetric.value = 'custom';
+                    break;
+                default:
+                    goalMetric.value = '';
+            }
+        });
+    }
 });
 
 // Sample post data - In a real app, this would come from an API

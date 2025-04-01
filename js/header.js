@@ -14,11 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchToggle = document.querySelector('.search-toggle');
     const searchContainer = document.querySelector('.search-container');
 
-    searchToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        searchContainer.classList.toggle('active');
-        searchToggle.classList.toggle('active');
-    });
+    if (searchToggle && searchContainer) {
+        searchToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            searchContainer.classList.toggle('active');
+            searchToggle.classList.toggle('active');
+        });
+    }
 
     // Profile dropdown
     const profileDropdown = document.querySelector('.profile-dropdown');

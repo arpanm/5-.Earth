@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communities - 5% Earth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/dropdown.css">
+    <link rel="stylesheet" href="css/community-list.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <i class="fas fa-leaf"></i>
+            <span>5%.Earth</span>
+        </a>
+
+        <div class="search-container">
+            <input type="text" id="global-search" class="search-input" placeholder="Search...">
+            <div id="search-results" class="search-results-container"></div>
+        </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links">
+            <li class="search-toggle"><a href="#"><i class="fas fa-search"></i> Search</a></li>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="community.html"><i class="fas fa-stream"></i> Feed</a></li>
+            <li><a href="goals.html"><i class="fas fa-calendar"></i> Goals</a></li>
+            <li><a href="community-list.html"><i class="fas fa-users"></i> Communities</a></li>
+            <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
+            <li class="others-dropdown">
+                <a href="#"><i class="fas fa-bars"></i> Others<i class="fas fa-chevron-down"></i></a>
+                <div class="others-dropdown-content">
+                    <a href="green-projects.html"><i class="fas fa-seedling"></i> Green Projects</a>
+                    <a href="organizations.html"><i class="fas fa-city"></i> Organizations</a>
+                    <a href=""><i class="fas fa-book"></i> Courses</a>
+                    <a href=""><i class="fas fa-users"></i> Users</a>
+                    <a href=""><i class="fas fa-shopping-cart"></i> Products</a>
+                    <a href=""><i class="fas fa-tools"></i> Services</a>
+                </div>
+            </li>
+            <li class="profile-dropdown">
+                <a href="#"><i class="fas fa-user"></i> Profile<i class="fas fa-chevron-down"></i></a>
+                <div class="profile-dropdown-content">
+                    <a href="myprofile.html"><i class="fas fa-user-circle"></i> My Profile</a>
+                    <a href="myorganization.html"><i class="fas fa-building"></i> My Organization</a>
+                    <a onclick="logout()" href="login.html"><i class="fas fa-sign-out"></i> Logout</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="community-list-container">
+        <div class="community-search-filters">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="location-type">Location Type</label>
+                    <select id="location-type">
+                        <option value="">All Types</option>
+                        <option value="city">City</option>
+                        <option value="region">Region</option>
+                        <option value="country">Country</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" placeholder="Enter location...">
+                </div>
+                <div class="filter-group">
+                    <label for="goal-category">Goal Category</label>
+                    <select id="goal-category">
+                        <option value="">All Categories</option>
+                        <option value="climate">Climate Action</option>
+                        <option value="water">Water Conservation</option>
+                        <option value="waste">Waste Management</option>
+                        <option value="energy">Renewable Energy</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="community-grid">
+            <!-- Community Cards will be dynamically populated -->
+            <div class="community-card">
+                <div class="community-cover" style="background-image: url('images/green-earth.jpg');"></div>
+                <div class="community-info">
+                    <h3 class="community-name">Green Earth Warriors</h3>
+                    <p class="community-description">A community dedicated to promoting sustainable living and environmental conservation in urban areas.</p>
+                    <div class="community-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-users"></i>
+                            <span>1.2K members</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>New York City</span>
+                        </div>
+                    </div>
+                    <div class="community-tags">
+                        <span class="community-tag">Climate Action</span>
+                        <span class="community-tag">Urban Green</span>
+                    </div>
+                </div>
+            </div>
+            <!-- More community cards... -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>&copy; 2024 5% Earth. All rights reserved.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/search-toggle.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/community-list.js"></script>
+</body>
+</html>
